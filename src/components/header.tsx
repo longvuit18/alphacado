@@ -1,4 +1,3 @@
-import { Web3ModalProvider } from "@/context/web_3_modal";
 // import { ButtonConnectWallet } from "./button";
 import Logo from "@/assets/logo.png"
 import Image from "next/image";

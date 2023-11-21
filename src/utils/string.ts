@@ -1,9 +1,9 @@
 export const truncate = (
     fullStr: string,
-    strLen: number = 8,
+    strLen: number = 9,
+    frontChars: number = 4,
+    backChars: number = 4,
     separator: string = "...",
-    frontChars: number = 3,
-    backChars: number = 4
 ) => {
     if (fullStr.length <= strLen) return fullStr;
 

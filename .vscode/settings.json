@@ -18,4 +18,5 @@
   // This one forces the tab to be **space**
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
+  "editor.formatOnSave": true
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { Web3ModalProvider } from "@/context/web_3_modal"
+import { Web3Provider } from "@/context/web3_provider"
 import Button from "./common/button"
 import { useAccount } from "wagmi"
 import { useWeb3Modal } from '@web3modal/wagmi/react'
@@ -39,11 +39,11 @@ const ButtonWithConnectWallet = (props: Props) => {
 }
 export const ButtonConnectProvider = (props: Props) => {
   return (
-    <Web3ModalProvider>
+    <Web3Provider>
       <ButtonWithConnectWallet className={props.className}>
         {props.children}
       </ButtonWithConnectWallet>
-    </Web3ModalProvider>
+    </Web3Provider>
 
 
   )
