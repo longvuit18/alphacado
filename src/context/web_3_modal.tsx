@@ -1,9 +1,7 @@
 "use client";
 
 import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/react'
-
-import { WagmiConfig } from 'wagmi'
-import { mainnet } from 'wagmi/chains'
+import {WagmiConfig, mainnet } from "wagmi"
 // import { arbitrum, mainnet } from 'viem/chains'
 
 // 1. Get projectId

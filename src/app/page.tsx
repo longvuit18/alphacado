@@ -1,22 +1,22 @@
-import { Header } from '@/components/header'
 import Image from 'next/image'
 import landingpageBackground from '../../public/landingpageBackground.png'
 import chainLogo from '../../public/klaytn.png'
 import facebook from '../../public/facebook.png'
 import linkedIn from '../../public/linkedIn.png'
 import instagram from '../../public/instagram.png'
-import logo from '../../public/logo.svg'
+import logo from '@/assets/logo.png'
 import Button from '@/components/common/button'
 import Card from '@/components/common/card'
 import './style.css'
-import ChainLogo from '@/components/common/chainLogo'
+import ChainLogo from '@/components/common/chain_logo'
+import Link from 'next/link'
 
 export default function Home() {
   return (
     <main>
       {/* Background  */}
       <div className='relative'>
-        <div> 
+        <div>
           <Image
             src={landingpageBackground}
             alt='Landing page background'
@@ -35,21 +35,24 @@ export default function Home() {
             </h2>
           </div>
           <div className='mt-[43px] w-full flex justify-center'>
-            <Button className='w-[334px]' content='Enjoy Now' />
+            <Button className='w-[334px]'>Enjoy Now</Button>
           </div>
         </div>
       </div>
       <div className='absolute top-9 left-[135px] right-[135px] flex items-center justify-between z-2'>
         <div className='cursor-pointer'>
-          <Image 
+          <Image
             src={logo}
             alt='Logo'
+            height={40}
           />
         </div>
         <div className='flex justify-center items-center'>
           <div className='text-[#142321] cursor-pointer'>Developers</div>
           <div className='text-[#142321] ml-6 cursor-pointer'>Community</div>
-          <Button className='ml-9' content='Launch App' />
+          <Link href={"/app/swap"} passHref legacyBehavior>
+            <Button className='ml-9'>Launch App</Button>
+          </Link>
         </div>
       </div>
 
@@ -66,7 +69,7 @@ export default function Home() {
             <Card title='Zaps' content='Bundle multi-step actions into a single multicall transaction that seamlessly swaps interest bearing, liquidity pool, vault, or any kind of token for any other' className='w-full bg-[#F1FFF4]' />
           </div>
           <div className='mt-40'>
-            <h4 className='text-center text-[#2E3B39] text-[38px] leading-10 font-semibold'>With support for the most popular<br/>EVM chains</h4>
+            <h4 className='text-center text-[#2E3B39] text-[38px] leading-10 font-semibold'>With support for the most popular<br />EVM chains</h4>
             <div className='grid grid-cols-4 gap-6 mt-16'>
               <ChainLogo logo={chainLogo} borderRight borderBottom imageClassName='w-full' />
               <ChainLogo logo={chainLogo} borderLeft borderRight borderBottom imageClassName='w-full' />
@@ -76,45 +79,6 @@ export default function Home() {
               <ChainLogo logo={chainLogo} borderLeft borderRight borderTop imageClassName='w-full' />
               <ChainLogo logo={chainLogo} borderLeft borderRight borderTop imageClassName='w-full' />
               <ChainLogo logo={chainLogo} borderLeft borderTop imageClassName='w-full' />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className='mt-[300px]'>
-        <div className='px-[135px]'>
-          <div className='pb-4 flex justify-between items-center border-bottom'>
-            <div>
-              <Image 
-                src={logo}
-                alt='Logo'
-              />
-              <p className='text-[#2E3B39] text-[13px] ml-10'>One Click To Access DeFi World</p>
-            </div>
-            <div className='flex gap-11'>
-              <div className='w-6 h-6'>
-                <Image src={linkedIn} alt='Linked In' />
-              </div>
-              <div className='w-6 h-6 flex justify-center items-center'>
-                <Image className='h-full w-[50%]' src={facebook} alt='Facebook' />
-              </div>
-              <div className='w-6 h-6'>
-                <Image src={instagram} alt='Instagram' />
-              </div>
-            </div>
-          </div>
-          <div className='pt-4 mb-6 flex justify-between'>
-            <div>
-              <p className='text-[#202E2C]'>Alphacado ©. All rights reserved.</p>
-            </div>
-            <div className='flex gap-5'>
-              <div className='cursor-pointer'>
-                <p className='text-[#202E2C]'>Term of Service</p>
-              </div>
-              <div className='w-[1px] h-6 bg-[#000]'></div>
-              <div className='cursor-pointer'>
-                <p className='text-[#202E2C]'>Privacy Policy</p>
-              </div>
             </div>
           </div>
         </div>
