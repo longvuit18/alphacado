@@ -1,5 +1,4 @@
 "use client";
-
 import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/react'
 import {WagmiConfig, mainnet } from "wagmi"
 // import { arbitrum, mainnet } from 'viem/chains'

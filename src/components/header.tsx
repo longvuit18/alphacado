@@ -19,7 +19,7 @@ export const Header = () => {
           <Link href={"/app/swap"} className="text-[18px] hover:font-semibold">Vault</Link>
           <Link href={"/app/swap"} className="text-[18px] hover:font-semibold">Analytics</Link>
           <ButtonConnectProvider className="h-12">
-            Connect Wallet
+            
           </ButtonConnectProvider>
         </nav>
         </div>
