@@ -1,0 +1,28 @@
+.text-large-typo {
+    text-align: center;
+    font-size: 68px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 80px; /* 117.647% */
+    letter-spacing: -0.5px; 
+}
+
+.text-small-typo {
+    text-align: center;
+    font-size: 27px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px; /* 118.519% */
+    letter-spacing: 0.5px;
+}
+
+.border-bottom {
+    border-bottom: 0.5px solid var(--neutral-g-700, #2E3B39); 
+}
+
+.text-background {
+    background: linear-gradient(180deg, #5B7D00 0%, #A9B127 99.99%, rgba(91, 125, 0, 0.00) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
