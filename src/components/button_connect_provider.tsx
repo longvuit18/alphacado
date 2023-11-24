@@ -15,10 +15,15 @@ type Props = PropsWithChildren & {
 const ButtonWithConnectWallet = (props: Props) => {
   const [currentAddress, setCurrentAddress] = useState<string | undefined | null>(undefined);
 
-  const { address } = useAccount()
+  const { address, isConnected } = useAccount()
   useEffect(() => {
-    setCurrentAddress(address)
-  }, [])
+    if (isConnected) {
+      setCurrentAddress(address)
+    } else {
+      setCurrentAddress(null)
+
+    }
+  }, [isConnected])
   const { open, close } = useWeb3Modal()
   if (currentAddress) {
     return (

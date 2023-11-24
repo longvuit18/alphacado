@@ -1,5 +1,6 @@
 import { SettingIcon } from "@/components/icons/setting_icon";
 import { MainSwap } from "@/components/swap/main";
+import { Web3Provider } from "@/context/web3_provider";
 import Link from "next/link";
 
 export default function SwapPage() {
@@ -18,7 +19,9 @@ export default function SwapPage() {
           <p className="text-[23px] font-bold">Exchange</p>
           <SettingIcon />
         </div>
-        <MainSwap />
+        <Web3Provider>
+          <MainSwap />
+        </Web3Provider>
       </div>
     </div>
   )
