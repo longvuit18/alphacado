@@ -2,12 +2,19 @@
 import Button from "@/components/common/button";
 import Checkbox from "@/components/common/checkbox";
 import Image from "next/image";
+import { CREATE_VAULT_STEP } from "./constants/create_vault_step";
 
-export default function ReviewForm() {
+export default function ReviewForm(props: any) {
+  const { setStep, isConfirmed, setIsConfirmed, handleDeployVault } = props;
+
+  const onClickBack = () => {
+    setStep(CREATE_VAULT_STEP.FEE_CONFIGURATION);
+  }
+
   return (
     <div className=" w-[75%] flex flex-col gap-6 rounded-3xl border border-neutral-g-40 bg-white shadow-drop-2 p-6 ">
       <div>
-        <h5 className="text-[27px] text-[#2E3B39] leading-8 font-semibold">Set up a new vault</h5>
+        <h5 className="text-[27px] text-[#2E3B39] leading-8 font-semibold">Review</h5>
         <p className="text-[#130D0D] text-[14px] font-normal leading-5">Please review your configuration carefully. You can interact with vaults that you created on <span className="text-[#7B4B94]">app.pop.network</span></p>
       </div>
       {/* Basic */}
@@ -96,14 +103,20 @@ export default function ReviewForm() {
 
       {/* Terms & Conditions */}
       <div className="flex items-center mb-6">
-        <Checkbox />
+        <Checkbox isChecked={isConfirmed} handleOnChange={() => setIsConfirmed(!isConfirmed)} />
         <p className="text-[14px] font-normal leading-5 ml-2">I have read and agree to the <span className="text-[#19609F]">Terms & Conditions.</span></p>
       </div>
 
       {/* Buttons */}
       <div className="flex gap-3">
-        <Button className="w-full text-center text-[18px] font-medium leading-6">Back</Button>
-        <Button className="w-full text-center text-[18px] font-medium leading-6" btnType="success">Deploy Vault</Button>
+        <Button className="w-full text-center text-[18px] font-medium leading-6 cursor-pointer" onClick={onClickBack}>Back</Button>
+        <Button
+          className={`${isConfirmed ? 'cursor-pointer' : 'opacity-60'} w-full text-center text-[18px] font-medium leading-6`}
+          btnType="success"
+          onClick={handleDeployVault}
+        >
+          Deploy Vault
+        </Button>
       </div>
     </div>
   )
