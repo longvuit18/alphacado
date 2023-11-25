@@ -4,23 +4,33 @@ import { MainSwap } from "@/components/swap/main";
 import Link from "next/link";
 import SetupNewVaultForm from "./setup_new_vault_form";
 import FeeConfigurationForm from "./fee_configuration_form";
+import ReviewForm from "./review_form";
+import Success from "./success";
+import { ArrowLeftIcon } from "@/components/icons/arrow_left_icon";
 
 export default function CreateVaultPage() {
   return (
     <div className="container mx-auto mb-10 flex flex-col justify-center items-center">
       {/* STEP */}
-      <div className="flex justify-center items-center mb-12">
-        <CreateStepIcon isCompleted={true} />
-        <div className="w-[216px] h-[2px] bg-[#C4C8C8]"></div>
-        <CreateStepIcon isCompleted={false} />
-        <div className="w-[216px] h-[2px] bg-[#C4C8C8]"></div>
-        <CreateStepIcon isCompleted={false} />
+      <div className="w-full">
+        <div className="cursor-pointer">
+          <ArrowLeftIcon />
+        </div>
+        {/* <div className="flex justify-center items-center mb-12">
+          <CreateStepIcon isCompleted={true} />
+          <div className="w-[216px] h-[2px] bg-[#C4C8C8]"></div>
+          <CreateStepIcon isCompleted={false} />
+          <div className="w-[216px] h-[2px] bg-[#C4C8C8]"></div>
+          <CreateStepIcon isCompleted={false} />
+        </div> */}
       </div>
 
       {/* FORM */}
       <div className="w-full flex justify-center">
         {/* <SetupNewVaultForm /> */}
-        <FeeConfigurationForm />
+        {/* <FeeConfigurationForm /> */}
+        {/* <ReviewForm /> */}
+        <Success />
       </div>
     </div>
   )
