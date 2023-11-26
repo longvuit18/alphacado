@@ -4,10 +4,53 @@ import SelectDropdown from "@/components/common/select";
 import Switch from "@/components/common/switch";
 import TextField from "@/components/common/text_field";
 import { InforIcon } from "@/components/icons/infor_icon";
-import { useState } from "react";
+import { FormEventHandler, useState } from "react";
+import { CREATE_VAULT_STEP } from "./constants/create_vault_step";
 
-export default function SetupNewVaultForm() {
-  const [checked, setChecked] = useState(true);
+export default function SetupNewVaultForm(props: any) {
+  const { setupNewVaultForm, setSetupNewVaultForm, isFilledSetupNewVaultForm, setStep } = props;
+
+  const onChangeVaultName = (e: any) => {
+    setSetupNewVaultForm({
+      ...setupNewVaultForm,
+      name: e.target.value,
+    });
+  }
+
+  const onChangeAsset = (e: any) => {
+    setSetupNewVaultForm({
+      ...setupNewVaultForm,
+      asset: e.target.value,
+    });
+  }
+
+  const onChangeStrategy = (e: any) => {
+    setSetupNewVaultForm({
+      ...setupNewVaultForm,
+      strategy: e.target.value,
+    });
+  }
+
+  const onChangeDepositLimit = () => {
+    setSetupNewVaultForm({
+      ...setupNewVaultForm,
+      depositLimit: !setupNewVaultForm.depositLimit,
+    });
+  }
+
+  const onChangeMaxDepositAmount = (e: any) => {
+    setSetupNewVaultForm({
+      ...setupNewVaultForm,
+      maxDepositAmount: e.target.value,
+    });
+  }
+
+  const onClickNext = (e: any) => {
+    if (isFilledSetupNewVaultForm) {
+      console.log('FORM RESULT: ', setupNewVaultForm);
+      setStep(CREATE_VAULT_STEP.FEE_CONFIGURATION);
+    }
+  }
 
   return (
     <div className=" w-[75%] flex flex-col gap-4 rounded-3xl border border-neutral-g-40 bg-white shadow-drop-2 p-6 ">
@@ -19,14 +62,14 @@ export default function SetupNewVaultForm() {
         <div className="mb-4">
           <div className="mb-3">
             <p className="text-base mb-2">Name</p>
-            <TextField className="w-full" placeholder="Type vault name" />
+            <TextField className="w-full" placeholder="Type vault name" value={setupNewVaultForm.name} onChange={onChangeVaultName} />
           </div>
           <div className="grid grid-cols-2 gap-3 mb-3">
             <SelectDropdown placeholder="Choose an Asset" />
-            <TextField placeholder="Select an asset first" />
+            <TextField placeholder="Select an asset first" value={setupNewVaultForm.asset} onChange={onChangeAsset} />
           </div>
           <div>
-            <TextField className="w-full" placeholder="Choose a Strategy" />
+            <TextField className="w-full" placeholder="Choose a Strategy" value={setupNewVaultForm.strategy} onChange={onChangeStrategy} />
             <div>
               <p className="text-[12px] text-[#646E6C] font-normal leading-5">To learn more click here</p>
             </div>
@@ -42,8 +85,9 @@ export default function SetupNewVaultForm() {
             </div>
             <div className="flex justify-center items-center">
               <Switch
-                isOn={checked}
-                handleToggle={() => setChecked(!checked)}
+                id="depositLimit"
+                isOn={setupNewVaultForm.depositLimit}
+                handleToggle={onChangeDepositLimit}
               />
             </div>
           </div>
@@ -63,14 +107,19 @@ export default function SetupNewVaultForm() {
         <div className="mb-4">
           <div className="mb-3">
             <p className="text-base mb-2">Maximum deposit amount</p>
-            <TextField className="w-full" placeholder="0" />
+            <TextField className="w-full" placeholder="0" value={setupNewVaultForm.maxDepositAmount} onChange={onChangeMaxDepositAmount} />
           </div>
         </div>
 
         {/* Button */}
         <div className="flex gap-3">
-          <Button className="w-full text-center text-[18px] font-medium leading-6">Back</Button>
-          <Button className="opacity-60 w-full text-center text-[18px] font-medium leading-6">Next</Button>
+          <Button className="w-full text-center text-[18px] font-medium leading-6 cursor-pointer">Back</Button>
+          <Button
+            className={`${isFilledSetupNewVaultForm ? 'cursor-pointer' : 'opacity-60'} w-full text-center text-[18px] font-medium leading-6`}
+            onClick={onClickNext}
+          >
+            Next
+          </Button>
         </div>
       </div>
     </div>

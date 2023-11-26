@@ -1,0 +1,6 @@
+export const CREATE_VAULT_STEP = {
+  SET_UP_NEW_VAULT: 1,
+  FEE_CONFIGURATION: 2,
+  REVIEW: 3,
+  FINISH: 4
+}
