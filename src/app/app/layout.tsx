@@ -3,22 +3,23 @@ import type { Metadata } from 'next'
 
 
 export const metadata: Metadata = {
-	title: 'Alphacado',
-	description: 'Alphacado',
+  title: 'Alphacado',
+  description: 'Alphacado',
 }
 
 export default function RootLayout({
-	children,
+  children
 }: {
-	children: React.ReactNode
+  children: React.ReactNode,
+  props: any
 }) {
-	return (
-		<>
-			<Header />
-			<main>
-				{children}
-			</main>
-		</>
+  return (
+    <>
+      <Header />
+      <main>
+        {children}
+      </main>
+    </>
 
-	)
+  )
 }

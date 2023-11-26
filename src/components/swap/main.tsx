@@ -11,6 +11,35 @@ import CurrencyInput from 'react-currency-input-field';
 import { useClientAccount } from "@/app/hooks/use_client_account";
 import { useSwap } from "@/app/hooks/use_swap";
 import { formatEther } from "viem";
+import { Supply } from "@/models/supply";
+import { SupplyingPopup } from "./supplying_popup";
+
+const supplyList: Supply = {
+  eth: {
+    token: [],
+    farm: [],
+    lending: [],
+    liquid: []
+  },
+  klaytn: {
+    token: [],
+    farm: [],
+    lending: [],
+    liquid: []
+  },
+  bsc: {
+    token: [],
+    farm: [],
+    lending: [],
+    liquid: []
+  },
+  mumbai: {
+    token: [],
+    farm: [],
+    lending: [],
+    liquid: []
+  },
+}
 
 
 export const MainSwap = () => {
@@ -29,7 +58,7 @@ export const MainSwap = () => {
         <div className="my-3">
           <div className="bg-white rounded-[8px] w-full px-3 py-4 flex gap-4 items-center">
             <div>
-              <Image alt="usdc icon" src={USDCIcon} height={24} width={24} />
+              <SupplyingPopup />
             </div>
             <CurrencyInput
               placeholder="0.0"
