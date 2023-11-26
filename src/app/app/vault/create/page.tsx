@@ -7,6 +7,7 @@ import { CreateStepIcon } from "@/components/icons/create_step_icon";
 import SetupNewVaultForm from "./setup_new_vault_form";
 import FeeConfigurationForm from "./fee_configuration_form";
 import ReviewForm from "./review_form";
+import { useVault } from "@/app/hooks/use_vault";
 
 export default function CreateVaultPage() {
   const [step, setStep] = useState(CREATE_VAULT_STEP.SET_UP_NEW_VAULT);
@@ -59,6 +60,8 @@ export default function CreateVaultPage() {
       setStep(CREATE_VAULT_STEP.FINISH);
     }
   }
+
+  const { } = useVault()
 
   return (
     <div className="container mx-auto mb-10 flex flex-col justify-center items-center">
