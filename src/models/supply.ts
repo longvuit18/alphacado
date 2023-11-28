@@ -1,8 +1,14 @@
 export type Supply = {
   [chainName: string]: {
-    token: { [tokenName: string]: string }[],
-    farm: { [tokenName: string]: string }[],
-    lending: { [tokenName: string]: string }[],
-    liquid: { [tokenName: string]: string }[]
+    [zap: string]: {
+      [tokenName: string]: Token;
+    },
   }
+}
+
+export type Token = {
+  address: string;
+  icon: any;
+  apy: number;
+  balance: number;
 }

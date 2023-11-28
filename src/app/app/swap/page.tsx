@@ -1,5 +1,6 @@
 import { SettingIcon } from "@/components/icons/setting_icon";
 import { MainSwap } from "@/components/swap/main";
+import { SettingPopup } from "@/components/swap/setting_popup";
 import { Web3Provider } from "@/context/web3_provider";
 import Link from "next/link";
 
@@ -16,8 +17,8 @@ export default function SwapPage() {
       </div>
       <div className="mt-5 w-[770px] mx-auto">
         <div className="main-gradient-background p-6 flex justify-between rounded-t-[12px]">
-          <p className="text-[23px] font-bold">Exchange</p>
-          <SettingIcon />
+          <p className="text-[23px] font-[600] text-[#2E3B39]">Exchange</p>
+          <SettingPopup />
         </div>
         <Web3Provider>
           <MainSwap />

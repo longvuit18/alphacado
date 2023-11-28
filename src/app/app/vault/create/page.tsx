@@ -61,7 +61,7 @@ export default function CreateVaultPage() {
     }
   }
 
-  const { } = useVault()
+  // const { createVault} = useVault()
 
   return (
     <div className="container mx-auto mb-10 flex flex-col justify-center items-center">

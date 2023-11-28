@@ -2,17 +2,23 @@ import { uniswapV2AdapterAbi } from "@/abi/uniswapv2_adapter";
 import { useMemo, useState } from "react"
 import { erc20ABI, useContractRead, useContractWrite, usePrepareContractWrite } from "wagmi";
 import { useClientAccount } from "./use_client_account";
-import { MUMBAI_UNISWAP_V2_ADAPTER_ADDRESS, MUMBAI_USDC, MUMBAI_UNISWAP_V2_ROUTER, MUMBAI_WORMHOLE } from "@/constants/contract_address";
+import { MUMBAI_UNISWAP_V2_ADAPTER_ADDRESS, MUMBAI_USDC, MUMBAI_UNISWAP_V2_ROUTER, MUMBAI_WORMHOLE, SUPPLY_LIST } from "@/constants/contract_address";
 import { encodeAbiParameters, etherUnits, formatEther, formatUnits, parseEther, zeroAddress } from "viem";
 import { wormholeAbi } from "@/abi/wormhole";
+import { Token } from "@/models/supply";
 
 export const useSwap = () => {
+  const account = useClientAccount();
   const [amount, setAmount] = useState<number>(0);
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
-  const account = useClientAccount();
+  const [tokenFrom, setTokenFrom] = useState<Token>(SUPPLY_LIST.bsc.token.USDC)
+  const [tokenTo, setTokenTo] = useState<Token>(SUPPLY_LIST.bsc.token.USDC)
+  const [chainToId, setChainToId] = useState<number>(1001)
+  const [receiver, setReceiver] = useState<string>(account?.address ?? '')
+
 
   const { data: allowance } = useContractRead({
-    address: MUMBAI_USDC,
+    address: tokenFrom.address as `0x${string}`,
     abi: erc20ABI,
     functionName: "allowance",
     args: [account?.address ?? zeroAddress, MUMBAI_UNISWAP_V2_ADAPTER_ADDRESS],
@@ -21,7 +27,7 @@ export const useSwap = () => {
   })
 
   const { data: usdcBalance } = useContractRead({
-    address: MUMBAI_USDC,
+    address: tokenFrom.address as `0x${string}`,
     abi: erc20ABI,
     functionName: "balanceOf",
     args: [account?.address ?? zeroAddress],
@@ -118,7 +124,14 @@ export const useSwap = () => {
     isApprove,
     onSwap,
     buttonLoading,
-    usdcBalance
+    usdcBalance,
+    setTokenFrom,
+    feeWormhole,
+    tokenFrom,
+    setTokenTo,
+    tokenTo,
+    chainToId,
+    setChainToId
   }
 
 }
