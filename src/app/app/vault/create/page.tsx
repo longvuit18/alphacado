@@ -14,8 +14,8 @@ export default function CreateVaultPage() {
   // Set up new vault form state
   const [setupNewVaultForm, setSetupNewVaultForm] = useState({
     name: '',
-    asset: '',
-    strategy: '',
+    asset: 'abc',
+    strategy: 'abc',
     depositLimit: false,
     maxDepositAmount: '',
   });

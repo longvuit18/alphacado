@@ -4,11 +4,16 @@ import SelectDropdown from "@/components/common/select";
 import Switch from "@/components/common/switch";
 import TextField from "@/components/common/text_field";
 import { InforIcon } from "@/components/icons/infor_icon";
-import { FormEventHandler, useState } from "react";
+import { FormEventHandler, ReactNode, useState } from "react";
 import { CREATE_VAULT_STEP } from "./constants/create_vault_step";
+import Strategy from "@/components/vault/strategy";
+import { PlusIcon } from "@/components/icons/plus_icon";
 
 export default function SetupNewVaultForm(props: any) {
   const { setupNewVaultForm, setSetupNewVaultForm, isFilledSetupNewVaultForm, setStep } = props;
+  const singleStrategy = <Strategy />
+
+  const [strategies, setStrategies] = useState<ReactNode[]>([singleStrategy]);
 
   const onChangeVaultName = (e: any) => {
     setSetupNewVaultForm({
@@ -52,6 +57,10 @@ export default function SetupNewVaultForm(props: any) {
     }
   }
 
+  const handleAddStrategy = () => {
+    setStrategies([...strategies, singleStrategy]);
+  }
+
   return (
     <div className=" w-[75%] flex flex-col gap-4 rounded-3xl border border-neutral-g-40 bg-white shadow-drop-2 p-6 ">
       <div>
@@ -64,14 +73,24 @@ export default function SetupNewVaultForm(props: any) {
             <p className="text-base mb-2">Name</p>
             <TextField className="w-full" placeholder="Type vault name" value={setupNewVaultForm.name} onChange={onChangeVaultName} />
           </div>
-          <div className="grid grid-cols-2 gap-3 mb-3">
-            <SelectDropdown placeholder="Choose an Asset" />
-            <TextField placeholder="Select an asset first" value={setupNewVaultForm.asset} onChange={onChangeAsset} />
+          <div className="w-full mb-3">
+            <SelectDropdown className="w-full" placeholder="Choose a Token">
+              <option>Token 1</option>
+              <option>Token 2</option>
+              <option>Token 3</option>
+            </SelectDropdown>
           </div>
           <div>
-            <TextField className="w-full" placeholder="Choose a Strategy" value={setupNewVaultForm.strategy} onChange={onChangeStrategy} />
-            <div>
-              <p className="text-[12px] text-[#646E6C] font-normal leading-5">To learn more click here</p>
+            {strategies.map((strategy, index) => (
+              <div key={index} className="mb-4">
+                {strategy}
+              </div>
+            ))}
+            <div
+              className="w-14 ml-[72px] cursor-pointer border-2 p-3 rounded-full border-[#FFE47A] mt-4"
+              onClick={handleAddStrategy}
+            >
+              <PlusIcon />
             </div>
           </div>
         </div>
