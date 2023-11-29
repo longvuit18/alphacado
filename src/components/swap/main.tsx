@@ -64,7 +64,6 @@ export const MainSwap = (props: Props) => {
   }, [chainId])
 
   const chainToIcon = useMemo(() => {
-    console.log('HELLO: ', Object.values(CHAINS_TESTNET).find(item => item.id === chainToId));
     return Object.values(CHAINS_TESTNET).find(item => item.id === chainToId)?.icon
   }, [chainToId])
   return (
