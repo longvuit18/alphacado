@@ -17,11 +17,16 @@ import { SupplyingPopup } from "./supplying_popup";
 import { SUPPLY_LIST } from "@/constants/contract_address";
 import { CHAINS_TESTNET } from "@/constants/chains";
 import { useNetwork } from "wagmi";
-import { useEffect, useMemo, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { ProgressPopup } from "./progress_popup";
 
+type Props = {
+  slippageTolerance: string | undefined;
+  setSlippageTolerance: Dispatch<SetStateAction<string | undefined>>;
+}
 
-export const MainSwap = () => {
+export const MainSwap = (props: Props) => {
+  const { slippageTolerance, setSlippageTolerance } = props;
   const account = useClientAccount();
   const { chain } = useNetwork()
   const [chainId, setChainId] = useState<number | undefined>(undefined)
@@ -115,7 +120,7 @@ export const MainSwap = () => {
       <div className="third-gradient-background px-8 pt-9 flex flex-col gap-3 pb-6">
         <div className="flex justify-between">
           <p className="text-[#646E6C]">Slippage Tolerance:</p>
-          <p className="font-[600] text-[16px]">1.5%</p>
+          <p className="font-[600] text-[16px]">{slippageTolerance || ""}</p>
         </div>
         {/* <div className="flex justify-between">
           <p className="text-[#646E6C]">Actual amount to be sent:</p>

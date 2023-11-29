@@ -59,13 +59,31 @@ export const SupplyingPopup = (props: Props) => {
   return (
     <>
       <div className='flex items-center bg-[#E0E2E2] pr-2 gap-1 rounded-full' onClick={() => setOpenModal(true)}>
-        <Image alt="icon"
-          src={currentToken?.icon ?? USDCIcon}
+        {zap == "farm" ? (
+          <div className='flex gap-1 mr-2'>
+            <Image alt="icon"
+              src={currentToken?.icon[0] ?? USDCIcon}
+              height={24}
+              width={24}
+              className='cursor-pointer'
+            />
+            <Image alt="icon"
+              src={currentToken?.icon[1] ?? USDCIcon}
 
-          height={24}
-          width={24}
-          className='cursor-pointer'
-        />
+              height={24}
+              width={24}
+              className='cursor-pointer'
+            />
+          </div>
+        ) : (
+          <Image alt="icon"
+            src={currentToken?.icon ?? USDCIcon}
+
+            height={24}
+            width={24}
+            className='cursor-pointer'
+          />
+        )}
         <ArrowDownIcon className='ml-1' />
       </div>
 

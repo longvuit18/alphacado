@@ -59,7 +59,6 @@ export default function FeeConfigurationForm(props: any) {
 
   const onClickNext = (e: any) => {
     if (isFilledFeeConfigurationForm) {
-      console.log('FORM RESULT: ', feeConfigurationForm);
       setStep(CREATE_VAULT_STEP.REVIEW);
     }
   }

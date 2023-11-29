@@ -52,7 +52,6 @@ export default function SetupNewVaultForm(props: any) {
 
   const onClickNext = (e: any) => {
     if (isFilledSetupNewVaultForm) {
-      console.log('FORM RESULT: ', setupNewVaultForm);
       setStep(CREATE_VAULT_STEP.FEE_CONFIGURATION);
     }
   }
