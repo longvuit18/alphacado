@@ -1,7 +1,7 @@
 "use client";
 import { createWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi/react'
 import { WagmiConfig } from "wagmi"
-import { klaytn, mainnet, polygonMumbai, bscTestnet } from 'viem/chains'
+import { klaytn, mainnet, polygonMumbai, bscTestnet, sepolia } from 'viem/chains'
 import { klaytnTestnet } from '@/constants/chains';
 
 // 1. Get projectId
@@ -15,7 +15,7 @@ const metadata = {
   icons: ['https://avatars.githubusercontent.com/u/37784886']
 }
 
-const chains = [polygonMumbai, bscTestnet, klaytnTestnet]
+const chains = [polygonMumbai, bscTestnet, klaytnTestnet, sepolia]
 const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata })
 
 // 3. Create modal

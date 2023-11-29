@@ -8,7 +8,7 @@ export const CHAINS_TESTNET = {
   ETH: {
     name: "Ethereum",
     icon: ETHIcon,
-    id: 1
+    id: 11155111
   },
   BSC: {
     name: "BSC",

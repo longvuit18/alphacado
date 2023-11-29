@@ -6,6 +6,7 @@ import USDCIcon from "@/assets/usdc-icon.png"
 import { Supply, Token } from '@/models/supply';
 import { useNetwork, useSwitchNetwork } from 'wagmi';
 import { CHAINS_TESTNET } from '@/constants/chains';
+import { ArrowDownIcon } from '../icons/arrow_down_icon';
 
 type Props = {
   supply: Supply;
@@ -24,7 +25,6 @@ export const SupplyingPopup = (props: Props) => {
   const [zap, setZap] = useState(props.zap ?? "token")
   const { chain } = useNetwork()
   const { switchNetwork } = useSwitchNetwork()
-
   const handleSwitchChain = (id: number) => {
     if (switchNetwork && !props.disabledSwitchChange) {
       switchNetwork(id)
@@ -58,7 +58,17 @@ export const SupplyingPopup = (props: Props) => {
 
   return (
     <>
-      <Image alt="icon" src={currentToken?.icon ?? USDCIcon} onClick={() => setOpenModal(true)} height={24} width={24} />
+      <div className='flex items-center bg-[#E0E2E2] pr-2 gap-1 rounded-full' onClick={() => setOpenModal(true)}>
+        <Image alt="icon"
+          src={currentToken?.icon ?? USDCIcon}
+
+          height={24}
+          width={24}
+          className='cursor-pointer'
+        />
+        <ArrowDownIcon className='ml-1' />
+      </div>
+
       <Modal show={openModal} onClose={() => setOpenModal(false)} size={"3xl"}>
         <Modal.Header className='bg-[#FAFBFB] rounded-t-[12px]'>Supply to</Modal.Header>
         <Modal.Body className='bg-[#FAFBFB]  rounded-b-[12px]'>
@@ -99,16 +109,23 @@ export const SupplyingPopup = (props: Props) => {
                 Object.entries(props.supply[chainName ?? ""]?.[zap] ?? {})?.map(item => {
                   return (
                     <div key={item[1].address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-5 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
-                      <div className='col-span-3 text-[#130D0D] p-3  font-bold'>
+                      <div className='col-span-3 text-[#130D0D] p-3  font-[500]'>
                         <div className='flex gap-2 items-center'>
-                          <Image alt="usdc icon" src={item[1].icon} height={32} width={32} />
+                          {Array.isArray(item[1].icon) ?
+                            <div className='flex gap-1'>
+                              <Image alt="usdc icon" src={item[1].icon[0]} height={32} width={32} />
+                              <Image alt="usdc icon" src={item[1].icon[1]} height={32} width={32} />
+                            </div>
+                            :
+                            <Image alt="usdc icon" src={item[1].icon} height={32} width={32} />
+                          }
                           {item[0]}
                         </div>
                       </div>
-                      <div className='col-span-1 text-[#130D0D] p-3  font-bold  flex items-center'>
+                      <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
                         {item[1].apy} %
                       </div>
-                      <div className='col-span-1 text-[#130D0D] p-3  font-bold  flex items-center'>
+                      <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
                         {item[1].balance} %
                       </div>
                     </div>
