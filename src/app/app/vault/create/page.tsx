@@ -7,7 +7,7 @@ import { CreateStepIcon } from "@/components/icons/create_step_icon";
 import SetupNewVaultForm from "./setup_new_vault_form";
 import FeeConfigurationForm from "./fee_configuration_form";
 import ReviewForm from "./review_form";
-import { useVault } from "@/app/hooks/use_vault";
+import { useVault } from "@/hooks/use_vault";
 
 export default function CreateVaultPage() {
   const [step, setStep] = useState(CREATE_VAULT_STEP.SET_UP_NEW_VAULT);

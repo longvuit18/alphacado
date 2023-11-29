@@ -1,6 +1,6 @@
 import { uniswapV2AdapterAbi } from "@/abi/uniswapv2_adapter";
 import { useEffect, useMemo, useState } from "react"
-import { erc20ABI, useContractRead, useContractWrite, usePrepareContractWrite } from "wagmi";
+import { erc20ABI, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
 import { useClientAccount } from "./use_client_account";
 import { MUMBAI_UNISWAP_V2_ADAPTER_ADDRESS, MUMBAI_USDC, MUMBAI_UNISWAP_V2_ROUTER, MUMBAI_WORMHOLE, SUPPLY_LIST, ADAPTER_ADDRESS, ROUTER } from "@/constants/contract_address";
 import { encodeAbiParameters, etherUnits, formatEther, formatUnits, parseEther, zeroAddress } from "viem";
@@ -13,9 +13,16 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   const [amount, setAmount] = useState<number>(0);
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
   const [tokenFrom, setTokenFrom] = useState<Token>(SUPPLY_LIST.ethereum.token.USDC)
-  const [tokenTo, setTokenTo] = useState<Token>(SUPPLY_LIST.klaytn.token.USDC)
+  const [tokenTo, setTokenTo] = useState<Token>(SUPPLY_LIST.klaytn.token.KLAYTN)
   const [chainToId, setChainToId] = useState<number>(1001)
   const [receiver, setReceiver] = useState<string>(account?.address ?? '')
+  const [progressState, setProgressState] = useState("")
+  const [hash, setHash] = useState("")
+
+  const { data: transactionRes, isError: transactionError, isLoading: transactionLoading } = useWaitForTransaction({
+    hash: hash as `0x${string}`,
+    enabled: !!hash
+  })
 
   useEffect(() => {
     if (chainFromId) {
@@ -23,6 +30,21 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
       setTokenFrom(SUPPLY_LIST[chainName ?? ""].token.USDC)
     }
   }, [chainFromId])
+
+  useEffect(() => {
+    if (transactionLoading) {
+      setProgressState("Progressing ...")
+    } else {
+      if (transactionError) {
+        setProgressState("Something was wrong!");
+      } else {
+        setProgressState("Transaction successfully!")
+      }
+      setTimeout(() => {
+        setHash("");
+      }, 1000);
+    }
+  }, [transactionRes, transactionError, transactionLoading])
 
   const { data: allowance } = useContractRead({
     address: tokenFrom.address as `0x${string}`,
@@ -106,8 +128,8 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     if (isApprove) {
       try {
         if (writeApproveAsync) {
-          const res = await writeApproveAsync()
-
+          const tx = await writeApproveAsync()
+          setHash(tx.hash)
           setButtonLoading(false)
         }
       } catch (error) {
@@ -119,7 +141,8 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
 
     try {
       if (writeSwapAsync) {
-        await writeSwapAsync()
+        const tx = await writeSwapAsync()
+        setHash(tx.hash)
         setButtonLoading(false)
       }
     } catch (error) {
@@ -154,7 +177,10 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     tokenTo,
     chainToId,
     setChainToId,
-    errorMessage
+    errorMessage,
+    progressState,
+    setProgressState,
+    hash
   }
 
 }

@@ -71,7 +71,7 @@ export const SUPPLY_LIST: Supply = {
       KLAYTN: { address: "0x9bBC56D7a806EA67A3D528C772550BdF99Ce4579", icon: KlaytnIcon, apy: 2.5, balance: 50 }
     },
     farm: {
-      "ETH-Klaytn": { address: "0x9fd7037B6bD6F16a89D33bE16127E067c1c7a292", icon: [ETHIcon, KlaytnIcon], apy: 2, balance: 60 },
+      "ETH-Klaytn": { address: "0x65481e2F0cc8E127D9266beF1438864940513da9", icon: [ETHIcon, KlaytnIcon], apy: 2, balance: 60 },
       "ETH-BTC": { address: "0x674A13CFc3e2F6B8981C7842489EC6F6cFd5898D", icon: [ETHIcon, BSCIcon], apy: 2.5, balance: 50 },
       "ETH-USDT": { address: "0x9fd7037B6bD6F16a89D33bE16127E067c1c7a292", icon: [ETHIcon, USDTIcon], apy: 3, balance: 65 },
       "ETH-USDC": { address: "0x642eDAC6E437F5D6037b7456966dA9d60edC9743", icon: [ETHIcon, USDCIcon], apy: 1.4, balance: 50 },

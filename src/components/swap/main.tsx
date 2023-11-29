@@ -8,8 +8,8 @@ import { Alert, ToggleSwitch } from 'flowbite-react';
 import { ButtonConnectProvider } from "../button_connect_provider";
 import Button from "../common/button";
 import CurrencyInput from 'react-currency-input-field';
-import { useClientAccount } from "@/app/hooks/use_client_account";
-import { useSwap } from "@/app/hooks/use_swap";
+import { useClientAccount } from "@/hooks/use_client_account";
+import { useSwap } from "@/hooks/use_swap";
 import { formatEther } from "viem";
 import { Supply } from "@/models/supply";
 import { SupplyingPopup } from "./supplying_popup";
@@ -18,6 +18,7 @@ import { SUPPLY_LIST } from "@/constants/contract_address";
 import { CHAINS_TESTNET } from "@/constants/chains";
 import { useNetwork } from "wagmi";
 import { useEffect, useMemo, useState } from "react";
+import { ProgressPopup } from "./progress_popup";
 
 
 export const MainSwap = () => {
@@ -47,7 +48,10 @@ export const MainSwap = () => {
     setTokenTo,
     chainToId,
     setChainToId,
-    errorMessage
+    errorMessage,
+    progressState,
+    setProgressState,
+    hash
   } = useSwap({ chainFromId: chainId })
 
   const chainFromIcon = useMemo(() => {
@@ -151,6 +155,7 @@ export const MainSwap = () => {
           </Button>
         </ButtonConnectProvider>
       </div>
+      {hash && progressState && <ProgressPopup state={progressState} onClose={() => setProgressState("")} />}
     </>
   );
 }
