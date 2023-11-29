@@ -1,15 +1,18 @@
 "use client"
 import { Modal } from 'flowbite-react';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 import { SettingIcon } from '../icons/setting_icon';
 import Button from '../common/button';
 
 type Props = {
+  slippageTolerance: string | undefined;
+  setSlippageTolerance: Dispatch<SetStateAction<string | undefined>>;
 }
 
 
 export const SettingPopup = (props: Props) => {
+  const { slippageTolerance, setSlippageTolerance } = props;
   const [openModal, setOpenModal] = useState(false);
   return (
     <>
@@ -22,11 +25,11 @@ export const SettingPopup = (props: Props) => {
           </h3>
           <div className='flex gap-1 justify-between mb-6'>
             <div className='flex gap-1'>
-              <div className='p-4 shadow-md rounded-lg'>1%</div>
-              <div className='p-4 shadow-md  rounded-lg bg-[#ffe]'>1.5%</div>
-              <div className='p-4 shadow-md  rounded-lg'>2.0%</div>
+              <div className={`p-4 shadow-md  rounded-lg ${slippageTolerance == "1%" ? 'bg-[#ffe]' : ''} cursor-pointer`} onClick={() => setSlippageTolerance("1%")}>1%</div>
+              <div className={`p-4 shadow-md  rounded-lg ${slippageTolerance == "1.5%" ? 'bg-[#ffe]' : ''} cursor-pointer`} onClick={() => setSlippageTolerance("1.5%")}>1.5%</div>
+              <div className={`p-4 shadow-md  rounded-lg ${slippageTolerance == "2%" ? 'bg-[#ffe]' : ''} cursor-pointer`} onClick={() => setSlippageTolerance("2%")}>2.0%</div>
             </div>
-            <div className='p-4 flex justify-between shadow-md w-full  rounded-lg'>
+            <div className={`p-4 flex justify-between shadow-md w-full rounded-lg cursor-pointer ${slippageTolerance == "4%" ? 'bg-[#ffe]' : ''}`} onClick={() => setSlippageTolerance("4%")}>
               <div>4</div>
               <div>%</div>
             </div>

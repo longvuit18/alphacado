@@ -15,7 +15,7 @@ export const Header = () => {
           <nav className="flex gap-9 text-[#142321] items-center">
             <Link href={"/app/swap"} className="text-[18px] hover:font-semibold font-bold">Swap</Link>
             <Link href={"/app/swap"} className="text-[18px] hover:font-semibold">Deposit</Link>
-            <Link href={"/app/swap"} className="text-[18px] hover:font-semibold">Vault</Link>
+            <Link href={"/app/vault/create"} className="text-[18px] hover:font-semibold">Create Vault</Link>
             <Link href={"/app/swap"} className="text-[18px] hover:font-semibold">Analytics</Link>
             <ButtonConnectProvider className="h-12">
 

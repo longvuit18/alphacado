@@ -9,6 +9,8 @@ import BTCIcon from "@/assets/btc-icon.png"
 
 import BSCIcon from "@/assets/bsc-icon.png"
 import USDCIcon from "@/assets/usdc-icon.png"
+import sKlayIcon from "@/assets/sKLAY.png"
+import stKlayIcon from "@/assets/stKLAY.png"
 
 
 export const MUMBAI_UNISWAP_V2_ADAPTER_ADDRESS = "0x75055303e8ACa5F966AA15BacAE9172A5887C534";
@@ -59,8 +61,11 @@ export const SUPPLY_LIST: Supply = {
       "ETH-USDT": { address: "0x73C49c8432D38DE7Ae7aC5123c9666eC5136107C", icon: [ETHIcon, USDTIcon], apy: 1.3, balance: 63 },
       "ETH-USDC": { address: "0xaAF190fE7A6Fae45d299F0D1b5983EC8efa367De", icon: [ETHIcon, USDCIcon], apy: 2.7, balance: 65 },
     },
-    lending: {},
-    liquid: {}
+    "lending protocols": {},
+    "liquid staking": {
+      SKLAY: { address: "0xcdA13312be7b1b0c37628e38Daf7802c24893Bc2", icon: sKlayIcon, apy: 1.3, balance: 88},
+      STKLAY: { address: "0xE492088AB3E99e3b964a7315162d2Aa96c59ddd4", icon: stKlayIcon, apy: 1.3, balance: 88},
+    }
   },
   klaytn: {
     token: {
@@ -76,8 +81,11 @@ export const SUPPLY_LIST: Supply = {
       "ETH-USDT": { address: "0x9fd7037B6bD6F16a89D33bE16127E067c1c7a292", icon: [ETHIcon, USDTIcon], apy: 3, balance: 65 },
       "ETH-USDC": { address: "0x642eDAC6E437F5D6037b7456966dA9d60edC9743", icon: [ETHIcon, USDCIcon], apy: 1.4, balance: 50 },
     },
-    lending: {},
-    liquid: {}
+    "lending protocols": {},
+    "liquid staking": {
+      SKLAY: { address: "0xcdA13312be7b1b0c37628e38Daf7802c24893Bc2", icon: sKlayIcon, apy: 1.1, balance: 93},
+      STKLAY: { address: "0xE492088AB3E99e3b964a7315162d2Aa96c59ddd4", icon: stKlayIcon, apy: 1.7, balance: 82},
+    }
   },
   bsc: {
     token: {
@@ -88,8 +96,11 @@ export const SUPPLY_LIST: Supply = {
       KLAYTN: { address: "0xD518a4Aa913f4FCF6AF70c543220717f582939e6", icon: KlaytnIcon, apy: 2.5, balance: 70 }
     },
     farm: {},
-    lending: {},
-    liquid: {}
+    "lending protocols": {},
+    "liquid staking": {
+      SKLAY: { address: "0xcdA13312be7b1b0c37628e38Daf7802c24893Bc2", icon: sKlayIcon, apy: 1.8, balance: 89},
+      STKLAY: { address: "0xE492088AB3E99e3b964a7315162d2Aa96c59ddd4", icon: stKlayIcon, apy: 1.2, balance: 82},
+    }
   },
   polygon: {
     token: {
@@ -101,7 +112,10 @@ export const SUPPLY_LIST: Supply = {
     }
     ,
     farm: {},
-    lending: {},
-    liquid: {}
+    "lending protocols": {},
+    "liquid staking": {
+      SKLAY: { address: "0xcdA13312be7b1b0c37628e38Daf7802c24893Bc2", icon: sKlayIcon, apy: 1.9, balance: 83},
+      STKLAY: { address: "0xE492088AB3E99e3b964a7315162d2Aa96c59ddd4", icon: stKlayIcon, apy: 1.3, balance: 88},
+    }
   },
 }
