@@ -8,20 +8,20 @@ import SetupNewVaultForm from "./setup_new_vault_form";
 import FeeConfigurationForm from "./fee_configuration_form";
 import ReviewForm from "./review_form";
 import { useVault } from "@/hooks/use_vault";
+import { ProgressPopup } from "@/components/swap/progress_popup";
 
 export default function CreateVaultPage() {
   const [step, setStep] = useState(CREATE_VAULT_STEP.SET_UP_NEW_VAULT);
   // Set up new vault form state
   const [setupNewVaultForm, setSetupNewVaultForm] = useState({
     name: '',
-    asset: 'abc',
-    strategy: 'abc',
     depositLimit: false,
     maxDepositAmount: '',
+    asset: ''
   });
   const [isFilledSetupNewVaultForm, setIsFilledSetupNewVaultForm] = useState(false);
   useEffect(() => {
-    if (setupNewVaultForm.name.length > 0 && setupNewVaultForm.asset.length > 0 && setupNewVaultForm.strategy.length > 0) {
+    if (setupNewVaultForm.name.length > 0) {
       if (setupNewVaultForm.depositLimit === false || (setupNewVaultForm.depositLimit === true && setupNewVaultForm.maxDepositAmount.length > 0)) {
         setIsFilledSetupNewVaultForm(true);
       } else {
@@ -53,15 +53,33 @@ export default function CreateVaultPage() {
   // Review state
   const [isConfirmed, setIsConfirmed] = useState(false);
 
-  const handleDeployVault = () => {
-    if (isConfirmed) {
-      console.log('SET UP NEW VAULT FORM: ', setupNewVaultForm);
-      console.log('FEE CONFIGURATION FORM: ', feeConfigurationForm);
+  const { createVault, chainId, switchNetworkAsync, hash, progressState, setProgressState } = useVault({
+    data: {
+      name: setupNewVaultForm.name,
+      depositAmount: Number(setupNewVaultForm.maxDepositAmount),
+      fee: feeConfigurationForm.depositFee ? 2 : 0,
+      receiver: feeConfigurationForm.address as any,
+      isConfirmed
+      // rewardToken
+    },
+    setEndStep: () => {
       setStep(CREATE_VAULT_STEP.FINISH);
-    }
-  }
 
-  // const { createVault} = useVault()
+    }
+  })
+
+  const handleDeployVault = async () => {
+    if (isConfirmed) {
+      if (chainId !== 1001) {
+        if (switchNetworkAsync) {
+          await switchNetworkAsync(1001)
+          return;
+        }
+      }
+    }
+    await createVault()
+
+  }
 
   return (
     <div className="container mx-auto mb-10 flex flex-col justify-center items-center">
@@ -111,6 +129,15 @@ export default function CreateVaultPage() {
               setIsConfirmed={setIsConfirmed}
               setStep={setStep}
               handleDeployVault={handleDeployVault}
+              chainId={chainId}
+              data={{
+                name: setupNewVaultForm.name,
+                depositAmount: Number(setupNewVaultForm.maxDepositAmount),
+                fee: feeConfigurationForm.depositFee ? 2 : 0,
+                receiver: feeConfigurationForm.address as any,
+                isConfirmed
+                // rewardToken
+              }}
             />
           ) : null
         }
@@ -120,6 +147,7 @@ export default function CreateVaultPage() {
           ) : null
         }
       </div>
+      {hash && progressState && <ProgressPopup state={progressState} onClose={() => setProgressState("")} />}
     </div>
   )
 }

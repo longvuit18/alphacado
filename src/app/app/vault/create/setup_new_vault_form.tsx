@@ -75,9 +75,11 @@ export default function SetupNewVaultForm(props: any) {
           </div>
           <div className="w-full mb-3">
             <SelectDropdown className="w-full" placeholder="Choose a Token">
-              <option>Token 1</option>
-              <option>Token 2</option>
-              <option>Token 3</option>
+              <option>USDT</option>
+              <option>USDC</option>
+              <option>ETH</option>
+              <option>BSC</option>
+              <option>BNB</option>
             </SelectDropdown>
           </div>
           <div>

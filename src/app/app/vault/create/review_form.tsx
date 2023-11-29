@@ -3,9 +3,11 @@ import Button from "@/components/common/button";
 import Checkbox from "@/components/common/checkbox";
 import Image from "next/image";
 import { CREATE_VAULT_STEP } from "./constants/create_vault_step";
+import { ButtonConnectProvider } from "@/components/button_connect_provider";
+import USDTIcon from "@/assets/usdt-icon.png"
 
 export default function ReviewForm(props: any) {
-  const { setStep, isConfirmed, setIsConfirmed, handleDeployVault } = props;
+  const { setStep, isConfirmed, setIsConfirmed, handleDeployVault, chainId, data } = props;
 
   const onClickBack = () => {
     setStep(CREATE_VAULT_STEP.FEE_CONFIGURATION);
@@ -26,7 +28,7 @@ export default function ReviewForm(props: any) {
               <p>Vault Name</p>
             </div>
             <div>
-              <p>Bravis</p>
+              <p>{data.name}</p>
             </div>
           </div>
           <div className="flex justify-between mb-3">
@@ -34,31 +36,9 @@ export default function ReviewForm(props: any) {
               <p>Asset</p>
             </div>
             <div className="flex items-center">
-              <p>Dai Stablecoin</p>
+              <p>USDT</p>
               <div className="ml-2">
-                <Image src={'/coin.png'} alt='Coin' width={32} height={32} />
-              </div>
-            </div>
-          </div>
-          <div className="flex justify-between mb-3">
-            <div>
-              <p>Protocol</p>
-            </div>
-            <div className="flex items-center">
-              <p>Dai Stablecoin</p>
-              <div className="ml-2">
-                <Image src={'/coin.png'} alt='Coin' width={32} height={32} />
-              </div>
-            </div>
-          </div>
-          <div className="flex justify-between">
-            <div>
-              <p>Strategy</p>
-            </div>
-            <div className="flex items-center">
-              <p>AeveV2 Depositor</p>
-              <div className="ml-2">
-                <Image src={'/coin.png'} alt='Coin' width={32} height={32} />
+                <Image src={USDTIcon} alt='Coin' width={32} height={32} />
               </div>
             </div>
           </div>
@@ -87,7 +67,7 @@ export default function ReviewForm(props: any) {
           </div>
           <div className="flex justify-between">
             <p className="text-[#130D0D] font-medium text-[16px] leading-6">Fee Recipient</p>
-            <p className="text-[#130D0D] font-medium text-[16px] leading-6">0x0e97...63d7</p>
+            <p className="text-[#130D0D] font-medium text-[16px] leading-6">{data.receiver}</p>
           </div>
         </div>
       </div>
@@ -97,7 +77,7 @@ export default function ReviewForm(props: any) {
         <p className="text-[#130D0D] text-[18px] font-normal leading-6 mb-4">Deposits Limit</p>
         <div className="flex justify-between">
           <p className="text-[#130D0D] font-medium text-[16px] leading-6">Maximum deposit amount</p>
-          <p className="text-[#130D0D] font-medium text-[16px] leading-6">10 DAI</p>
+          <p className="text-[#130D0D] font-medium text-[16px] leading-6">10 USDT</p>
         </div>
       </div>
 
@@ -110,13 +90,16 @@ export default function ReviewForm(props: any) {
       {/* Buttons */}
       <div className="flex gap-3">
         <Button className="w-full text-center text-[18px] font-medium leading-6 cursor-pointer" onClick={onClickBack}>Back</Button>
-        <Button
-          className={`${isConfirmed ? 'cursor-pointer' : 'opacity-60'} w-full text-center text-[18px] font-medium leading-6`}
-          btnType="success"
-          onClick={handleDeployVault}
-        >
-          Deploy Vault
-        </Button>
+        <ButtonConnectProvider className="w-full text-center text-[18px] font-medium">
+          <Button
+            className={`${isConfirmed ? 'cursor-pointer' : 'opacity-60'} w-full text-center text-[18px] font-medium leading-6`}
+            btnType="success"
+            onClick={handleDeployVault}
+          >
+            {chainId !== 1001 ? "Switch chain to Klaytn" : "Deploy Vault"}
+          </Button>
+        </ButtonConnectProvider>
+
       </div>
     </div>
   )
