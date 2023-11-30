@@ -53,7 +53,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     address: tokenFrom?.address as `0x${string}`,
     abi: erc20ABI,
     functionName: "allowance",
-    args: [account?.address ?? zeroAddress, zapFrom === "farm" ? EXCHANGE_TOKEN : (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token],
+    args: [account?.address ?? zeroAddress, zapFrom === "farm" && chainFromId === 1001 ? EXCHANGE_TOKEN : (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token],
     enabled: !!account?.address,
     watch: true
   })
