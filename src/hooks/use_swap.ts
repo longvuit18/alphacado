@@ -30,7 +30,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   useEffect(() => {
     if (chainFromId) {
       const chainName = Object.values(CHAINS_TESTNET)?.find(item => item.id === chainFromId)?.name?.toLowerCase()
-      setTokenFrom(SUPPLY_LIST[chainName ?? ""].token.USDC)
+      setTokenFrom(SUPPLY_LIST[chainName ?? ""]?.token?.USDC)
     }
   }, [chainFromId])
 

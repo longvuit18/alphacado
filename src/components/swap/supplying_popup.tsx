@@ -39,8 +39,8 @@ export const SupplyingPopup = (props: Props) => {
 
   useEffect(() => {
     if (zap === "vault") {
-      axios.get("http://34.87.73.123:5005/api/v1/vaults").then((res) => {
-        setVault(res.data.data)
+      axios.get("/api/vaults").then((res) => {
+        setVault(res.data)
       })
     }
   }, [zap])
