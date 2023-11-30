@@ -46,8 +46,8 @@ export const useVault = (props: Props) => {
     functionName: "deployVault",
     args: [
       data.name,
-      SUPPLY_LIST.klaytn.token.USDT.address,
-      SUPPLY_LIST.klaytn.token.USDC.address,
+      SUPPLY_LIST.klay.token.USDT.address,
+      SUPPLY_LIST.klay.token.USDC.address,
       parseEther("0.0001"),
       blockData?.toString(),
       239693914,

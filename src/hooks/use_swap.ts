@@ -13,7 +13,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   const [amount, setAmount] = useState<number>(0);
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
   const [tokenFrom, setTokenFrom] = useState<Token>(SUPPLY_LIST.ethereum.token.USDC)
-  const [tokenTo, setTokenTo] = useState<Token>(SUPPLY_LIST.klay.token.KLAYTN)
+  const [tokenTo, setTokenTo] = useState<Token>(SUPPLY_LIST.klay.token.KLAY)
   const [chainToId, setChainToId] = useState<number>(1001)
   const [receiver, setReceiver] = useState<string>(account?.address ?? '')
   const [progressState, setProgressState] = useState("")
@@ -80,12 +80,12 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     functionName: 'fromUniV2Token',
     args: [
       ROUTER,
-      tokenFrom.address,
+      tokenFrom?.address,
       parseEther(amount.toString()),
       0,
       13,
       1,
-      account?.address,
+      account?.address ?? zeroAddress,
       encodeAbiParameters([
         { name: 'x', type: 'address' },
         { name: 'y', type: 'address' },
@@ -93,13 +93,13 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
         { name: 'k', type: 'bytes' },
       ], [
         (ADAPTER_ADDRESS as any)[chainToId?.toString()]?.uniswapV2Token ?? "0xF149Ee748C2553f2E8D450A27D7c647E28428781",
-        tokenTo.address as `0x${string}`,
+        tokenTo?.address as `0x${string}` ?? zeroAddress,
         parseEther(amount.toString()),
         "" as any
       ])
     ],
     value: parseEther("0.01"),
-    enabled: !!tokenTo.address && !!tokenFrom.address && amount > 0 && !!chainFromId && !!chainToId && !isApprove
+    enabled: !!tokenTo?.address && !!tokenFrom?.address && amount > 0 && !!chainFromId && !!chainToId && !isApprove
   })
 
 
