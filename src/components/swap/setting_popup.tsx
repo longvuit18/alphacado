@@ -25,13 +25,12 @@ export const SettingPopup = (props: Props) => {
           </h3>
           <div className='flex gap-1 justify-between mb-6'>
             <div className='flex gap-1'>
-              <div className={`p-4 shadow-md  rounded-lg ${slippageTolerance == "1%" ? 'bg-[#ffe]' : ''} cursor-pointer`} onClick={() => setSlippageTolerance("1%")}>1%</div>
-              <div className={`p-4 shadow-md  rounded-lg ${slippageTolerance == "1.5%" ? 'bg-[#ffe]' : ''} cursor-pointer`} onClick={() => setSlippageTolerance("1.5%")}>1.5%</div>
-              <div className={`p-4 shadow-md  rounded-lg ${slippageTolerance == "2%" ? 'bg-[#ffe]' : ''} cursor-pointer`} onClick={() => setSlippageTolerance("2%")}>2.0%</div>
-            </div>
-            <div className={`p-4 flex justify-between shadow-md w-full rounded-lg cursor-pointer ${slippageTolerance == "4%" ? 'bg-[#ffe]' : ''}`} onClick={() => setSlippageTolerance("4%")}>
-              <div>4</div>
-              <div>%</div>
+              <div className={`p-4 shadow-md w-[70px] text-center rounded-lg ${slippageTolerance == "1%" ? 'bg-[#ffe]' : ''} cursor-pointer`} onClick={() => setSlippageTolerance("1%")}>1%</div>
+              <div className={`p-4 shadow-md w-[70px] text-center rounded-lg ${slippageTolerance == "1.5%" ? 'bg-[#ffe]' : ''} cursor-pointer`} onClick={() => setSlippageTolerance("1.5%")}>1.5%</div>
+              <div className={`p-4 shadow-md w-[70px] text-center rounded-lg ${slippageTolerance == "2%" ? 'bg-[#ffe]' : ''} cursor-pointer`} onClick={() => setSlippageTolerance("2%")}>2.0%</div>
+              <div className={`p-4 shadow-md w-[70px] text-center rounded-lg cursor-pointer ${slippageTolerance == "4%" ? 'bg-[#ffe]' : ''}`} onClick={() => setSlippageTolerance("4%")}>
+                4%
+              </div>
             </div>
           </div>
           <div className='font-[400] text-[#4A5654] mb-6'>

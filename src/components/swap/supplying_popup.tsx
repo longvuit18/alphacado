@@ -8,8 +8,10 @@ import { useNetwork, useSwitchNetwork } from 'wagmi';
 import { CHAINS_TESTNET } from '@/constants/chains';
 import { ArrowDownIcon } from '../icons/arrow_down_icon';
 import axios from 'axios';
+import Tooltip from '../common/tooltip';
 
 type Props = {
+  title: string;
   supply: Supply;
   zap: string;
   token: Token;
@@ -98,15 +100,22 @@ export const SupplyingPopup = (props: Props) => {
       </div>
 
       <Modal show={openModal} onClose={() => setOpenModal(false)} size={"3xl"}>
-        <Modal.Header className='bg-[#FAFBFB] rounded-t-[12px]'>Supply to</Modal.Header>
+        <Modal.Header className='bg-[#FAFBFB] rounded-t-[12px]'>{props.title}</Modal.Header>
         <Modal.Body className='bg-[#FAFBFB]  rounded-b-[12px]'>
           <input type="text" placeholder='Search by name, chain or pool name' className='w-full p-6 border-transparent focus:border-transparent outline-none focus:outline-none shadow-md mb-6 rounded-lg' />
           <div className='mb-5'>
             <h3 className='mb-3 text-[#727B7A]'>ZAP TYPE:</h3>
             <div className='flex gap-2 '>
-              {ZAPS.map(item => {
+              {ZAPS.map((item, index) => {
                 if (item === "vault" && chainId !== 1001) {
                   return null;
+                }
+                if (item === "lending protocols") {
+                  return (
+                    <Tooltip key={index} className='w-[150px] text-center' text='Upcoming'>
+                      <div onClick={() => setZap(item)} key={item} className={`cursor-pointer capitalize p-3 ${item === zap ? "bg-[#130D0D] text-[#FAFBFB]" : "bg-[#ECEDED] text-[#130D0D]"} rounded-[16px]  text-[16px]`}>{item}</div>
+                    </Tooltip>
+                  )
                 }
                 return (
                   <div onClick={() => setZap(item)} key={item} className={`cursor-pointer capitalize p-3 ${item === zap ? "bg-[#130D0D] text-[#FAFBFB]" : "bg-[#ECEDED] text-[#130D0D]"} rounded-[16px]  text-[16px]`}>{item}</div>)
