@@ -13,7 +13,7 @@ export const Header = () => {
         <div className="h-[84px] w-full flex justify-between mb-9 items-start border-b-2 border--[#142321]">
           <Image src={Logo} alt="logo alphacado" height={40} />
           <nav className="flex gap-9 text-[#142321] items-center">
-            <Link href={"/app/swap"} className="text-[18px] hover:font-semibold font-bold">Swap</Link>
+            <Link href={"/app/swap"} className="text-[18px] hover:font-semibold font-bold">Zap</Link>
             <Link href={"/app/swap"} className="text-[18px] hover:font-semibold">Deposit</Link>
             <Link href={"/app/vault/create"} className="text-[18px] hover:font-semibold">Create Vault</Link>
             <Link href={"/app/swap"} className="text-[18px] hover:font-semibold">Analytics</Link>

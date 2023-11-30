@@ -13,7 +13,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   const [amount, setAmount] = useState<number>(0);
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
   const [tokenFrom, setTokenFrom] = useState<Token>(SUPPLY_LIST.ethereum.token.USDC)
-  const [tokenTo, setTokenTo] = useState<Token>(SUPPLY_LIST.klaytn.token.KLAYTN)
+  const [tokenTo, setTokenTo] = useState<Token>(SUPPLY_LIST.klay.token.KLAYTN)
   const [chainToId, setChainToId] = useState<number>(1001)
   const [receiver, setReceiver] = useState<string>(account?.address ?? '')
   const [progressState, setProgressState] = useState("")

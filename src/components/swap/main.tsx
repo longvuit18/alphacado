@@ -70,7 +70,7 @@ export const MainSwap = (props: Props) => {
     <>
       <div className="secondary-gradient-background px-6 py-3 pb-9 shadow-sm	">
         <div className="flex justify-between">
-          <p className="text-[16px] text-[#646E6C]">From:</p>
+          <p className="text-[16px] text-[#646E6C]">Supply From:</p>
           <div className="bg-white rounded-[72px] p-1 flex gap-2">
             CHAIN:
             {chainFromIcon && <Image alt={"chain from"} src={chainFromIcon} height={24} width={24} />}
@@ -96,7 +96,7 @@ export const MainSwap = (props: Props) => {
       </div>
       <div className="secondary-gradient-background px-6 py-3 pb-9 shadow-sm">
         <div className="flex justify-between">
-          <p className="text-[16px] text-[#646E6C]">To:</p>
+          <p className="text-[16px] text-[#646E6C]">Supply To:</p>
           <div className="bg-white rounded-[72px] p-1 flex gap-2">
             CHAIN:
             {chainToIcon && <Image alt="to icon" src={chainToIcon} height={24} width={24} />}
