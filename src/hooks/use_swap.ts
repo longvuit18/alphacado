@@ -207,7 +207,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   }, [error, errorApprove, tokenFromBalance, amount, errorExchangeToken, isExchange])
 
   const rate = useMemo(() => {
-    return (rateList as any)?.[`${tokenFrom.name}/${tokenTo.name}`] ?? 0.2
+    return (rateList as any)?.[`${tokenFrom?.name}/${tokenTo?.name}`] ?? 0.324
   }, [tokenFrom, tokenTo])
 
   return {
