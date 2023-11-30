@@ -1,12 +1,13 @@
 "use client"
 import { Button, Modal } from 'flowbite-react';
 import Image from 'next/image';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import USDCIcon from "@/assets/usdc-icon.png"
 import { Supply, Token } from '@/models/supply';
 import { useNetwork, useSwitchNetwork } from 'wagmi';
 import { CHAINS_TESTNET } from '@/constants/chains';
 import { ArrowDownIcon } from '../icons/arrow_down_icon';
+import axios from 'axios';
 
 type Props = {
   supply: Supply;
@@ -25,6 +26,7 @@ export const SupplyingPopup = (props: Props) => {
   const [zap, setZap] = useState(props.zap ?? "token")
   const { chain } = useNetwork()
   const { switchNetwork } = useSwitchNetwork()
+  const [vaults, setVault] = useState([])
   const handleSwitchChain = (id: number) => {
     if (switchNetwork && !props.disabledSwitchChange) {
       switchNetwork(id)
@@ -34,6 +36,14 @@ export const SupplyingPopup = (props: Props) => {
       props.setChainToId(id)
     }
   }
+
+  useEffect(() => {
+    if (zap === "vault") {
+      axios.get("http://34.87.73.123:5005/api/v1/vaults").then((res) => {
+        setVault(res.data.data)
+      })
+    }
+  }, [zap])
 
   const chainName = useMemo(() => {
     if (props.chainToId) {
@@ -121,22 +131,19 @@ export const SupplyingPopup = (props: Props) => {
               </div>
             </div>
             <div className='table'>
-              <div className='table-header grid grid-cols-5 border border-transparent border-b-[#C4C8C8]'>
+              <div className='table-header grid grid-cols-4 border border-transparent border-b-[#C4C8C8]'>
                 <div className='col-span-3 text-[#727B7A] p-3 pt-0'>
                   TOKEN
                 </div>
                 <div className='col-span-1 text-[#727B7A] p-3 pt-0'>
-                  APY
-                </div>
-                <div className='col-span-1 text-[#727B7A] p-3 pt-0'>
-                  BALANCE
+                  MARKETCAP
                 </div>
               </div>
               {
                 Object.entries(props.supply[chainName ?? ""]?.[zap] ?? {})?.map(item => {
                   return (
                     <div key={item[1].address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-5 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
-                      <div className='col-span-3 text-[#130D0D] p-3  font-[500]'>
+                      <div className='col-span-4 text-[#130D0D] p-3  font-[500]'>
                         <div className='flex gap-2 items-center'>
                           {Array.isArray(item[1].icon) ?
                             <div className='flex gap-1'>
@@ -150,10 +157,26 @@ export const SupplyingPopup = (props: Props) => {
                         </div>
                       </div>
                       <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
-                        {item[1].apy} %
+                        {item[1].balance}
+                      </div>
+                    </div>
+                  );
+                })
+              }
+              {zap === "vault" &&
+                vaults?.map((item: any) => {
+                  return (
+                    <div key={item.address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-5 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
+                      <div className='col-span-3 text-[#130D0D] p-3  font-[500]'>
+                        <div className='flex gap-2 items-center'>
+
+                          <Image alt="usdc icon" src={"/favicon.ico"} height={32} width={32} />
+
+                          {item.name}
+                        </div>
                       </div>
                       <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
-                        {item[1].balance} %
+                        --
                       </div>
                     </div>
                   );

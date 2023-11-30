@@ -10,6 +10,6 @@ export type Token = {
   address: string;
   icon: any;
   apy: number;
-  balance: number;
+  balance: number | string;
   name?: string;
 }
