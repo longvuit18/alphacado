@@ -2,7 +2,7 @@ import { uniswapV2AdapterAbi } from "@/abi/uniswapv2_adapter";
 import { useEffect, useMemo, useState } from "react"
 import { erc20ABI, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
 import { useClientAccount } from "./use_client_account";
-import { MUMBAI_UNISWAP_V2_ADAPTER_ADDRESS, MUMBAI_USDC, MUMBAI_UNISWAP_V2_ROUTER, MUMBAI_WORMHOLE, SUPPLY_LIST, ADAPTER_ADDRESS, ROUTER, rateList } from "@/constants/contract_address";
+import { MUMBAI_UNISWAP_V2_ADAPTER_ADDRESS, MUMBAI_USDC, MUMBAI_UNISWAP_V2_ROUTER, MUMBAI_WORMHOLE, SUPPLY_LIST, ADAPTER_ADDRESS, ROUTER, rateList, EXCHANGE_TOKEN } from "@/constants/contract_address";
 import { encodeAbiParameters, etherUnits, formatEther, formatUnits, parseEther, zeroAddress } from "viem";
 import { wormholeAbi } from "@/abi/wormhole";
 import { Token } from "@/models/supply";
@@ -53,7 +53,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     address: tokenFrom.address as `0x${string}`,
     abi: erc20ABI,
     functionName: "allowance",
-    args: [account?.address ?? zeroAddress, (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token],
+    args: [account?.address ?? zeroAddress, zapFrom === "farm" ? EXCHANGE_TOKEN : (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token],
     enabled: !!account?.address,
     watch: true
   })
@@ -64,6 +64,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     functionName: "balanceOf",
     args: [account?.address ?? zeroAddress],
     enabled: !!account?.address,
+    watch: true
 
   })
   // const { data: feeWormhole } = useContractRead({
@@ -102,7 +103,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
       ])
     ],
     value: parseEther("0.01"),
-    enabled: !!tokenTo?.address && !!tokenFrom?.address && amount > 0 && !!chainFromId && !!chainToId && !isApprove
+    enabled: !!tokenTo?.address && !!tokenFrom?.address && amount > 0 && !!chainFromId && !!chainToId && !isApprove && zapFrom !== "farm"
   })
 
 
@@ -111,16 +112,16 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     address: tokenFrom.address as `0x${string}`,
     abi: erc20ABI,
     functionName: "approve",
-    args: [(ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token, parseEther(amount.toString())],
+    args: [zapFrom === "farm" ? EXCHANGE_TOKEN : (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token, parseEther(amount.toString())],
     enabled: !!tokenFrom.address
   })
 
   const { config: configExchangeToken, error: errorExchangeToken } = usePrepareContractWrite({
-    address: "0x55b84AA20159Ebe618259166dEd708ae31d7A6c3",
+    address: EXCHANGE_TOKEN,
     abi: exchangeAbi,
     functionName: "exchangeToken",
     args: [tokenFrom.address, tokenTo.address, parseEther(amount.toString())],
-    enabled: !!tokenFrom.address && !!tokenTo && chainFromId === 1001 && chainToId === 1001 && zapFrom === "farm" && zapTo === "farm" && amount > 0
+    enabled: !!tokenFrom.address && !!tokenTo && chainFromId === 1001 && chainToId === 1001 && zapFrom === "farm" && zapTo === "farm" && amount > 0 && !isApprove
   })
 
   const { data, writeAsync: writeSwapAsync } = useContractWrite(configSwap);
@@ -187,6 +188,10 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     }
     if ((error?.cause as any)?.shortMessage) {
       return (error?.cause as any)?.shortMessage
+    }
+
+    if ((errorExchangeToken?.cause as any)?.shortMessage) {
+      return (errorExchangeToken?.cause as any)?.shortMessage
     }
     return ""
   }, [error, errorApprove, tokenFromBalance, amount, errorExchangeToken])
