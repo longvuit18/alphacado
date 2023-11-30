@@ -13,7 +13,9 @@ export const Header = () => {
     <header>
       <div className="container mx-auto py-9">
         <div className="h-[84px] w-full flex justify-between mb-9 items-start border-b-2 border--[#142321]">
-          <Image src={Logo} alt="logo alphacado" height={40} />
+          <Link href={"/"}>
+            <Image src={Logo} alt="logo alphacado" height={40} />
+          </Link>
           <nav className="flex gap-9 text-[#142321] items-center">
             <ActiveLink href={"/app/swap"} className="text-[18px] hover:font-semibold">Zap</ActiveLink>
             <Tooltip text="Upcoming">

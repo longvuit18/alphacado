@@ -61,10 +61,10 @@ export const SUPPLY_LIST: Supply = {
       KLAY: { name: "KLAY", address: "0x7905548A08837061B9B247BEEd39E5F307c2BBAd", icon: KlaytnIcon, apy: 2.5, balance: "300 M" }
     },
     farm: {
-      "ETH-KLAY": { name: "ETH-KLAY", address: "0x8843010C138A3eBF5080C6c6374BeA29A2de9e4C", icon: [ETHIcon, KlaytnIcon], apy: 3.5, balance: "540 M" },
-      "ETH-BTC": { name: "ETH-BTC", address: "0xa39C7B82ff1F23eF65f7b5aDD7dFbE3C700b25A6", icon: [ETHIcon, BTCIcon], apy: 2.5, balance: "530 M" },
-      "ETH-USDT": { name: "ETH-USDT", address: "0x73C49c8432D38DE7Ae7aC5123c9666eC5136107C", icon: [ETHIcon, USDTIcon], apy: 1.3, balance: "610 M" },
-      "ETH-USDC": { name: "ETH-USDC", address: "0xaAF190fE7A6Fae45d299F0D1b5983EC8efa367De", icon: [ETHIcon, USDCIcon], apy: 2.7, balance: "540 M" },
+      "ETH-KLAY": { name: "ETH-KLAY", address: "0x8843010C138A3eBF5080C6c6374BeA29A2de9e4C", icon: [ETHIcon, KlaytnIcon], apy: 3.5, balance: "54 M" },
+      "ETH-BTC": { name: "ETH-BTC", address: "0xa39C7B82ff1F23eF65f7b5aDD7dFbE3C700b25A6", icon: [ETHIcon, BTCIcon], apy: 2.5, balance: "53 M" },
+      "ETH-USDT": { name: "ETH-USDT", address: "0x73C49c8432D38DE7Ae7aC5123c9666eC5136107C", icon: [ETHIcon, USDTIcon], apy: 1.3, balance: "61 M" },
+      "ETH-USDC": { name: "ETH-USDC", address: "0xaAF190fE7A6Fae45d299F0D1b5983EC8efa367De", icon: [ETHIcon, USDCIcon], apy: 2.7, balance: "54 M" },
     },
     "lending protocols": {},
     "liquid staking": {
@@ -81,10 +81,10 @@ export const SUPPLY_LIST: Supply = {
       KLAY: { name: "KLAY", address: "0x9bBC56D7a806EA67A3D528C772550BdF99Ce4579", icon: KlaytnIcon, apy: 2.5, balance: "500 M" }
     },
     farm: {
-      "ETH-KLAY": { name: "ETH-KLAY", address: "0x65481e2F0cc8E127D9266beF1438864940513da9", icon: [ETHIcon, KlaytnIcon], apy: 2, balance: "502 M" },
-      "ETH-BTC": { name: "ETH-BTC", address: "0x674A13CFc3e2F6B8981C7842489EC6F6cFd5898D", icon: [ETHIcon, BTCIcon], apy: 2.5, balance: "370 M" },
-      "ETH-USDT": { name: "ETH-USDT", address: "0x9fd7037B6bD6F16a89D33bE16127E067c1c7a292", icon: [ETHIcon, USDTIcon], apy: 3, balance: "870 M" },
-      "ETH-USDC": { name: "ETH-USDC", address: "0x642eDAC6E437F5D6037b7456966dA9d60edC9743", icon: [ETHIcon, USDCIcon], apy: 1.4, balance: "536 M" },
+      "ETH-KLAY": { name: "ETH-KLAY", address: "0x65481e2F0cc8E127D9266beF1438864940513da9", icon: [ETHIcon, KlaytnIcon], apy: 2, balance: "52 M" },
+      "ETH-BTC": { name: "ETH-BTC", address: "0x674A13CFc3e2F6B8981C7842489EC6F6cFd5898D", icon: [ETHIcon, BTCIcon], apy: 2.5, balance: "97 M" },
+      "ETH-USDT": { name: "ETH-USDT", address: "0x9fd7037B6bD6F16a89D33bE16127E067c1c7a292", icon: [ETHIcon, USDTIcon], apy: 3, balance: "87 M" },
+      "ETH-USDC": { name: "ETH-USDC", address: "0x642eDAC6E437F5D6037b7456966dA9d60edC9743", icon: [ETHIcon, USDCIcon], apy: 1.4, balance: "53 M" },
     },
     "lending protocols": {},
     "liquid staking": {

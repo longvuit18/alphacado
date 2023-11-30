@@ -46,7 +46,7 @@ export default function Strategy(props: Props) {
   }
 
   const handleClickLiquidStakeToStakely = () => {
-    setComponents([...components, singleComponent({ content: 'Liquid Stake to Stakely' })])
+    setComponents([...components, singleComponent({ content: 'Stakely:WrapStakedKLAY' })])
     handleCloseModal();
   }
 

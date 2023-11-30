@@ -34,7 +34,9 @@ export default function Home() {
             </div>
           </div>
           <div className='mt-[43px] w-full flex justify-center'>
-            <Button className='w-[334px]'>Enjoy Now</Button>
+            <Link href={"/app/swap"} passHref legacyBehavior>
+              <Button className='w-[334px]'>Enjoy Now</Button>
+            </Link>
           </div>
         </div>
       </div>
