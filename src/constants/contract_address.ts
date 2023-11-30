@@ -11,6 +11,9 @@ import BSCIcon from "@/assets/bsc-icon.png"
 import USDCIcon from "@/assets/usdc-icon.png"
 import sKlayIcon from "@/assets/sKLAY.png"
 import stKlayIcon from "@/assets/stKLAY.png"
+import KokosIcon from "@/assets/kokos-icon.webp"
+import KSPIcon from "@/assets/klayswap-icon.webp"
+import wETHICON from "@/assets/wETH-icon.png"
 
 
 export const MUMBAI_UNISWAP_V2_ADAPTER_ADDRESS = "0x75055303e8ACa5F966AA15BacAE9172A5887C534";
@@ -65,6 +68,7 @@ export const SUPPLY_LIST: Supply = {
       "ETH-BTC": { name: "ETH-BTC", address: "0xa39C7B82ff1F23eF65f7b5aDD7dFbE3C700b25A6", icon: [ETHIcon, BTCIcon], apy: 2.5, balance: "53 M" },
       "ETH-USDT": { name: "ETH-USDT", address: "0x73C49c8432D38DE7Ae7aC5123c9666eC5136107C", icon: [ETHIcon, USDTIcon], apy: 1.3, balance: "61 M" },
       "ETH-USDC": { name: "ETH-USDC", address: "0xaAF190fE7A6Fae45d299F0D1b5983EC8efa367De", icon: [ETHIcon, USDCIcon], apy: 2.7, balance: "54 M" },
+      "wETH-USDC": { name: "wETH-USDC", address: "0xf77d8b5B49e3AaF9aDd8C73652463D53E96C5d5F", icon: [wETHICON, USDCIcon], apy: 3.7, balance: "72 M" },
     },
     "lending protocols": {},
     "liquid staking": {
@@ -81,6 +85,8 @@ export const SUPPLY_LIST: Supply = {
       KLAY: { name: "KLAY", address: "0x9bBC56D7a806EA67A3D528C772550BdF99Ce4579", icon: KlaytnIcon, apy: 2.5, balance: "500 M" }
     },
     farm: {
+      "KOKOS-ETH": { name: "KOKOS-ETH", address: "0xc7072E9A72912fb8a6E341c4F30e46Ac15289055", icon: [KokosIcon, ETHIcon], apy: 1.3, balance: "63 M" },
+      "KSP-KLAY": { name: "KSP-KLAY", address: "0x5e1dF595d357B1c4d4958B5D4eDCBBC018090b0A", icon: [KSPIcon, KlaytnIcon], apy: 2.4, balance: "79 M" },
       "ETH-KLAY": { name: "ETH-KLAY", address: "0x65481e2F0cc8E127D9266beF1438864940513da9", icon: [ETHIcon, KlaytnIcon], apy: 2, balance: "52 M" },
       "ETH-BTC": { name: "ETH-BTC", address: "0x674A13CFc3e2F6B8981C7842489EC6F6cFd5898D", icon: [ETHIcon, BTCIcon], apy: 2.5, balance: "97 M" },
       "ETH-USDT": { name: "ETH-USDT", address: "0x9fd7037B6bD6F16a89D33bE16127E067c1c7a292", icon: [ETHIcon, USDTIcon], apy: 3, balance: "87 M" },
@@ -144,4 +150,5 @@ export const rateList = {
   "ETH/USDC": 1 / 2000,
   "USDC/BTC": 2000,
   "BTC/USDC": 1 / 2000,
+  "KSP-KLAY/KOKOS-ETH": 1 / 6
 }

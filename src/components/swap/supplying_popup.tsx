@@ -140,7 +140,7 @@ export const SupplyingPopup = (props: Props) => {
                 })}
               </div>
             </div>
-            <div className='table w-full'>
+            <div className='table w-full h-[100px] overflow-auto'>
               {zap === "farm" || zap === "vault" || zap === "liquid staking" ?
                 <div className='table-header grid grid-cols-6 border border-transparent border-b-[#C4C8C8]'>
                   <div className='col-span-4 text-[#727B7A] p-3 pt-0'>
@@ -161,11 +161,36 @@ export const SupplyingPopup = (props: Props) => {
                     MARKETCAP
                   </div>
                 </div>}
-              {
-                Object.entries(props.supply[chainName ?? ""]?.[zap] ?? {})?.map(item => {
-                  if (zap === "farm" || zap === "liquid staking") {
+              <div className='h-[220px] overflow-auto'>
+                {
+                  Object.entries(props.supply[chainName ?? ""]?.[zap] ?? {})?.map(item => {
+                    if (zap === "farm" || zap === "liquid staking") {
+                      return (
+                        <div key={item[1].address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-6 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
+                          <div className='col-span-4 text-[#130D0D] p-3  font-[500]'>
+                            <div className='flex gap-2 items-center'>
+                              {Array.isArray(item[1].icon) ?
+                                <div className='flex gap-1'>
+                                  <Image alt="usdc icon" src={item[1].icon[0]} height={32} width={32} />
+                                  <Image alt="usdc icon" src={item[1].icon[1]} height={32} width={32} />
+                                </div>
+                                :
+                                <Image alt="usdc icon" src={item[1].icon} height={32} width={32} />
+                              }
+                              {item[0]}
+                            </div>
+                          </div>
+                          <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
+                            {item[1].apy}%
+                          </div>
+                          <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
+                            {item[1].balance}
+                          </div>
+                        </div>
+                      )
+                    }
                     return (
-                      <div key={item[1].address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-6 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
+                      <div key={item[1].address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-5 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
                         <div className='col-span-4 text-[#130D0D] p-3  font-[500]'>
                           <div className='flex gap-2 items-center'>
                             {Array.isArray(item[1].icon) ?
@@ -180,58 +205,35 @@ export const SupplyingPopup = (props: Props) => {
                           </div>
                         </div>
                         <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
-                          {item[1].apy}%
-                        </div>
-                        <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
                           {item[1].balance}
                         </div>
                       </div>
-                    )
-                  }
-                  return (
-                    <div key={item[1].address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-5 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
-                      <div className='col-span-4 text-[#130D0D] p-3  font-[500]'>
-                        <div className='flex gap-2 items-center'>
-                          {Array.isArray(item[1].icon) ?
-                            <div className='flex gap-1'>
-                              <Image alt="usdc icon" src={item[1].icon[0]} height={32} width={32} />
-                              <Image alt="usdc icon" src={item[1].icon[1]} height={32} width={32} />
-                            </div>
-                            :
-                            <Image alt="usdc icon" src={item[1].icon} height={32} width={32} />
-                          }
-                          {item[0]}
+                    );
+                  })
+                }
+                {zap === "vault" &&
+                  vaults?.map((item: any) => {
+                    return (
+                      <div key={item.address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-6 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
+                        <div className='col-span-4 text-[#130D0D] p-3  font-[500]'>
+                          <div className='flex gap-2 items-center'>
+
+                            <Image alt="usdc icon" src={"/favicon.ico"} height={32} width={32} />
+
+                            {item.name}
+                          </div>
+                        </div>
+                        <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
+                          {getRandomInt(2, 6)}%
+                        </div>
+                        <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
+                          {getRandomInt(56, 65)}M
                         </div>
                       </div>
-                      <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
-                        {item[1].balance}
-                      </div>
-                    </div>
-                  );
-                })
-              }
-              {zap === "vault" &&
-                vaults?.map((item: any) => {
-                  return (
-                    <div key={item.address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-6 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
-                      <div className='col-span-4 text-[#130D0D] p-3  font-[500]'>
-                        <div className='flex gap-2 items-center'>
-
-                          <Image alt="usdc icon" src={"/favicon.ico"} height={32} width={32} />
-
-                          {item.name}
-                        </div>
-                      </div>
-                      <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
-                        {getRandomInt(2, 6)}%
-                      </div>
-                      <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
-                        {getRandomInt(56, 65)}M
-                      </div>
-                    </div>
-                  );
-                })
-              }
+                    );
+                  })
+                }
+              </div>
             </div>
           </div>
         </Modal.Body>

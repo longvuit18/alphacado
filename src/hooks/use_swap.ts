@@ -59,7 +59,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   })
 
   const { data: tokenFromBalance } = useContractRead({
-    address: tokenFrom.address as `0x${string}`,
+    address: tokenFrom?.address as `0x${string}`,
     abi: erc20ABI,
     functionName: "balanceOf",
     args: [account?.address ?? zeroAddress],
@@ -109,19 +109,19 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
 
 
   const { config: configApprove, error: errorApprove } = usePrepareContractWrite({
-    address: tokenFrom.address as `0x${string}`,
+    address: tokenFrom?.address as `0x${string}`,
     abi: erc20ABI,
     functionName: "approve",
     args: [zapFrom === "farm" ? EXCHANGE_TOKEN : (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token, parseEther(amount.toString())],
-    enabled: !!tokenFrom.address
+    enabled: !!tokenFrom?.address
   })
 
   const { config: configExchangeToken, error: errorExchangeToken } = usePrepareContractWrite({
     address: EXCHANGE_TOKEN,
     abi: exchangeAbi,
     functionName: "exchangeToken",
-    args: [tokenFrom.address, tokenTo.address, parseEther(amount.toString())],
-    enabled: !!tokenFrom.address && !!tokenTo && chainFromId === 1001 && chainToId === 1001 && zapFrom === "farm" && zapTo === "farm" && amount > 0 && !isApprove
+    args: [tokenFrom?.address, tokenTo?.address, parseEther(amount.toString())],
+    enabled: !!tokenFrom?.address && !!tokenTo && chainFromId === 1001 && chainToId === 1001 && zapFrom === "farm" && zapTo === "farm" && amount > 0 && !isApprove
   })
 
   const { data, writeAsync: writeSwapAsync } = useContractWrite(configSwap);
