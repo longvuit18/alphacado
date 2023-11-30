@@ -9,9 +9,16 @@ import FeeConfigurationForm from "./fee_configuration_form"
 import ReviewForm from "./review_form"
 import { useVault } from "@/hooks/use_vault"
 import { ProgressPopup } from "@/components/swap/progress_popup"
+import Modal from "@/components/common/modal"
 
 export default function CreateVaultPage() {
   const [step, setStep] = useState(CREATE_VAULT_STEP.SET_UP_NEW_VAULT)
+  const [isActiveModal, setIsActiveModal] = useState(true);
+
+  const handleCloseModal = () => {
+    setIsActiveModal(false);
+  }
+
   // Set up new vault form state
   const [setupNewVaultForm, setSetupNewVaultForm] = useState({
     name: '',
@@ -83,6 +90,22 @@ export default function CreateVaultPage() {
 
   return (
     <div className="container mx-auto mb-10 flex flex-col justify-center items-center">
+      <Modal active={isActiveModal}>
+        <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+          <p className="mb-2">UNDER DEVELOPMENT</p>
+          <div className="flex flex-col gap-2">
+            This is an early-stage, Proof of Concept (PoC) product developed in a time-constrained hackathon environment. While we have strived to create a functional and valuable product, there may still be areas for improvement.
+          </div>
+        </div>
+        <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+          <button
+            type="button"
+            onClick={handleCloseModal}
+            className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">
+            Cancel
+          </button>
+        </div>
+      </Modal>
       {/* STEP */}
       <div className="w-full">
         {step === CREATE_VAULT_STEP.FINISH ? (

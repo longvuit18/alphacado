@@ -87,7 +87,7 @@ export const MainSwap = (props: Props) => {
         <div className="my-3">
           <div className="bg-white rounded-[8px] w-full px-3 py-4 flex gap-4 items-center">
             <div>
-              <SupplyingPopup supply={SUPPLY_LIST} zap={zapFrom} token={tokenFrom} onChangeToken={(chainId, zap, token) => { setTokenFrom(token); setZapFrom(zap) }} />
+              <SupplyingPopup title={'Supply From'} supply={SUPPLY_LIST} zap={zapFrom} token={tokenFrom} onChangeToken={(chainId, zap, token) => { setTokenFrom(token); setZapFrom(zap) }} />
             </div>
             <CurrencyInput
               placeholder="0.0"
@@ -113,7 +113,7 @@ export const MainSwap = (props: Props) => {
         <div className="my-3">
           <div className="bg-white rounded-[8px] w-full px-3 py-4 flex gap-4 items-center">
             <div>
-              <SupplyingPopup chainToId={chainToId} setChainToId={(id) => setChainToId(id)} disabledSwitchChange supply={SUPPLY_LIST} zap={zapTo} token={tokenTo} onChangeToken={(chainId, zap, token) => { setTokenTo(token); setZapTo(zap) }} />
+              <SupplyingPopup title="Supply To" chainToId={chainToId} setChainToId={(id) => setChainToId(id)} disabledSwitchChange supply={SUPPLY_LIST} zap={zapTo} token={tokenTo} onChangeToken={(chainId, zap, token) => { setTokenTo(token); setZapTo(zap) }} />
             </div>
             <input readOnly value={amount / rate} placeholder="0.0" className="w-full border-transparent focus:border-transparent outline-none" />
           </div>
