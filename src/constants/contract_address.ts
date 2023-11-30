@@ -59,15 +59,15 @@ export const SUPPLY_LIST: Supply = {
       KLAY: { address: "0x7905548A08837061B9B247BEEd39E5F307c2BBAd", icon: KlaytnIcon, apy: 2.5, balance: 70 }
     },
     farm: {
-      "ETH-KLAY": { address: "0x8843010C138A3eBF5080C6c6374BeA29A2de9e4C", icon: [ETHIcon, KlaytnIcon], apy: 3.5, balance: 60 },
-      "ETH-BTC": { address: "0xa39C7B82ff1F23eF65f7b5aDD7dFbE3C700b25A6", icon: [ETHIcon, BSCIcon], apy: 2.5, balance: 81 },
-      "ETH-USDT": { address: "0x73C49c8432D38DE7Ae7aC5123c9666eC5136107C", icon: [ETHIcon, USDTIcon], apy: 1.3, balance: 63 },
-      "ETH-USDC": { address: "0xaAF190fE7A6Fae45d299F0D1b5983EC8efa367De", icon: [ETHIcon, USDCIcon], apy: 2.7, balance: 65 },
+      "ETH-KLAY": { name: "ETH-KLAY", address: "0x8843010C138A3eBF5080C6c6374BeA29A2de9e4C", icon: [ETHIcon, KlaytnIcon], apy: 3.5, balance: 60 },
+      "ETH-BTC": { name: "ETH-BTC", address: "0xa39C7B82ff1F23eF65f7b5aDD7dFbE3C700b25A6", icon: [ETHIcon, BTCIcon], apy: 2.5, balance: 81 },
+      "ETH-USDT": { name: "ETH-USDT", address: "0x73C49c8432D38DE7Ae7aC5123c9666eC5136107C", icon: [ETHIcon, USDTIcon], apy: 1.3, balance: 63 },
+      "ETH-USDC": { name: "ETH-USDC", address: "0xaAF190fE7A6Fae45d299F0D1b5983EC8efa367De", icon: [ETHIcon, USDCIcon], apy: 2.7, balance: 65 },
     },
     "lending protocols": {},
     "liquid staking": {
-      SKLAY: { address: "0xcdA13312be7b1b0c37628e38Daf7802c24893Bc2", icon: sKlayIcon, apy: 1.3, balance: 88},
-      STKLAY: { address: "0xE492088AB3E99e3b964a7315162d2Aa96c59ddd4", icon: stKlayIcon, apy: 1.3, balance: 88},
+      SKLAY: { address: "0xcdA13312be7b1b0c37628e38Daf7802c24893Bc2", icon: sKlayIcon, apy: 1.3, balance: 88 },
+      STKLAY: { address: "0xE492088AB3E99e3b964a7315162d2Aa96c59ddd4", icon: stKlayIcon, apy: 1.3, balance: 88 },
     }
   },
   klay: {
@@ -79,15 +79,15 @@ export const SUPPLY_LIST: Supply = {
       KLAY: { address: "0x9bBC56D7a806EA67A3D528C772550BdF99Ce4579", icon: KlaytnIcon, apy: 2.5, balance: 50 }
     },
     farm: {
-      "ETH-KLAY": { address: "0x65481e2F0cc8E127D9266beF1438864940513da9", icon: [ETHIcon, KlaytnIcon], apy: 2, balance: 60 },
-      "ETH-BTC": { address: "0x674A13CFc3e2F6B8981C7842489EC6F6cFd5898D", icon: [ETHIcon, BSCIcon], apy: 2.5, balance: 50 },
-      "ETH-USDT": { address: "0x9fd7037B6bD6F16a89D33bE16127E067c1c7a292", icon: [ETHIcon, USDTIcon], apy: 3, balance: 65 },
-      "ETH-USDC": { address: "0x642eDAC6E437F5D6037b7456966dA9d60edC9743", icon: [ETHIcon, USDCIcon], apy: 1.4, balance: 50 },
+      "ETH-KLAY": { name: "ETH-KLAY", address: "0x65481e2F0cc8E127D9266beF1438864940513da9", icon: [ETHIcon, KlaytnIcon], apy: 2, balance: 60 },
+      "ETH-BTC": { name: "ETH-BTC", address: "0x674A13CFc3e2F6B8981C7842489EC6F6cFd5898D", icon: [ETHIcon, BTCIcon], apy: 2.5, balance: 50 },
+      "ETH-USDT": { name: "ETH-USDT", address: "0x9fd7037B6bD6F16a89D33bE16127E067c1c7a292", icon: [ETHIcon, USDTIcon], apy: 3, balance: 65 },
+      "ETH-USDC": { name: "ETH-USDC", address: "0x642eDAC6E437F5D6037b7456966dA9d60edC9743", icon: [ETHIcon, USDCIcon], apy: 1.4, balance: 50 },
     },
     "lending protocols": {},
     "liquid staking": {
-      SKLAY: { address: "0xcdA13312be7b1b0c37628e38Daf7802c24893Bc2", icon: sKlayIcon, apy: 1.1, balance: 93},
-      STKLAY: { address: "0xE492088AB3E99e3b964a7315162d2Aa96c59ddd4", icon: stKlayIcon, apy: 1.7, balance: 82},
+      SKLAY: { address: "0xcdA13312be7b1b0c37628e38Daf7802c24893Bc2", icon: sKlayIcon, apy: 1.1, balance: 93 },
+      STKLAY: { address: "0xE492088AB3E99e3b964a7315162d2Aa96c59ddd4", icon: stKlayIcon, apy: 1.7, balance: 82 },
     }
   },
   bsc: {
@@ -101,8 +101,8 @@ export const SUPPLY_LIST: Supply = {
     farm: {},
     "lending protocols": {},
     "liquid staking": {
-      SKLAY: { address: "0xcdA13312be7b1b0c37628e38Daf7802c24893Bc2", icon: sKlayIcon, apy: 1.8, balance: 89},
-      STKLAY: { address: "0xE492088AB3E99e3b964a7315162d2Aa96c59ddd4", icon: stKlayIcon, apy: 1.2, balance: 82},
+      SKLAY: { address: "0xcdA13312be7b1b0c37628e38Daf7802c24893Bc2", icon: sKlayIcon, apy: 1.8, balance: 89 },
+      STKLAY: { address: "0xE492088AB3E99e3b964a7315162d2Aa96c59ddd4", icon: stKlayIcon, apy: 1.2, balance: 82 },
     }
   },
   polygon: {
@@ -117,8 +117,29 @@ export const SUPPLY_LIST: Supply = {
     farm: {},
     "lending protocols": {},
     "liquid staking": {
-      SKLAY: { address: "0xcdA13312be7b1b0c37628e38Daf7802c24893Bc2", icon: sKlayIcon, apy: 1.9, balance: 83},
-      STKLAY: { address: "0xE492088AB3E99e3b964a7315162d2Aa96c59ddd4", icon: stKlayIcon, apy: 1.3, balance: 88},
+      SKLAY: { address: "0xcdA13312be7b1b0c37628e38Daf7802c24893Bc2", icon: sKlayIcon, apy: 1.9, balance: 83 },
+      STKLAY: { address: "0xE492088AB3E99e3b964a7315162d2Aa96c59ddd4", icon: stKlayIcon, apy: 1.3, balance: 88 },
     }
   },
+}
+
+export const rateList = {
+  "ETH-KLAY/ETH-BTC": 1 / 0.00002,
+  "ETH-BTC/ETH-KLAY": 0.00002,
+  "ETH-KLAY/ETH-USDT": 0.2,
+  "ETH-KLAY/ETH-USDC": 0.2,
+  "ETH-USDT/ETH-KLAY": 1 / 0.2,
+  "ETH-USDC/ETH-KLAY": 1 / 0.2,
+  "ETH-USDT/ETH-USDC": 1,
+  "ETH-USDC/ETH-USDT": 1,
+  "ETH-BTC/ETH-USDT": 0.000027,
+  "ETH-USDT/ETH-BTC": 1 / 0.000027,
+  "ETH-BTC/ETH-USDC": 0.000027,
+  "ETH-USDC/ETH-BTC": 1 / 0.000027,
+  "USDT/ETH": 2000,
+  "ETH/USDT": 1 / 2000,
+  "USDC/ETH": 2000,
+  "ETH/USDC": 1 / 2000,
+  "USDC/BTC": 2000,
+  "BTC/USDC": 1 / 2000,
 }

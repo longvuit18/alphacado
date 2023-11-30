@@ -2,11 +2,12 @@ import { uniswapV2AdapterAbi } from "@/abi/uniswapv2_adapter";
 import { useEffect, useMemo, useState } from "react"
 import { erc20ABI, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
 import { useClientAccount } from "./use_client_account";
-import { MUMBAI_UNISWAP_V2_ADAPTER_ADDRESS, MUMBAI_USDC, MUMBAI_UNISWAP_V2_ROUTER, MUMBAI_WORMHOLE, SUPPLY_LIST, ADAPTER_ADDRESS, ROUTER } from "@/constants/contract_address";
+import { MUMBAI_UNISWAP_V2_ADAPTER_ADDRESS, MUMBAI_USDC, MUMBAI_UNISWAP_V2_ROUTER, MUMBAI_WORMHOLE, SUPPLY_LIST, ADAPTER_ADDRESS, ROUTER, rateList } from "@/constants/contract_address";
 import { encodeAbiParameters, etherUnits, formatEther, formatUnits, parseEther, zeroAddress } from "viem";
 import { wormholeAbi } from "@/abi/wormhole";
 import { Token } from "@/models/supply";
 import { CHAINS_TESTNET } from "@/constants/chains";
+import { exchangeAbi } from "@/abi/exchange";
 
 export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   const account = useClientAccount();
@@ -18,6 +19,8 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   const [receiver, setReceiver] = useState<string>(account?.address ?? '')
   const [progressState, setProgressState] = useState("")
   const [hash, setHash] = useState("")
+  const [zapTo, setZapTo] = useState("token");
+  const [zapFrom, setZapFrom] = useState("token");
 
   const { data: transactionRes, isError: transactionError, isLoading: transactionLoading } = useWaitForTransaction({
     hash: hash as `0x${string}`,
@@ -77,7 +80,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   const { config: configSwap, error } = usePrepareContractWrite({
     address: (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token,
     abi: uniswapV2AdapterAbi,
-    functionName: 'fromUniV2Token',
+    functionName: zapFrom === "token" ? 'fromUniV2Token' : "fromUniV2LP",
     args: [
       ROUTER,
       tokenFrom?.address,
@@ -112,8 +115,17 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     enabled: !!tokenFrom.address
   })
 
+  const { config: configExchangeToken, error: errorExchangeToken } = usePrepareContractWrite({
+    address: "0x55b84AA20159Ebe618259166dEd708ae31d7A6c3",
+    abi: exchangeAbi,
+    functionName: "exchangeToken",
+    args: [tokenFrom.address, tokenTo.address, parseEther(amount.toString())],
+    enabled: !!tokenFrom.address && !!tokenTo && chainFromId === 1001 && chainToId === 1001 && zapFrom === "farm" && zapTo === "farm" && amount > 0
+  })
+
   const { data, writeAsync: writeSwapAsync } = useContractWrite(configSwap);
   const { data: approveData, writeAsync: writeApproveAsync } = useContractWrite(configApprove);
+  const { writeAsync: writeExchangeAsync } = useContractWrite(configExchangeToken);
 
   const onChangeValue = (v: string | undefined) => {
     if (!v) {
@@ -136,6 +148,21 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
         setButtonLoading(false)
         console.error(error)
       }
+      return;
+    }
+
+    if (chainFromId === 1001 && chainToId === 1001 && zapFrom === "farm" && zapTo === "farm") {
+      try {
+        if (writeExchangeAsync) {
+          const tx = await writeExchangeAsync()
+          setHash(tx.hash)
+          setButtonLoading(false)
+        }
+      } catch (error) {
+        setButtonLoading(false)
+        console.error(error)
+      }
+
       return;
     }
 
@@ -162,7 +189,12 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
       return (error?.cause as any)?.shortMessage
     }
     return ""
-  }, [error, errorApprove, tokenFromBalance, amount])
+  }, [error, errorApprove, tokenFromBalance, amount, errorExchangeToken])
+
+  const rate = useMemo(() => {
+    return (rateList as any)?.[`${tokenFrom.name}/${tokenTo.name}`] ?? 0.2
+  }, [tokenFrom, tokenTo])
+
   return {
     amount,
     onChangeValue,
@@ -180,7 +212,12 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     errorMessage,
     progressState,
     setProgressState,
-    hash
+    hash,
+    zapFrom,
+    zapTo,
+    setZapFrom,
+    setZapTo,
+    rate
   }
 
 }

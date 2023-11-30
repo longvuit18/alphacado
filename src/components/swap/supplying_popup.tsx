@@ -15,10 +15,10 @@ type Props = {
   onChangeToken: (chainId: number, zap: string, token: Token) => void
   disabledSwitchChange?: boolean;
   chainToId?: number
-  setChainToId?: (chainId: number) => void
+  setChainToId?: (chainId: number) => void;
 }
 
-const ZAPS = ["token", "farm", "lending protocols", "liquid staking"];
+const ZAPS = ["token", "farm", "lending protocols", "liquid staking", "vault"];
 
 export const SupplyingPopup = (props: Props) => {
   const [openModal, setOpenModal] = useState(false);
@@ -94,7 +94,16 @@ export const SupplyingPopup = (props: Props) => {
           <div className='mb-5'>
             <h3 className='mb-3 text-[#727B7A]'>ZAP TYPE:</h3>
             <div className='flex gap-2 '>
-              {ZAPS.map(item => <div onClick={() => setZap(item)} key={item} className={`cursor-pointer capitalize p-3 ${item === zap ? "bg-[#130D0D] text-[#FAFBFB]" : "bg-[#ECEDED] text-[#130D0D]"} rounded-[16px]  text-[16px]`}>{item}</div>)}
+              {ZAPS.map(item => {
+                if (item === "vault" && chainId !== 1001) {
+                  return null;
+                }
+                return (
+                  <div onClick={() => setZap(item)} key={item} className={`cursor-pointer capitalize p-3 ${item === zap ? "bg-[#130D0D] text-[#FAFBFB]" : "bg-[#ECEDED] text-[#130D0D]"} rounded-[16px]  text-[16px]`}>{item}</div>)
+              }
+
+              )
+              }
             </div>
           </div>
           <div className='flex gap-6'>

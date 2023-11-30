@@ -11,4 +11,5 @@ export type Token = {
   icon: any;
   apy: number;
   balance: number;
+  name?: string;
 }

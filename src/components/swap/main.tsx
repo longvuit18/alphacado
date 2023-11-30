@@ -31,6 +31,7 @@ export const MainSwap = (props: Props) => {
   const { chain } = useNetwork()
   const [chainId, setChainId] = useState<number | undefined>(undefined)
   const [nativeSymbol, setNativeSymbol] = useState<string | null>(null)
+
   useEffect(() => {
     if (chain) {
       setChainId(chain.id)
@@ -41,7 +42,8 @@ export const MainSwap = (props: Props) => {
 
     }
   }, [chain])
-  const { amount,
+  const {
+    amount,
     onChangeValue,
     isApprove,
     onSwap,
@@ -56,7 +58,12 @@ export const MainSwap = (props: Props) => {
     errorMessage,
     progressState,
     setProgressState,
-    hash
+    hash,
+    zapFrom,
+    zapTo,
+    setZapFrom,
+    setZapTo,
+    rate
   } = useSwap({ chainFromId: chainId })
 
   const chainFromIcon = useMemo(() => {
@@ -80,7 +87,7 @@ export const MainSwap = (props: Props) => {
         <div className="my-3">
           <div className="bg-white rounded-[8px] w-full px-3 py-4 flex gap-4 items-center">
             <div>
-              <SupplyingPopup supply={SUPPLY_LIST} zap="token" token={tokenFrom} onChangeToken={(chainId, zap, token) => setTokenFrom(token)} />
+              <SupplyingPopup supply={SUPPLY_LIST} zap={zapFrom} token={tokenFrom} onChangeToken={(chainId, zap, token) => { setTokenFrom(token); setZapFrom(zap) }} />
             </div>
             <CurrencyInput
               placeholder="0.0"
@@ -106,9 +113,9 @@ export const MainSwap = (props: Props) => {
         <div className="my-3">
           <div className="bg-white rounded-[8px] w-full px-3 py-4 flex gap-4 items-center">
             <div>
-              <SupplyingPopup chainToId={chainToId} setChainToId={(id) => setChainToId(id)} disabledSwitchChange supply={SUPPLY_LIST} zap="token" token={tokenTo} onChangeToken={(chainId, zap, token) => setTokenTo(token)} />
+              <SupplyingPopup chainToId={chainToId} setChainToId={(id) => setChainToId(id)} disabledSwitchChange supply={SUPPLY_LIST} zap={zapTo} token={tokenTo} onChangeToken={(chainId, zap, token) => { setTokenTo(token); setZapTo(zap) }} />
             </div>
-            <input readOnly value={amount / 0.2} placeholder="0.0" className="w-full border-transparent focus:border-transparent outline-none" />
+            <input readOnly value={amount / rate} placeholder="0.0" className="w-full border-transparent focus:border-transparent outline-none" />
           </div>
         </div>
         {/* <p className="text-[14px] mb-3 text-[#727B7A]">Balance: ???BNB</p> */}

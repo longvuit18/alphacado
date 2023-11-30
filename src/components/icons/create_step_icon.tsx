@@ -1,8 +1,6 @@
 import { TickIcon } from "./tick_icon"
 
 export const CreateStepIcon = ({ step, currentStep }: { step: number, currentStep: number }) => {
-  console.log('step: ', step);
-  console.log('current: ', currentStep);
   return (
     <>
       {currentStep > step ? (
