@@ -1,36 +1,36 @@
 'use client'
-import { useEffect, useState } from "react";
-import Success from "./success";
-import { ArrowLeftIcon } from "@/components/icons/arrow_left_icon";
-import { CREATE_VAULT_STEP } from "./constants/create_vault_step";
-import { CreateStepIcon } from "@/components/icons/create_step_icon";
-import SetupNewVaultForm from "./setup_new_vault_form";
-import FeeConfigurationForm from "./fee_configuration_form";
-import ReviewForm from "./review_form";
-import { useVault } from "@/hooks/use_vault";
-import { ProgressPopup } from "@/components/swap/progress_popup";
+import { useEffect, useState } from "react"
+import Success from "./success"
+import { ArrowLeftIcon } from "@/components/icons/arrow_left_icon"
+import { CREATE_VAULT_STEP } from "./constants/create_vault_step"
+import { CreateStepIcon } from "@/components/icons/create_step_icon"
+import SetupNewVaultForm from "./setup_new_vault_form"
+import FeeConfigurationForm from "./fee_configuration_form"
+import ReviewForm from "./review_form"
+import { useVault } from "@/hooks/use_vault"
+import { ProgressPopup } from "@/components/swap/progress_popup"
 
 export default function CreateVaultPage() {
-  const [step, setStep] = useState(CREATE_VAULT_STEP.SET_UP_NEW_VAULT);
+  const [step, setStep] = useState(CREATE_VAULT_STEP.SET_UP_NEW_VAULT)
   // Set up new vault form state
   const [setupNewVaultForm, setSetupNewVaultForm] = useState({
     name: '',
     depositLimit: false,
     maxDepositAmount: '',
     asset: ''
-  });
-  const [isFilledSetupNewVaultForm, setIsFilledSetupNewVaultForm] = useState(false);
+  })
+  const [isFilledSetupNewVaultForm, setIsFilledSetupNewVaultForm] = useState(false)
   useEffect(() => {
     if (setupNewVaultForm.name.length > 0) {
       if (setupNewVaultForm.depositLimit === false || (setupNewVaultForm.depositLimit === true && setupNewVaultForm.maxDepositAmount.length > 0)) {
-        setIsFilledSetupNewVaultForm(true);
+        setIsFilledSetupNewVaultForm(true)
       } else {
-        setIsFilledSetupNewVaultForm(false);
+        setIsFilledSetupNewVaultForm(false)
       }
     } else {
-      setIsFilledSetupNewVaultForm(false);
+      setIsFilledSetupNewVaultForm(false)
     }
-  }, [setupNewVaultForm]);
+  }, [setupNewVaultForm])
 
   // Fee configuration state
   const [feeConfigurationForm, setFeeConfigurationForm] = useState({
@@ -40,18 +40,18 @@ export default function CreateVaultPage() {
     managementFee: false,
     feeRecipient: false,
     address: '',
-  });
-  const [isFilledFeeConfigurationForm, setIsFilledFeeConfigurationForm] = useState(false);
+  })
+  const [isFilledFeeConfigurationForm, setIsFilledFeeConfigurationForm] = useState(false)
   useEffect(() => {
     if (feeConfigurationForm.address.length > 0) {
-      setIsFilledFeeConfigurationForm(true);
+      setIsFilledFeeConfigurationForm(true)
     } else {
-      setIsFilledFeeConfigurationForm(false);
+      setIsFilledFeeConfigurationForm(false)
     }
-  }, [feeConfigurationForm]);
+  }, [feeConfigurationForm])
 
   // Review state
-  const [isConfirmed, setIsConfirmed] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false)
 
   const { createVault, chainId, switchNetworkAsync, hash, progressState, setProgressState } = useVault({
     data: {
@@ -63,7 +63,7 @@ export default function CreateVaultPage() {
       // rewardToken
     },
     setEndStep: () => {
-      setStep(CREATE_VAULT_STEP.FINISH);
+      setStep(CREATE_VAULT_STEP.FINISH)
 
     }
   })
@@ -73,7 +73,7 @@ export default function CreateVaultPage() {
       if (chainId !== 1001) {
         if (switchNetworkAsync) {
           await switchNetworkAsync(1001)
-          return;
+          return
         }
       }
     }
