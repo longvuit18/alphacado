@@ -150,5 +150,8 @@ export const rateList = {
   "ETH/USDC": 1 / 2000,
   "USDC/BTC": 2000,
   "BTC/USDC": 1 / 2000,
-  "KSP-KLAY/KOKOS-ETH": 1 / 6
+  "KSP-KLAY/KOKOS-ETH": 65 / 10,
+  "KOKOS-ETH/KSP-KLAY": 10 / 65,
+  "wETH-USDC/KSP-KLAY": 0.4,
+  "KSP-KLAY/wETH-USDC": 1 / 0.4,
 }

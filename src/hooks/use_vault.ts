@@ -83,7 +83,6 @@ export const useVault = (props: Props) => {
   const createVault = async () => {
     try {
       if (writeAsync) {
-        console.log(123)
         const tx = await writeAsync()
         setHash(tx.hash)
       }

@@ -98,7 +98,7 @@ export const MainSwap = (props: Props) => {
               onValueChange={(value, name) => onChangeValue(value)}
             />
           </div>
-          <p className="text-[14px]">Balance: {tokenFromBalance !== undefined && tokenFromBalance !== null ? `${formatEther(tokenFromBalance)} ${tokenFrom.name}` : ""}</p>
+          <p className="text-[14px]">Balance: {tokenFromBalance !== undefined && tokenFromBalance !== null ? `${formatEther(tokenFromBalance)} ${tokenFrom?.name}` : ""}</p>
         </div>
       </div>
       <div className="secondary-gradient-background px-6 py-3 pb-9 shadow-sm">
