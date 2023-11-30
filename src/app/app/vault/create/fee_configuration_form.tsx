@@ -1,65 +1,65 @@
 'use client'
-import Button from "@/components/common/button";
-import SelectDropdown from "@/components/common/select";
-import Switch from "@/components/common/switch";
-import TextField from "@/components/common/text_field";
-import { InforIcon } from "@/components/icons/infor_icon";
-import { useState } from "react";
-import FeeConfigurationOption from "./fee_configuration_option";
-import { CREATE_VAULT_STEP } from "./constants/create_vault_step";
+import Button from "@/components/common/button"
+import SelectDropdown from "@/components/common/select"
+import Switch from "@/components/common/switch"
+import TextField from "@/components/common/text_field"
+import { InforIcon } from "@/components/icons/infor_icon"
+import { useState } from "react"
+import FeeConfigurationOption from "./fee_configuration_option"
+import { CREATE_VAULT_STEP } from "./constants/create_vault_step"
 
 export default function FeeConfigurationForm(props: any) {
-  const { setStep, feeConfigurationForm, setFeeConfigurationForm, isFilledFeeConfigurationForm } = props;
+  const { setStep, feeConfigurationForm, setFeeConfigurationForm, isFilledFeeConfigurationForm } = props
 
   const onClickBack = (e: any) => {
-    setStep(CREATE_VAULT_STEP.SET_UP_NEW_VAULT);
+    setStep(CREATE_VAULT_STEP.SET_UP_NEW_VAULT)
   }
 
   const onChangeAddress = (e: any) => {
     setFeeConfigurationForm({
       ...feeConfigurationForm,
       address: e.target.value,
-    });
+    })
   }
 
   const onToggleDepositFee = () => {
     setFeeConfigurationForm({
       ...feeConfigurationForm,
       depositFee: !feeConfigurationForm.depositFee,
-    });
+    })
   }
 
   const onToggleWithdrawFee = () => {
     setFeeConfigurationForm({
       ...feeConfigurationForm,
       withdrawFee: !feeConfigurationForm.withdrawFee,
-    });
+    })
   }
 
   const onTogglePerformanceFee = () => {
     setFeeConfigurationForm({
       ...feeConfigurationForm,
       performanceFee: !feeConfigurationForm.performanceFee,
-    });
+    })
   }
 
   const onToggleManagementFee = () => {
     setFeeConfigurationForm({
       ...feeConfigurationForm,
       managementFee: !feeConfigurationForm.managementFee,
-    });
+    })
   }
 
   const onToggleFeeRecipient = () => {
     setFeeConfigurationForm({
       ...feeConfigurationForm,
       feeRecipient: !feeConfigurationForm.feeRecipient,
-    });
+    })
   }
 
   const onClickNext = (e: any) => {
     if (isFilledFeeConfigurationForm) {
-      setStep(CREATE_VAULT_STEP.REVIEW);
+      setStep(CREATE_VAULT_STEP.REVIEW)
     }
   }
 

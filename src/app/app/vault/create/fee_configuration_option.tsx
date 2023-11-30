@@ -1,13 +1,13 @@
 'use client'
-import Button from "@/components/common/button";
-import Switch from "@/components/common/switch";
+import Button from "@/components/common/button"
+import Switch from "@/components/common/switch"
 type Props = React.ButtonHTMLAttributes<HTMLAnchorElement> & {
-  id: string;
-  className?: string;
-  title?: string;
-  content?: string;
-  isChecked?: boolean;
-  handleToggle?: () => void;
+  id: string
+  className?: string
+  title?: string
+  content?: string
+  isChecked?: boolean
+  handleToggle?: () => void
 }
 
 export default function FeeConfigurationOption({ id, className, title, content, isChecked = true, handleToggle }: Props) {
