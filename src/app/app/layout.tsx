@@ -7,11 +7,10 @@ export const metadata: Metadata = {
   description: 'Alphacado',
 }
 
-export default function RootLayout({
+export default function AppLayout({
   children
 }: {
-  children: React.ReactNode,
-  props: any
+  children: React.ReactNode
 }) {
   return (
     <>
