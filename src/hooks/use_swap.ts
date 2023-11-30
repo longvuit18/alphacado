@@ -103,7 +103,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
       ])
     ],
     value: parseEther("0.01"),
-    enabled: !!tokenTo?.address && !!tokenFrom?.address && amount > 0 && !!chainFromId && !!chainToId && !isApprove && chainFromId !== 1001 && chainToId !== 1001
+    enabled: !!tokenTo?.address && !!tokenFrom?.address && amount > 0 && !!chainFromId && !!chainToId && !isApprove
   })
 
 
@@ -123,6 +123,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     args: [tokenFrom?.address, tokenTo?.address, parseEther(amount.toString())],
     enabled: isExchange
   })
+
 
   const { data, writeAsync: writeSwapAsync } = useContractWrite(configSwap);
   const { data: approveData, writeAsync: writeApproveAsync } = useContractWrite(configApprove);
@@ -194,7 +195,6 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
         return (errorExchangeToken?.cause as any)?.shortMessage
       }
     } else {
-
       if ((error?.cause as any)?.shortMessage) {
         return (error?.cause as any)?.shortMessage
       }
