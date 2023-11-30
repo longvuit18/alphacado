@@ -50,7 +50,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   }, [transactionRes, transactionError, transactionLoading])
 
   const { data: allowance } = useContractRead({
-    address: tokenFrom.address as `0x${string}`,
+    address: tokenFrom?.address as `0x${string}`,
     abi: erc20ABI,
     functionName: "allowance",
     args: [account?.address ?? zeroAddress, zapFrom === "farm" ? EXCHANGE_TOKEN : (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token],
@@ -103,25 +103,25 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
       ])
     ],
     value: parseEther("0.01"),
-    enabled: !!tokenTo?.address && !!tokenFrom?.address && amount > 0 && !!chainFromId && !!chainToId && !isApprove && zapFrom !== "farm"
+    enabled: !!tokenTo?.address && !!tokenFrom?.address && amount > 0 && !!chainFromId && !!chainToId && !isApprove && chainFromId !== 1001 && chainToId !== 1001
   })
-
 
 
   const { config: configApprove, error: errorApprove } = usePrepareContractWrite({
     address: tokenFrom?.address as `0x${string}`,
     abi: erc20ABI,
     functionName: "approve",
-    args: [zapFrom === "farm" ? EXCHANGE_TOKEN : (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token, parseEther(amount.toString())],
+    args: [zapFrom === "farm" && chainFromId === 1001 ? EXCHANGE_TOKEN : (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token, parseEther(amount.toString())],
     enabled: !!tokenFrom?.address
   })
 
+  const isExchange = !!tokenFrom?.address && !!tokenTo && chainFromId === 1001 && chainToId === 1001 && zapFrom === "farm" && zapTo === "farm" && amount > 0 && !isApprove
   const { config: configExchangeToken, error: errorExchangeToken } = usePrepareContractWrite({
     address: EXCHANGE_TOKEN,
     abi: exchangeAbi,
     functionName: "exchangeToken",
     args: [tokenFrom?.address, tokenTo?.address, parseEther(amount.toString())],
-    enabled: !!tokenFrom?.address && !!tokenTo && chainFromId === 1001 && chainToId === 1001 && zapFrom === "farm" && zapTo === "farm" && amount > 0 && !isApprove
+    enabled: isExchange
   })
 
   const { data, writeAsync: writeSwapAsync } = useContractWrite(configSwap);
@@ -137,6 +137,9 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   }
 
   const onSwap = async () => {
+    if (buttonLoading || amount <= 0) {
+      return;
+    }
     setButtonLoading(true)
     if (isApprove) {
       try {
@@ -186,15 +189,22 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     if ((errorApprove?.cause as any)?.shortMessage) {
       return (errorApprove?.cause as any)?.shortMessage
     }
-    if ((error?.cause as any)?.shortMessage) {
-      return (error?.cause as any)?.shortMessage
+    if (isExchange) {
+      if ((errorExchangeToken?.cause as any)?.shortMessage) {
+        return (errorExchangeToken?.cause as any)?.shortMessage
+      }
+    } else {
+
+      if ((error?.cause as any)?.shortMessage) {
+        return (error?.cause as any)?.shortMessage
+      }
     }
 
-    if ((errorExchangeToken?.cause as any)?.shortMessage) {
-      return (errorExchangeToken?.cause as any)?.shortMessage
-    }
+
+
+
     return ""
-  }, [error, errorApprove, tokenFromBalance, amount, errorExchangeToken])
+  }, [error, errorApprove, tokenFromBalance, amount, errorExchangeToken, isExchange])
 
   const rate = useMemo(() => {
     return (rateList as any)?.[`${tokenFrom.name}/${tokenTo.name}`] ?? 0.2

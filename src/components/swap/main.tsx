@@ -127,7 +127,7 @@ export const MainSwap = (props: Props) => {
       <div className="third-gradient-background px-8 pt-9 flex flex-col gap-3 pb-6">
         <div className="flex justify-between">
           <p className="text-[#646E6C]">Slippage Tolerance:</p>
-          <p className="font-[600] text-[16px]">{slippageTolerance || ""}</p>
+          <p className="font-[600] text-[16px]">{slippageTolerance || "1.5%"}</p>
         </div>
         {/* <div className="flex justify-between">
           <p className="text-[#646E6C]">Actual amount to be sent:</p>
@@ -154,8 +154,8 @@ export const MainSwap = (props: Props) => {
             onClick={() => {
               onSwap()
             }}
-            disabled={buttonLoading}
-            className="w-full text-center rounded-b-[12px] rounded-t-[0px]">
+            disabled={buttonLoading || amount <= 0}
+            className={`w-full text-center rounded-b-[12px] rounded-t-[0px] ${buttonLoading || amount <= 0 ? "opacity-70" : ""}`}>
             {
               buttonLoading ?
                 "Loading ..."

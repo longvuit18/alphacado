@@ -68,7 +68,7 @@ export const SUPPLY_LIST: Supply = {
       "ETH-BTC": { name: "ETH-BTC", address: "0xa39C7B82ff1F23eF65f7b5aDD7dFbE3C700b25A6", icon: [ETHIcon, BTCIcon], apy: 2.5, balance: "53 M" },
       "ETH-USDT": { name: "ETH-USDT", address: "0x73C49c8432D38DE7Ae7aC5123c9666eC5136107C", icon: [ETHIcon, USDTIcon], apy: 1.3, balance: "61 M" },
       "ETH-USDC": { name: "ETH-USDC", address: "0xaAF190fE7A6Fae45d299F0D1b5983EC8efa367De", icon: [ETHIcon, USDCIcon], apy: 2.7, balance: "54 M" },
-      "wETH-USDC": { name: "wETH-USDC", address: "0xf77d8b5B49e3AaF9aDd8C73652463D53E96C5d5F", icon: [wETHICON, USDCIcon], apy: 3.7, balance: "72 M" },
+      "wETH-USDC": { name: "wETH-USDC", address: "0xf0f0A3c6530DCC2d00B72B9219D937a897F9fbB9", icon: [wETHICON, USDCIcon], apy: 3.7, balance: "72 M" },
     },
     "lending protocols": {},
     "liquid staking": {
