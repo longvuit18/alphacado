@@ -1,6 +1,18 @@
 import Image from 'next/image'
 import landingpageBackground from '../../public/landingpageBackground.png'
 import chainLogo from '../../public/klaytn.png'
+import etherLogo from '../../public/ether-icon.png';
+import klaytnLogo from '../../public/klaytn-icon.png';
+import bnbChainLogo from '../../public/bnbchain-icon.png';
+import polygonLogo from '../../public/polygon.png';
+import arbitrumLogo from '../../public/arbitrum.png';
+import optimismLogo from '../../public/optim.png';
+import avalanche from '../../public/avalan.png';
+import zksyncLogo from '../../public/zksync.png';
+import baseLogo from '../../public/base.png';
+import linearLogo from '../../public/linear.png';
+import aleoLogo from '../../public/aleo.png';
+import suiLogo from '../../public/sui.png';
 import klaytn from '../../public/klaytn.png'
 import logo from '@/assets/logo.png'
 import Button from '@/components/common/button'
@@ -104,26 +116,33 @@ export default function Home() {
         <div className='flex flex-col justify-center items-center my-32'>
           <div className='w-[971px]'>
             <div className='flex flex-col justify-center items-center'>
-              <h4 className='font-semibold text-[38px] leading-10'>Supercharge your Web3 experience with one</h4>
-              <h4 className='font-semibold text-[38px] leading-10'>clickaccess to any asset</h4>
-              <p className='leading-5 font-normal text-[#4A5654] text-center text-[14px] mt-2'>Tired of juggling multiple DeFi transactions? Simplify your experience with Portals – bundle all your DeFi actions into one gasless transaction.</p>
+              <h4 className='font-semibold text-[38px] leading-10 text-center'>Elevate your Web3 journey with One-click Access to Any asset from Any blockchain</h4>
+              {/* <h4 className='font-semibold text-[38px] leading-10'>clickaccess to any asset</h4> */}
+              <p className='leading-5 font-normal text-[#4A5654] text-center text-[14px] mt-2'>Fed up with managing numerous DeFi transactions? Streamline your experience with Alphacado—consolidate all your DeFi actions into a single, gasless transaction.</p>
             </div>
             <div className='flex gap-6 mt-[66px]'>
-              <Card title='Gasless' content='Gasless swaps and zaps with no cost for failed trainsactions means you never have to worry about gas or stuck transactions again.' className='w-full bg-[#F1FFF4]' />
-              <Card title='Multichain' content='Multichain support for for the most popular and newest EVM chains, with frequent additions' className='w-full bg-[#F1FFF4]' />
-              <Card title='Zaps' content='Bundle multi-step actions into a single multicall transaction that seamlessly swaps interest bearing, liquidity pool, vault, or any kind of token for any other' className='w-full bg-[#F1FFF4]' />
+              <Card title='Gasless' content='Experience gasless swaps and zaps without the worry of costs for failed transactions, ensuring a seamless and hassle-free process.' className='w-full bg-[#F1FFF4]' />
+              <Card title='Cross-chain Interoperability' content='Experience cross-chain interoperability with support for the most popular and newest EVM chains, continually expanding to enhance accessibility.' className='w-full bg-[#F1FFF4]' />
+              <Card title='Zaps' content='Effortlessly bundle multi-step actions into a single multicall transaction, seamlessly swapping interest-bearing, liquidity pool, vault, or any type of token for another.' className='w-full bg-[#F1FFF4]' />
             </div>
             <div className='mt-40'>
-              <h4 className='text-center text-[#2E3B39] text-[38px] leading-10 font-semibold'>With support for the most popular<br />EVM chains</h4>
-              <div className='grid grid-cols-4 gap-6 mt-16'>
-                <ChainLogo logo={chainLogo} borderRight borderBottom imageClassName='w-full' />
-                <ChainLogo logo={chainLogo} borderLeft borderRight borderBottom imageClassName='w-full' />
-                <ChainLogo logo={chainLogo} borderLeft borderRight borderBottom imageClassName='w-full' />
-                <ChainLogo logo={chainLogo} borderLeft borderBottom imageClassName='w-full' />
-                <ChainLogo logo={chainLogo} borderRight borderTop imageClassName='w-full' />
-                <ChainLogo logo={chainLogo} borderLeft borderRight borderTop imageClassName='w-full' />
-                <ChainLogo logo={chainLogo} borderLeft borderRight borderTop imageClassName='w-full' />
-                <ChainLogo logo={chainLogo} borderLeft borderTop imageClassName='w-full' />
+              <div className='flex'>
+                <h4 className='text-[#2E3B39] text-[48px] leading-10 font-semibold min-w-[450px]'>Supported chains</h4>
+                <p className='text-[#2E3B39] text-[16px] leading-6 font-normal'>Alphacado consolidates liquidity from both liquid and non-liquid assets across Any EVM and non-EVM networks. Effortlessly swap any asset and transfer liquidity across diverse blockchains, unlocking endless possibilities in the world of DeFi.</p>
+              </div>
+              <div className='grid grid-cols-4 mt-16'>
+                <ChainLogo logo={etherLogo} className='bg-[#F1FFF4]' />
+                <ChainLogo logo={klaytnLogo} className='bg-[#D4FEDD]' />
+                <ChainLogo logo={bnbChainLogo} className='bg-[#F1FFF4]' />
+                <ChainLogo logo={polygonLogo} className='bg-[#D4FEDD]' />
+                <ChainLogo logo={arbitrumLogo} className='bg-[#D4FEDD]' />
+                <ChainLogo logo={optimismLogo} className='bg-[#F1FFF4]' />
+                <ChainLogo logo={avalanche} className='bg-[#D4FEDD]' />
+                <ChainLogo logo={zksyncLogo} className='bg-[#F1FFF4]' />
+                <ChainLogo logo={baseLogo} className='bg-[#F1FFF4] opacity-60' imageClassName='w-[75%]' commingSoon />
+                <ChainLogo logo={linearLogo} className='bg-[#D4FEDD] opacity-60' imageClassName='w-[75%]' commingSoon />
+                <ChainLogo logo={aleoLogo} className='bg-[#F1FFF4] opacity-60' imageClassName='w-[60%]' commingSoon />
+                <ChainLogo logo={suiLogo} className='bg-[#D4FEDD] opacity-60' imageClassName='w-[50%]' commingSoon />
               </div>
             </div>
           </div>

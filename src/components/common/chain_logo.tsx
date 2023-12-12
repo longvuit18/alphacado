@@ -1,11 +1,14 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 
-export default function ChainLogo({ logo, borderLeft, borderRight, borderTop, borderBottom, className, imageClassName }:
-  { logo: string | StaticImport, borderLeft?: boolean, borderRight?: boolean, borderTop?: boolean, borderBottom?: boolean, className?: string, imageClassName?: string }) {
+export default function ChainLogo({ logo, className, imageClassName, commingSoon }:
+  { logo: string | StaticImport, className?: string, imageClassName?: string, commingSoon?: boolean }) {
   return (
-    <div className={`p-6 rounded-lg border border-dashed border-black ${borderTop ? 'border-t-1' : 'border-t-0'} ${borderRight ? 'border-r-1' : 'border-r-0'} ${borderBottom ? 'border-b-1' : 'border-b-0'} ${borderLeft ? 'border-l-1' : 'border-l-0'} ${className}`}>
+    <div className={`px-[67px] ${commingSoon ? 'py-[45px]' : 'py-[58px]'} border border-solid border-[#E0E2E2] flex flex-col justify-center items-center ${className}`}>
       <Image className={`${imageClassName}`} src={logo} alt={'Logo'} />
+      {commingSoon ? (
+        <p className="text-[14px] text-center opacity-60">Comming soon</p>
+      ) : null}
     </div>
   );
 }
