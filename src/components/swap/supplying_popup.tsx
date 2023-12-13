@@ -22,7 +22,7 @@ type Props = {
   setChainToId?: (chainId: number) => void;
 }
 
-const ZAPS = ["token", "farm", "lending protocols", "liquid staking", "vault"];
+const ZAPS = ["token", "farm", "lending pools", "liquid staking", "vault"];
 
 export const SupplyingPopup = (props: Props) => {
   const [openModal, setOpenModal] = useState(false);
@@ -111,7 +111,7 @@ export const SupplyingPopup = (props: Props) => {
                 if (item === "vault" && chainId !== 1001) {
                   return null;
                 }
-                if (item === "lending protocols") {
+                if (item === "lending pools") {
                   return (
                     <Tooltip key={index} className='w-[150px] text-center' text='Upcoming'>
                       <div onClick={() => setZap(item)} key={item} className={`cursor-pointer capitalize p-3 ${item === zap ? "bg-[#130D0D] text-[#FAFBFB]" : "bg-[#ECEDED] text-[#130D0D]"} rounded-[16px]  text-[16px]`}>{item}</div>
@@ -142,8 +142,11 @@ export const SupplyingPopup = (props: Props) => {
             </div>
             <div className='table h-[100px] overflow-auto'>
               {zap === "farm" || zap === "vault" || zap === "liquid staking" ?
-                <div className='table-header grid grid-cols-6 border border-transparent border-b-[#C4C8C8]'>
-                  <div className='col-span-4 text-[#727B7A] p-3 pt-0'>
+                <div className='table-header grid grid-cols-7 border border-transparent border-b-[#C4C8C8]'>
+                  <div className='col-span-2 text-[#727B7A] p-3 pt-0'>
+                    PROTOCOL
+                  </div>
+                  <div className='col-span-3 text-[#727B7A] p-3 pt-0'>
                     TOKEN
                   </div>
                   <div className='col-span-1 text-[#727B7A] p-3 pt-0'>
@@ -154,20 +157,27 @@ export const SupplyingPopup = (props: Props) => {
                   </div>
                 </div>
                 : <div className='table-header grid grid-cols-4 border border-transparent border-b-[#C4C8C8]'>
-                  <div className='col-span-3 text-[#727B7A] p-3 pt-0'>
-                    TOKEN
+                  <div className='col-span-1 text-[#727B7A] p-3 pt-0'>
+                    PROTOCOL
+                  </div>
+                  <div className='col-span-2 text-[#727B7A] p-3 pt-0'>
+                    ASSET
                   </div>
                   <div className='col-span-1 text-[#727B7A] p-3 pt-0'>
-                    MARKETCAP
+                    TOTAL SUPPLIED
                   </div>
                 </div>}
-              <div className='h-[220px] overflow-auto'>
+              <div className='h-[320px] overflow-auto'>
                 {
                   Object.entries(props.supply[chainName ?? ""]?.[zap] ?? {})?.map(item => {
+                    console.log(item);
                     if (zap === "farm" || zap === "liquid staking") {
                       return (
-                        <div key={item[1].address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-6 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
-                          <div className='col-span-4 text-[#130D0D] p-3  font-[500]'>
+                        <div key={item[1].address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-7 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
+                          <div className='col-span-2 text-[#130D0D] p-3  font-[500]'>
+                            {item[1].protocol}
+                          </div>
+                          <div className='col-span-3 text-[#130D0D] p-3  font-[500]'>
                             <div className='flex gap-2 items-center'>
                               {Array.isArray(item[1].icon) ?
                                 <div className='flex gap-1'>
@@ -184,14 +194,18 @@ export const SupplyingPopup = (props: Props) => {
                             {item[1].apy}%
                           </div>
                           <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
-                            {item[1].balance}
+                            {item[1].tvl}
                           </div>
                         </div>
                       )
                     }
+
                     return (
-                      <div key={item[1].address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-5 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
-                        <div className='col-span-4 text-[#130D0D] p-3  font-[500]'>
+                      <div key={item[1].address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-4 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
+                        <div className='col-span-1 text-[#130D0D] p-3  font-[500]'>
+                          {item[1].protocol}
+                        </div>
+                        <div className='col-span-2 text-[#130D0D] p-3  font-[500]'>
                           <div className='flex gap-2 items-center'>
                             {Array.isArray(item[1].icon) ?
                               <div className='flex gap-1'>
@@ -205,7 +219,7 @@ export const SupplyingPopup = (props: Props) => {
                           </div>
                         </div>
                         <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
-                          {item[1].balance}
+                          {item[1].totalSupplied}
                         </div>
                       </div>
                     );
@@ -214,7 +228,10 @@ export const SupplyingPopup = (props: Props) => {
                 {zap === "vault" &&
                   vaults?.map((item: any) => {
                     return (
-                      <div key={item.address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-6 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
+                      <div key={item.address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-8 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
+                        <div className='col-span-2 text-[#130D0D] p-3  font-[500]'>
+                          AAVE
+                        </div>
                         <div className='col-span-4 text-[#130D0D] p-3  font-[500]'>
                           <div className='flex gap-2 items-center'>
 
