@@ -56,7 +56,7 @@ export const SupplyingPopup = (props: Props) => {
   }, [chain?.id, props.chainToId])
 
   const currentToken = useMemo(() => {
-    return Object.values(props.supply[chainName ?? ""]?.[zap] ?? {})?.find(item => item.address === props.token.address)
+    return Object.values(props.supply[chainName ?? ""]?.[zap] ?? {})?.find(item => item.address === props?.token?.address)
   }, [chainName, zap, props.token])
 
   const onChangeToken = (token: Token) => {
@@ -132,7 +132,7 @@ export const SupplyingPopup = (props: Props) => {
               <div className='grid grid-cols-2 gap-2'>
                 {Object.values(CHAINS_TESTNET).map(item => {
                   return (
-                    <div key={item.name} onClick={() => handleSwitchChain(item.id)} className={` cursor-pointer p-3 flex flex-col justify-center items-center bg-white gap-1 rounded-[12px] ${item.id == chainId ? "border border-[#130D0D]" : ''}`}>
+                    <div key={item.name} onClick={() => handleSwitchChain(item.id)} className={`cursor-pointer p-3 flex flex-col justify-center items-center bg-white gap-1 rounded-[12px] ${item.id == chainId ? "border border-[#130D0D]" : ''}`}>
                       <Image alt={item.name + " icon"} src={item.icon} height={26} width={26} />
                       <h4 className='uppercase'>{item.name}</h4>
                     </div>
@@ -140,7 +140,7 @@ export const SupplyingPopup = (props: Props) => {
                 })}
               </div>
             </div>
-            <div className='table w-full h-[100px] overflow-auto'>
+            <div className='table h-[100px] overflow-auto'>
               {zap === "farm" || zap === "vault" || zap === "liquid staking" ?
                 <div className='table-header grid grid-cols-6 border border-transparent border-b-[#C4C8C8]'>
                   <div className='col-span-4 text-[#727B7A] p-3 pt-0'>
