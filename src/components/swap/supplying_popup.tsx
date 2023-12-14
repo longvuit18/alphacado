@@ -76,15 +76,15 @@ export const SupplyingPopup = (props: Props) => {
           <div className='flex flex-col gap-1'>
             <Image alt="icon"
               src={currentToken?.icon[0] ?? USDCIcon}
-              height={24}
-              width={24}
+              height={26}
+              width={26}
               className='cursor-pointer'
             />
             <Image alt="icon"
               src={currentToken?.icon[1] ?? USDCIcon}
 
-              height={24}
-              width={24}
+              height={26}
+              width={26}
               className='cursor-pointer'
             />
           </div>
@@ -100,7 +100,7 @@ export const SupplyingPopup = (props: Props) => {
         <ArrowDownIcon className='' />
       </div>
 
-      <Modal show={openModal} onClose={() => setOpenModal(false)} size={"3xl"}>
+      <Modal show={openModal} onClose={() => setOpenModal(false)} size={"4xl"}>
         <Modal.Header className='bg-[#FAFBFB] rounded-t-[12px]'>{props.title}</Modal.Header>
         <Modal.Body className='bg-[#FAFBFB]  rounded-b-[12px]'>
           <input type="text" placeholder='Search by name, chain or pool name' className='w-full p-6 border-transparent focus:border-transparent outline-none focus:outline-none shadow-md mb-6 rounded-lg' />
@@ -142,11 +142,11 @@ export const SupplyingPopup = (props: Props) => {
             </div>
             <div className='table h-[100px] overflow-auto flex-1'>
               {zap === "farm" || zap === "vault" || zap === "liquid staking" ?
-                <div className='table-header grid grid-cols-7 border border-transparent border-b-[#C4C8C8]'>
+                <div className='table-header grid grid-cols-8 border border-transparent border-b-[#C4C8C8]'>
                   <div className='col-span-2 text-[#727B7A] p-3 pt-0'>
                     PROTOCOL
                   </div>
-                  <div className='col-span-3 text-[#727B7A] p-3 pt-0'>
+                  <div className='col-span-4 text-[#727B7A] p-3 pt-0'>
                     TOKEN
                   </div>
                   <div className='col-span-1 text-[#727B7A] p-3 pt-0'>
@@ -169,10 +169,10 @@ export const SupplyingPopup = (props: Props) => {
                 </div>
                   :
                   <div className='table-header grid grid-cols-7 border border-transparent border-b-[#C4C8C8] w-full'>
-                    <div className='col-span-4 text-[#727B7A] p-3 pt-0'>
+                    <div className='col-span-5 text-[#727B7A] p-3 pt-0'>
                       ASSET
                     </div>
-                    <div className='col-span-3 text-[#727B7A] p-3 pt-0'>
+                    <div className='col-span-2 text-[#727B7A] p-3 pt-0'>
                       TOTAL SUPPLIED
                     </div>
                   </div>}
@@ -181,11 +181,11 @@ export const SupplyingPopup = (props: Props) => {
                   Object.entries(props.supply[chainName ?? ""]?.[zap] ?? {})?.map((item, index) => {
                     if (zap === "farm" || zap === "liquid staking") {
                       return (
-                        <div key={item[1].address + index} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-7 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
+                        <div key={item[1].address + index} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-8 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
                           <div className='col-span-2 text-[#130D0D] p-3  font-[500]'>
                             {item[1].protocol}
                           </div>
-                          <div className='col-span-3 text-[#130D0D] p-3  font-[500]'>
+                          <div className='col-span-4 text-[#130D0D] p-3  font-[500]'>
                             <div className='flex gap-2 items-center'>
                               {Array.isArray(item[1].icon) ?
                                 <div className='flex gap-1'>
@@ -235,7 +235,7 @@ export const SupplyingPopup = (props: Props) => {
                     }
                     return (
                       <div key={item[1].address + index} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-7 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
-                        <div className='col-span-4 text-[#130D0D] p-3  font-[500]'>
+                        <div className='col-span-5 text-[#130D0D] p-3  font-[500]'>
                           <div className='flex gap-2 items-center'>
                             {Array.isArray(item[1].icon) ?
                               <div className='flex gap-1'>
@@ -248,7 +248,7 @@ export const SupplyingPopup = (props: Props) => {
                             {item[0]}
                           </div>
                         </div>
-                        <div className='col-span-3 text-[#130D0D] p-3  font-[500]  flex items-center'>
+                        <div className='col-span-2 text-[#130D0D] p-3  font-[500]  flex items-center'>
                           {item[1].totalSupplied}
                         </div>
                       </div>
