@@ -67,7 +67,7 @@ export const SUPPLY_LIST: Supply = {
         icon: USDCIcon,
         apy: 1.7,
         totalSupplied: "600 M",
-        protocol: "AAVE",
+        protocol: "ETHEREUM",
       },
       USDT: {
         name: "USDT",
@@ -75,7 +75,7 @@ export const SUPPLY_LIST: Supply = {
         icon: USDTIcon,
         apy: 2.1,
         totalSupplied: "720 M",
-        protocol: "AAVE",
+        protocol: "ETHEREUM",
       },
       ETH: {
         name: "ETH",
@@ -83,7 +83,7 @@ export const SUPPLY_LIST: Supply = {
         icon: ETHIcon,
         apy: 1.65,
         totalSupplied: "520 M",
-        protocol: "AAVE",
+        protocol: "ETHEREUM",
       },
       BTC: {
         name: "BTC",
@@ -91,7 +91,7 @@ export const SUPPLY_LIST: Supply = {
         icon: BTCIcon,
         apy: 2,
         totalSupplied: "400 M",
-        protocol: "AAVE",
+        protocol: "ETHEREUM",
       },
       KLAY: {
         name: "KLAY",
@@ -99,7 +99,7 @@ export const SUPPLY_LIST: Supply = {
         icon: KlaytnIcon,
         apy: 2.5,
         totalSupplied: "300 M",
-        protocol: "AAVE",
+        protocol: "ETHEREUM",
       },
     },
     farm: {
@@ -205,7 +205,7 @@ export const SUPPLY_LIST: Supply = {
         icon: USDCIcon,
         apy: 5.1,
         totalSupplied: "520 M",
-        protocol: "AAVE",
+        protocol: "KLAYTN",
       },
       USDT: {
         name: "USDT",
@@ -213,7 +213,7 @@ export const SUPPLY_LIST: Supply = {
         icon: USDTIcon,
         apy: 3.1,
         totalSupplied: "410 M",
-        protocol: "AAVE",
+        protocol: "KLAYTN",
       },
       ETH: {
         name: "ETH",
@@ -221,7 +221,7 @@ export const SUPPLY_LIST: Supply = {
         icon: ETHIcon,
         apy: 1.66,
         totalSupplied: "607 M",
-        protocol: "AAVE",
+        protocol: "KLAYTN",
       },
       BTC: {
         name: "BTC",
@@ -229,7 +229,7 @@ export const SUPPLY_LIST: Supply = {
         icon: BTCIcon,
         apy: 2.3,
         totalSupplied: "403 M",
-        protocol: "AAVE",
+        protocol: "KLAYTN",
       },
       KLAY: {
         name: "KLAY",
@@ -237,7 +237,7 @@ export const SUPPLY_LIST: Supply = {
         icon: KlaytnIcon,
         apy: 2.5,
         totalSupplied: "500 M",
-        protocol: "AAVE",
+        protocol: "KLAYTN",
       },
     },
     farm: {
@@ -438,7 +438,7 @@ export const SUPPLY_LIST: Supply = {
         icon: USDCIcon,
         apy: 2.1,
         totalSupplied: "554 M",
-        protocol: "AAVE",
+        protocol: "POLYGON",
       },
       USDT: {
         name: "USDT",
@@ -446,7 +446,7 @@ export const SUPPLY_LIST: Supply = {
         icon: USDTIcon,
         apy: 3,
         totalSupplied: "920 M",
-        protocol: "AAVE",
+        protocol: "POLYGON",
       },
       ETH: {
         name: "ETH",
@@ -454,7 +454,7 @@ export const SUPPLY_LIST: Supply = {
         icon: ETHIcon,
         apy: 3.2,
         totalSupplied: "380 M",
-        protocol: "AAVE",
+        protocol: "POLYGON",
       },
       BTC: {
         name: "BTC",
@@ -462,7 +462,7 @@ export const SUPPLY_LIST: Supply = {
         icon: BTCIcon,
         apy: 3.5,
         totalSupplied: "760 M",
-        protocol: "AAVE",
+        protocol: "POLYGON",
       },
       KLAY: {
         name: "KLAY",
@@ -470,7 +470,7 @@ export const SUPPLY_LIST: Supply = {
         icon: KlaytnIcon,
         apy: 3,
         totalSupplied: "450 M",
-        protocol: "AAVE",
+        protocol: "POLYGON",
       },
     },
     farm: {},

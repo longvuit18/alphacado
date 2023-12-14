@@ -3,12 +3,13 @@ import { useEffect, useMemo, useState } from "react"
 import { erc20ABI, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
 import { useClientAccount } from "./use_client_account";
 import { MUMBAI_UNISWAP_V2_ADAPTER_ADDRESS, MUMBAI_USDC, MUMBAI_UNISWAP_V2_ROUTER, MUMBAI_WORMHOLE, SUPPLY_LIST, ADAPTER_ADDRESS, ROUTER, rateList, EXCHANGE_TOKEN } from "@/constants/contract_address";
-import { encodeAbiParameters, etherUnits, formatEther, formatUnits, parseEther, zeroAddress } from "viem";
+import { encodeAbiParameters, etherUnits, formatEther, formatUnits, isAddress, parseEther, zeroAddress } from "viem";
 import { wormholeAbi } from "@/abi/wormhole";
 import { Token } from "@/models/supply";
 import { CHAINS_TESTNET } from "@/constants/chains";
 import { exchangeAbi } from "@/abi/exchange";
 
+type Address = `0x${string}`;
 export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   const account = useClientAccount();
   const [amount, setAmount] = useState<number>(0);
@@ -16,7 +17,8 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   const [tokenFrom, setTokenFrom] = useState<Token>(SUPPLY_LIST.ethereum.token.USDC)
   const [tokenTo, setTokenTo] = useState<Token>(SUPPLY_LIST.klay.token.KLAY)
   const [chainToId, setChainToId] = useState<number>(1001)
-  const [receiver, setReceiver] = useState<string>(account?.address ?? '')
+  const [receiver, setReceiver] = useState<string>("")
+  const [isUseAnotherWallet, setIsUseAnotherWallet] = useState(false)
   const [progressState, setProgressState] = useState("")
   const [hash, setHash] = useState("")
   const [zapTo, setZapTo] = useState("token");
@@ -89,7 +91,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
       0,
       13,
       1,
-      account?.address ?? zeroAddress,
+      isUseAnotherWallet ? receiver : account?.address ?? zeroAddress,
       encodeAbiParameters([
         { name: 'x', type: 'address' },
         { name: 'y', type: 'address' },
@@ -184,6 +186,15 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   }
 
   const errorMessage = useMemo(() => {
+    if (isUseAnotherWallet) {
+      if (!receiver) {
+        return "Receiver is empty."
+      }
+
+      if (!isAddress(receiver)) {
+        return "Receiver address is invalid."
+      }
+    }
     if (tokenFromBalance !== undefined && tokenFromBalance !== null && BigInt(parseEther(amount.toString())) > tokenFromBalance) {
       return "Balance is not enough!"
     }
@@ -200,11 +211,8 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
       }
     }
 
-
-
-
     return ""
-  }, [error, errorApprove, tokenFromBalance, amount, errorExchangeToken, isExchange])
+  }, [error, errorApprove, tokenFromBalance, amount, errorExchangeToken, isExchange, isUseAnotherWallet, receiver])
 
   const rate = useMemo(() => {
     return (rateList as any)?.[`${tokenFrom?.name}/${tokenTo?.name}`] ?? 0.324
@@ -232,7 +240,11 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     zapTo,
     setZapFrom,
     setZapTo,
-    rate
+    rate,
+    isUseAnotherWallet,
+    setIsUseAnotherWallet,
+    receiver,
+    setReceiver
   }
 
 }

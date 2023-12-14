@@ -71,9 +71,9 @@ export const SupplyingPopup = (props: Props) => {
 
   return (
     <>
-      <div className='flex items-center bg-[#E0E2E2] pr-2 gap-1 rounded-full' onClick={() => setOpenModal(true)}>
+      <div className='flex items-center pr-2 gap-1 rounded-full' onClick={() => setOpenModal(true)}>
         {zap == "farm" ? (
-          <div className='flex gap-1 mr-2'>
+          <div className='flex flex-col gap-1'>
             <Image alt="icon"
               src={currentToken?.icon[0] ?? USDCIcon}
               height={24}
@@ -97,7 +97,7 @@ export const SupplyingPopup = (props: Props) => {
             className='cursor-pointer'
           />
         )}
-        <ArrowDownIcon className='ml-1' />
+        <ArrowDownIcon className='' />
       </div>
 
       <Modal show={openModal} onClose={() => setOpenModal(false)} size={"3xl"}>
@@ -156,24 +156,23 @@ export const SupplyingPopup = (props: Props) => {
                     TVL
                   </div>
                 </div>
-                : <div className='table-header grid grid-cols-4 border border-transparent border-b-[#C4C8C8]'>
-                  <div className='col-span-1 text-[#727B7A] p-3 pt-0'>
+                : <div className='table-header grid grid-cols-7 border border-transparent border-b-[#C4C8C8] w-full'>
+                  <div className='col-span-2 text-[#727B7A] p-3 pt-0'>
                     PROTOCOL
                   </div>
-                  <div className='col-span-2 text-[#727B7A] p-3 pt-0'>
+                  <div className='col-span-3 text-[#727B7A] p-3 pt-0'>
                     ASSET
                   </div>
-                  <div className='col-span-1 text-[#727B7A] p-3 pt-0'>
+                  <div className='col-span-2 text-[#727B7A] p-3 pt-0'>
                     TOTAL SUPPLIED
                   </div>
                 </div>}
               <div className='h-[320px] overflow-auto'>
                 {
-                  Object.entries(props.supply[chainName ?? ""]?.[zap] ?? {})?.map(item => {
-                    console.log(item);
+                  Object.entries(props.supply[chainName ?? ""]?.[zap] ?? {})?.map((item, index) => {
                     if (zap === "farm" || zap === "liquid staking") {
                       return (
-                        <div key={item[1].address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-7 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
+                        <div key={item[1].address + index} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-7 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
                           <div className='col-span-2 text-[#130D0D] p-3  font-[500]'>
                             {item[1].protocol}
                           </div>
@@ -182,7 +181,7 @@ export const SupplyingPopup = (props: Props) => {
                               {Array.isArray(item[1].icon) ?
                                 <div className='flex gap-1'>
                                   <Image alt="usdc icon" src={item[1].icon[0]} height={32} width={32} />
-                                  <Image alt="usdc icon" src={item[1].icon[1]} height={32} width={32} />
+                                  <Image alt="usdc icon 1" src={item[1].icon[1]} height={32} width={32} />
                                 </div>
                                 :
                                 <Image alt="usdc icon" src={item[1].icon} height={32} width={32} />
@@ -201,11 +200,11 @@ export const SupplyingPopup = (props: Props) => {
                     }
 
                     return (
-                      <div key={item[1].address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-4 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
-                        <div className='col-span-1 text-[#130D0D] p-3  font-[500]'>
+                      <div key={item[1].address + index} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-7 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
+                        <div className='col-span-2 text-[#130D0D] p-3  font-[500]'>
                           {item[1].protocol}
                         </div>
-                        <div className='col-span-2 text-[#130D0D] p-3  font-[500]'>
+                        <div className='col-span-3 text-[#130D0D] p-3  font-[500]'>
                           <div className='flex gap-2 items-center'>
                             {Array.isArray(item[1].icon) ?
                               <div className='flex gap-1'>
@@ -218,7 +217,7 @@ export const SupplyingPopup = (props: Props) => {
                             {item[0]}
                           </div>
                         </div>
-                        <div className='col-span-1 text-[#130D0D] p-3  font-[500]  flex items-center'>
+                        <div className='col-span-2 text-[#130D0D] p-3  font-[500]  flex items-center'>
                           {item[1].totalSupplied}
                         </div>
                       </div>
@@ -230,7 +229,7 @@ export const SupplyingPopup = (props: Props) => {
                     return (
                       <div key={item.address} onClick={() => onChangeToken(item[1])} className='table-header grid grid-cols-8 border border-transparent border-b-[#C4C8C8] hover:bg-[#C4C8C8] cursor-pointer'>
                         <div className='col-span-2 text-[#130D0D] p-3  font-[500]'>
-                          AAVE
+                          Alphacado
                         </div>
                         <div className='col-span-4 text-[#130D0D] p-3  font-[500]'>
                           <div className='flex gap-2 items-center'>

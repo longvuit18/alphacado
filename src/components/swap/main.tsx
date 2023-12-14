@@ -63,7 +63,11 @@ export const MainSwap = (props: Props) => {
     zapTo,
     setZapFrom,
     setZapTo,
-    rate
+    rate,
+    isUseAnotherWallet,
+    setIsUseAnotherWallet,
+    receiver,
+    setReceiver
   } = useSwap({ chainFromId: chainId })
 
   const chainFromIcon = useMemo(() => {
@@ -128,10 +132,18 @@ export const MainSwap = (props: Props) => {
           </div>
         </div>
         {/* <p className="text-[14px] mb-3 text-[#727B7A]">Balance: ???BNB</p> */}
-        {/* <div className="flex gap-3 text-[#727B7A]">
-          <ToggleSwitch checked onChange={() => null} />
+        <div className="flex gap-3 text-[#727B7A]">
+          <ToggleSwitch checked={isUseAnotherWallet} onChange={(checked) => {
+            if (checked === false) {
+              setReceiver("")
+            }
+            setIsUseAnotherWallet(checked)
+          }} />
           <p>Receive to another wallet</p>
-        </div> */}
+        </div>
+        {isUseAnotherWallet && <div className="mt-4">
+          <input value={receiver} onChange={(event) => setReceiver(event.currentTarget.value)} placeholder="Enter address ..." className="w-full border-transparent focus:border-transparent outline-none px-4 py-3" />
+        </div>}
       </div>
       <div className="third-gradient-background px-8 pt-9 flex flex-col gap-3 pb-6">
         <div className="flex justify-between">
