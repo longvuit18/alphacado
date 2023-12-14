@@ -19,6 +19,7 @@ import { CHAINS_TESTNET } from "@/constants/chains";
 import { useNetwork } from "wagmi";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { ProgressPopup } from "./progress_popup";
+import Tooltip from "../common/tooltip";
 
 type Props = {
   slippageTolerance: string | undefined;
@@ -31,7 +32,7 @@ export const MainSwap = (props: Props) => {
   const { chain } = useNetwork()
   const [chainId, setChainId] = useState<number | undefined>(undefined)
   const [nativeSymbol, setNativeSymbol] = useState<string | null>(null)
-
+  const [isGasless, setIsGasless] = useState(false);
   useEffect(() => {
     if (chain) {
       setChainId(chain.id)
@@ -85,6 +86,13 @@ export const MainSwap = (props: Props) => {
   const chainToName = useMemo(() => {
     return Object.values(CHAINS_TESTNET).find(item => item.id === chainToId)?.name
   }, [chainToId])
+
+  const isSingleKlaytnChain = useMemo(() => {
+    if (chainToId === 1001 && chainId === 1001) {
+      return true;
+    }
+    return false;
+  }, [chainToId, chainId])
 
   return (
     <>
@@ -141,8 +149,17 @@ export const MainSwap = (props: Props) => {
           }} />
           <p>Receive to another wallet</p>
         </div>
+
+
         {isUseAnotherWallet && <div className="mt-4">
           <input value={receiver} onChange={(event) => setReceiver(event.currentTarget.value)} placeholder="Enter address ..." className="w-full border-transparent focus:border-transparent outline-none px-4 py-3" />
+        </div>}
+        {isSingleKlaytnChain && <div className="flex gap-3 text-[#727B7A] mt-3">
+          <ToggleSwitch checked={isGasless} onChange={(checked) => setIsGasless(checked)} />
+          <Tooltip className="w-[120px] text-center" text="Upcoming">
+            <p>Gasless</p>
+          </Tooltip>
+
         </div>}
       </div>
       <div className="third-gradient-background px-8 pt-9 flex flex-col gap-3 pb-6">
@@ -155,7 +172,7 @@ export const MainSwap = (props: Props) => {
           <p className="font-[600] text-[16px]">0.0984081 WETH</p>
         </div> */}
         <div className="flex justify-between">
-          <p className="text-[#646E6C]">Cross-chain fee:</p>
+          <p className="text-[#646E6C]">{isSingleKlaytnChain ? "Fee" : "Cross-chain fee"}:</p>
           <p className="font-[600] text-[16px]">{0.0134} {nativeSymbol}</p>
         </div>
         {/* <div className="flex justify-between">

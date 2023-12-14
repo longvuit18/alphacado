@@ -66,7 +66,7 @@ export default function SetupNewVaultForm(props: any) {
   }
 
   const handleClickStakeToKlayswap = () => {
-    setStrategies([...strategies, <Strategy key={strategies.length} content={'KlaySwap::Stake'} />])
+    setStrategies([...strategies, <Strategy key={strategies.length} content={'KlayStation:StakeKLAY'} />])
     handleCloseModal()
   }
 
@@ -86,7 +86,7 @@ export default function SetupNewVaultForm(props: any) {
               style={{ background: '-webkit-linear-gradient(122deg, #FFE47A 35.05%, rgba(142, 255, 88, 0.90) 96.88%)' }}
               onClick={handleClickStakeToKlayswap}
             >
-              KlaySwap::Stake
+              KlayStation:StakeKLAY
             </div>
             <div
               className="px-4 py-2 rounded-lg hover:opacity-80 cursor-pointer"

@@ -61,7 +61,7 @@ export default function Strategy(props: Props) {
               style={{ background: '-webkit-linear-gradient(122deg, #FFE47A 35.05%, rgba(142, 255, 88, 0.90) 96.88%)' }}
               onClick={handleClickLiquidStakeToStakely}
             >
-              {content === "KlaySwap::Stake" ? "" : "Stakely:WrapStakedKLAY"}
+              {content === "KlayStation:StakeKLAY" ? "" : "Stakely:WrapStakedKLAY"}
             </div>
           </div>
         </div>
@@ -80,7 +80,7 @@ export default function Strategy(props: Props) {
           {index < components.length - 1 ? <div className="w-10 h-[2px] bg-[#FFE47A]"></div> : null}
         </div>
       ))}
-      {content !== "KlaySwap::Stake" && components.length < 2 ? (
+      {content !== "KlayStation:StakeKLAY" && components.length < 2 ? (
         <div className="w-14 ml-4 cursor-pointer border-2 p-3 rounded-full border-[#FFE47A]" onClick={handleOpenModal}>
           <PlusIcon />
         </div>
