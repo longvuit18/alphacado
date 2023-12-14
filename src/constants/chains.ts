@@ -1,48 +1,71 @@
-import { Chain } from 'wagmi'
-import ETHIcon from "@/assets/eth-icon.webp"
-import KlaytnIcon from "@/assets/klaytn.png"
-import PolygonIcon from "@/assets/polygon-icon.webp"
-import BSCIcon from "@/assets/bsc-icon.png"
+import { Chain } from "wagmi";
+import ETHIcon from "@/assets/eth-icon.webp";
+import KlaytnIcon from "@/assets/klaytn.png";
+import PolygonIcon from "@/assets/polygon-icon.webp";
+import BSCIcon from "@/assets/bsc-icon.png";
+import arbitrumIcon from "@/assets/arbitrum-arb-logo.png";
+import optimismIcon from "@/assets/optimism-logo.webp";
+import avalancheIcon from "@/assets/avalanche-avax-logo.png";
+import zkSyncIcon from "@/assets/zkSync-logo.png";
 
 export const CHAINS_TESTNET = {
   ETH: {
     name: "Ethereum",
     icon: ETHIcon,
-    id: 11155111
+    id: 11155111,
   },
   BSC: {
     name: "BSC",
     icon: BSCIcon,
-    id: 97
+    id: 97,
   },
   KLAYTN: {
     name: "Klay",
     icon: KlaytnIcon,
-    id: 1001
+    id: 1001,
   },
   POLYGON: {
     name: "Polygon",
     icon: PolygonIcon,
-    id: 80001
-  }
-
+    id: 80001,
+  },
+  ARBITRUM: {
+    name: "Arbitrum",
+    icon: arbitrumIcon,
+    id: 1235,
+  },
+  OPTIMISM: {
+    name: "Optimism",
+    icon: optimismIcon,
+    id: 2569,
+  },
+  AVALANCHE: {
+    name: "Avalanche",
+    icon: avalancheIcon,
+    id: 58966,
+  },
+  ZKSYNC: {
+    name: "zkSync",
+    icon: zkSyncIcon,
+    id: 98522,
+  },
 };
 export const klaytnTestnet = {
   id: 1001,
-  name: 'Klaytn Testnet',
-  network: 'klaytn',
+  name: "Klaytn Testnet",
+  network: "klaytn",
   nativeCurrency: {
     decimals: 18,
-    name: 'Klaytn',
-    symbol: 'KLAY',
+    name: "Klaytn",
+    symbol: "KLAY",
   },
   rpcUrls: {
-    public: { http: ['https://klaytn-baobab.blockpi.network/v1/rpc/public'] },
-    default: { http: ['https://klaytn-baobab.blockpi.network/v1/rpc/public'] },
+    public: { http: ["https://klaytn-baobab.blockpi.network/v1/rpc/public"] },
+    default: { http: ["https://klaytn-baobab.blockpi.network/v1/rpc/public"] },
   },
   blockExplorers: {
-    etherscan: { name: 'SnowTrace', url: 'https://baobab.klaytnscope.com' },
-    default: { name: 'SnowTrace', url: 'https://baobab.klaytnscope.com' },
+    etherscan: { name: "SnowTrace", url: "https://baobab.klaytnscope.com" },
+    default: { name: "SnowTrace", url: "https://baobab.klaytnscope.com" },
   },
   // contracts: {
   //   multicall3: {
@@ -50,4 +73,4 @@ export const klaytnTestnet = {
   //     blockCreated: 11_907_934,
   //   },
   // },
-} as const satisfies Chain
+} as const satisfies Chain;
