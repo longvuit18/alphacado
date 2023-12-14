@@ -38,7 +38,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
 
   useEffect(() => {
     if (transactionLoading) {
-      setProgressState("Progressing ...")
+      setProgressState("Processing ...")
     } else {
       if (transactionError) {
         setProgressState("Something was wrong!");

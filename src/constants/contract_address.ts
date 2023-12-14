@@ -241,13 +241,13 @@ export const SUPPLY_LIST: Supply = {
       },
     },
     farm: {
-      "KOKONUTSWAP": {
-        name: "KOKONUTSWAP",
+      "KOKOS-ETH": {
+        name: "KOKOS-ETH",
         address: "0xc7072E9A72912fb8a6E341c4F30e46Ac15289055",
         icon: [KokosIcon, ETHIcon],
         apy: 1.3,
         tvl: "63 M",
-        protocol: "KLAYSWAP",
+        protocol: "KOKONUT SWAP",
       },
       "KSP-KLAY": {
         name: "KSP-KLAY",
@@ -570,8 +570,8 @@ export const rateList = {
   "ETH/USDC": 1 / 2000,
   "USDC/BTC": 2000,
   "BTC/USDC": 1 / 2000,
-  "KSP-KLAY/KOKONUTSWAP": 65 / 10,
-  "KOKONUTSWAP/KSP-KLAY": 10 / 65,
+  "KSP-KLAY/KOKOS-ETH": 65 / 10,
+  "KOKOS-ETH/KSP-KLAY": 10 / 65,
   "wETH-USDC/KSP-KLAY": 0.4,
   "KSP-KLAY/wETH-USDC": 1 / 0.4,
 };
