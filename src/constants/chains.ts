@@ -20,7 +20,7 @@ export const CHAINS_TESTNET = {
     id: 97,
   },
   KLAYTN: {
-    name: "Klaytn",
+    name: "Klay",
     icon: KlaytnIcon,
     id: 1001,
   },

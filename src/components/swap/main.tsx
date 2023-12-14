@@ -80,10 +80,16 @@ export const MainSwap = (props: Props) => {
   }, [chainToId])
 
   const chainFromName = useMemo(() => {
+    if (chainId === 1001) {
+      return "Klaytn"
+    }
     return Object.values(CHAINS_TESTNET).find(item => item.id === chainId)?.name
   }, [chainId])
 
   const chainToName = useMemo(() => {
+    if (chainToId === 1001) {
+      return "Klaytn"
+    }
     return Object.values(CHAINS_TESTNET).find(item => item.id === chainToId)?.name
   }, [chainToId])
 
