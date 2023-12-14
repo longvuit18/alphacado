@@ -73,11 +73,20 @@ export const MainSwap = (props: Props) => {
   const chainToIcon = useMemo(() => {
     return Object.values(CHAINS_TESTNET).find(item => item.id === chainToId)?.icon
   }, [chainToId])
+
+  const chainFromName = useMemo(() => {
+    return Object.values(CHAINS_TESTNET).find(item => item.id === chainId)?.name
+  }, [chainId])
+
+  const chainToName = useMemo(() => {
+    return Object.values(CHAINS_TESTNET).find(item => item.id === chainToId)?.name
+  }, [chainToId])
+
   return (
     <>
       <div className="secondary-gradient-background px-6 py-3 pb-9 shadow-sm	">
         <div className="flex justify-between">
-          <p className="text-[16px] text-[#646E6C]">Supply From:</p>
+          <p className="text-[16px] text-[#646E6C]">Supply From: {chainFromName}</p>
           <div className="bg-white rounded-[72px] p-1 flex gap-2">
             CHAIN:
             {chainFromIcon && <Image alt={"chain from"} src={chainFromIcon} height={24} width={24} />}
@@ -103,7 +112,7 @@ export const MainSwap = (props: Props) => {
       </div>
       <div className="secondary-gradient-background px-6 py-3 pb-9 shadow-sm">
         <div className="flex justify-between">
-          <p className="text-[16px] text-[#646E6C]">Supply To:</p>
+          <p className="text-[16px] text-[#646E6C]">Supply To: {chainToName}</p>
           <div className="bg-white rounded-[72px] p-1 flex gap-2">
             CHAIN:
             {chainToIcon && <Image alt="to icon" src={chainToIcon} height={24} width={24} />}
