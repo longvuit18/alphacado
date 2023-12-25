@@ -7,6 +7,7 @@ import arbitrumIcon from "@/assets/arbitrum-arb-logo.png";
 import optimismIcon from "@/assets/optimism-logo.webp";
 import avalancheIcon from "@/assets/avalanche-avax-logo.png";
 import zkSyncIcon from "@/assets/zkSync-logo.png";
+import VictionIcon from "@/assets/viction-icon.png";
 
 export const CHAINS_TESTNET = {
   ETH: {
@@ -18,6 +19,11 @@ export const CHAINS_TESTNET = {
     name: "BSC",
     icon: BSCIcon,
     id: 97,
+  },
+  VICTION: {
+    name: "Viction",
+    icon: VictionIcon,
+    id: 89,
   },
   KLAYTN: {
     name: "Klay",
@@ -48,7 +54,7 @@ export const CHAINS_TESTNET = {
     name: "zkSync",
     icon: zkSyncIcon,
     id: 98522,
-  },
+  }
 };
 export const klaytnTestnet = {
   id: 1001,
@@ -66,6 +72,32 @@ export const klaytnTestnet = {
   blockExplorers: {
     etherscan: { name: "SnowTrace", url: "https://baobab.klaytnscope.com" },
     default: { name: "SnowTrace", url: "https://baobab.klaytnscope.com" },
+  },
+  // contracts: {
+  //   multicall3: {
+  //     address: '0xca11bde05977b3631167028862be2a173976ca11',
+  //     blockCreated: 11_907_934,
+  //   },
+  // },
+} as const satisfies Chain;
+
+
+export const victionTestnet = {
+  id: 1001,
+  name: "Viction Testnet",
+  network: "viction",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Viction",
+    symbol: "VIC",
+  },
+  rpcUrls: {
+    public: { http: ["https://rpc.testnet.tomochain.com"] },
+    default: { http: ["https://rpc.testnet.tomochain.com"] },
+  },
+  blockExplorers: {
+    etherscan: { name: "VictionScan", url: "https://testnet.tomoscan.io/" },
+    default: { name: "VictionScan", url: "https://testnet.tomoscan.io/" },
   },
   // contracts: {
   //   multicall3: {
