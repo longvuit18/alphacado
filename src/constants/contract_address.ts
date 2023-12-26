@@ -841,3 +841,4 @@ export const rateList = {
   "VIC/C98-WBTC": 1 / 40000,
   "VIC/VIC-WBTC": 1 / 40000,
 };
+
