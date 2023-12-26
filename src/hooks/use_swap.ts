@@ -15,8 +15,8 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   const [amount, setAmount] = useState<number>(0);
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
   const [tokenFrom, setTokenFrom] = useState<Token>(SUPPLY_LIST.ethereum.token.USDC)
-  const [tokenTo, setTokenTo] = useState<Token>(SUPPLY_LIST.klay.token.KLAY)
-  const [chainToId, setChainToId] = useState<number>(1001)
+  const [tokenTo, setTokenTo] = useState<Token>(SUPPLY_LIST.viction.token.VIC)
+  const [chainToId, setChainToId] = useState<number>(89)
   const [receiver, setReceiver] = useState<string>("")
   const [isUseAnotherWallet, setIsUseAnotherWallet] = useState(false)
   const [progressState, setProgressState] = useState("")

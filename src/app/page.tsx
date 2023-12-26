@@ -13,7 +13,7 @@ import baseLogo from '../../public/base.png';
 import linearLogo from '../../public/linear.png';
 import aleoLogo from '../../public/aleo.png';
 import suiLogo from '../../public/sui.png';
-import klaytn from '../../public/klaytn.png'
+import victionLogo from '@/assets/viction-icon.jpg'
 import logo from '@/assets/logo.png'
 import Button from '@/components/common/button'
 import Card from '@/components/common/card'
@@ -41,8 +41,8 @@ export default function Home() {
               ACCESS DEFI WORLD
             </h2>
             <div className='flex justify-center items-center gap-3'>
-              <h4 className='text-[#130D0D] text-[38px] '>on Klaytn</h4>
-              <Image className='w-[40px] h-[40px]' src={klaytn} alt='Klaytn Logo' />
+              <h4 className='text-[#130D0D] text-[38px] '>on Viction</h4>
+              <Image className='w-[40px] h-[40px]' src={victionLogo} alt='Viction Logo' />
             </div>
           </div>
           <div className='mt-[43px] w-full flex justify-center'>
