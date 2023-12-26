@@ -109,7 +109,7 @@ export const SupplyingPopup = (props: Props) => {
             <h3 className='mb-3 text-[#727B7A]'>ZAP TYPE:</h3>
             <div className='flex gap-2 '>
               {ZAPS.map((item, index) => {
-                if (item === "vault" && chainId !== 1001) {
+                if (item === "vault" && chainId !== 89) {
                   return null;
                 }
                 if (item === "lending pools") {

@@ -1,6 +1,6 @@
 import { useBlockNumber, useContractWrite, useNetwork, usePrepareContractWrite, useSwitchNetwork, useWaitForTransaction } from "wagmi";
 import { useClientAccount } from "./use_client_account"
-import { BSCTESTNET_VAULT_FACTORY, KLAYTNTESTNET_VAULT_FACTORY, SUPPLY_LIST } from "@/constants/contract_address";
+import { BSCTESTNET_VAULT_FACTORY, KLAYTNTESTNET_VAULT_FACTORY, SUPPLY_LIST, VICTIONTESTNET_VAULT_FACTORY } from "@/constants/contract_address";
 import { vaultFactoryAbi } from "@/abi/vault_factory";
 import { useEffect, useState } from "react";
 import { parseEther } from "viem";
@@ -41,7 +41,7 @@ export const useVault = (props: Props) => {
   })
   // chuẩn bị function
   const { config } = usePrepareContractWrite({
-    address: KLAYTNTESTNET_VAULT_FACTORY,
+    address: VICTIONTESTNET_VAULT_FACTORY,
     abi: vaultFactoryAbi, // tự định nghĩa 1 cái abi,
     functionName: "deployVault",
     args: [
