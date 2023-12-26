@@ -4,7 +4,7 @@ import Checkbox from "@/components/common/checkbox";
 import Image from "next/image";
 import { CREATE_VAULT_STEP } from "./constants/create_vault_step";
 import { ButtonConnectProvider } from "@/components/button_connect_provider";
-import KlayIcon from "@/assets/klaytn.png"
+import VictionIcon from "@/assets/viction-icon.png"
 
 export default function ReviewForm(props: any) {
   const { setStep, isConfirmed, setIsConfirmed, handleDeployVault, chainId, data } = props;
@@ -36,9 +36,9 @@ export default function ReviewForm(props: any) {
               <p>Asset</p>
             </div>
             <div className="flex items-center">
-              <p>KLAY</p>
+              <p>VIC</p>
               <div className="ml-2">
-                <Image src={KlayIcon} alt='Coin' width={32} height={32} />
+                <Image src={VictionIcon} alt='Coin' width={32} height={32} />
               </div>
             </div>
           </div>

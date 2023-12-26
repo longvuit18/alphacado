@@ -66,12 +66,12 @@ export default function SetupNewVaultForm(props: any) {
   }
 
   const handleClickStakeToKlayswap = () => {
-    setStrategies([...strategies, <Strategy key={strategies.length} content={'KlayStation:StakeKLAY'} />])
+    setStrategies([...strategies, <Strategy key={strategies.length} content={'Baryon:StakeC98'} />])
     handleCloseModal()
   }
 
   const handleClickLiquidStakeToStakely = () => {
-    setStrategies([...strategies, <Strategy key={strategies.length} content={'Stakely:StakeKLAY'} />])
+    setStrategies([...strategies, <Strategy key={strategies.length} content={'Baryon:StakeVIC'} />])
     handleCloseModal()
   }
 
@@ -86,14 +86,14 @@ export default function SetupNewVaultForm(props: any) {
               style={{ background: '-webkit-linear-gradient(122deg, #FFE47A 35.05%, rgba(142, 255, 88, 0.90) 96.88%)' }}
               onClick={handleClickStakeToKlayswap}
             >
-              KlayStation:StakeKLAY
+              Baryon:StakeC98
             </div>
             <div
               className="px-4 py-2 rounded-lg hover:opacity-80 cursor-pointer"
               style={{ background: '-webkit-linear-gradient(122deg, #FFE47A 35.05%, rgba(142, 255, 88, 0.90) 96.88%)' }}
               onClick={handleClickLiquidStakeToStakely}
             >
-              {"Stakely:StakeKLAY"}
+              Baryon:StakeVIC
             </div>
           </div>
         </div>
@@ -118,7 +118,7 @@ export default function SetupNewVaultForm(props: any) {
           </div>
           <div className="w-full mb-3">
             <SelectDropdown className="w-full" placeholder="Choose a Token">
-              <option>KLAY</option>
+              <option>VIC</option>
               <option>USDT</option>
               <option>USDC</option>
               <option>ETH</option>

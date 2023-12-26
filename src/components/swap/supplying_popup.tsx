@@ -20,6 +20,7 @@ type Props = {
   disabledSwitchChange?: boolean;
   chainToId?: number
   setChainToId?: (chainId: number) => void;
+  disabledSwitchChain?: boolean;
 }
 
 const ZAPS = ["token", "farm", "lending pools", "liquid staking", "vault"];
@@ -127,19 +128,21 @@ export const SupplyingPopup = (props: Props) => {
             </div>
           </div>
           <div className='flex gap-6'>
-            <div className='assets'>
-              <h3 className='mb-3 text-[#727B7A]'>ASSETS FROM:</h3>
-              <div className='grid grid-cols-2 gap-2'>
-                {Object.values(CHAINS_TESTNET).map(item => {
-                  return (
-                    <div key={item.name} onClick={() => handleSwitchChain(item.id)} className={`cursor-pointer p-3 flex flex-col justify-center items-center bg-white gap-1 rounded-[12px] ${item.id == chainId ? "border border-[#130D0D]" : ''}`}>
-                      <Image alt={item.name + " icon"} src={item.icon} height={26} width={26} />
-                      <h4 className='uppercase'>{item.name}</h4>
-                    </div>
-                  )
-                })}
+            {!props.disabledSwitchChain &&
+              <div className='assets'>
+                <h3 className='mb-3 text-[#727B7A]'>ASSETS FROM:</h3>
+                <div className='grid grid-cols-2 gap-2'>
+                  {Object.values(CHAINS_TESTNET).map(item => {
+                    return (
+                      <div key={item.name} onClick={() => handleSwitchChain(item.id)} className={`cursor-pointer p-3 flex flex-col justify-center items-center bg-white gap-1 rounded-[12px] ${item.id == chainId ? "border border-[#130D0D]" : ''}`}>
+                        <Image alt={item.name + " icon"} src={item.icon} height={26} width={26} />
+                        <h4 className='uppercase'>{item.name}</h4>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
-            </div>
+            }
             <div className='table h-[100px] overflow-auto flex-1'>
               {zap === "farm" || zap === "vault" || zap === "liquid staking" ?
                 <div className='table-header grid grid-cols-8 border border-transparent border-b-[#C4C8C8]'>

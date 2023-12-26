@@ -83,7 +83,7 @@ export const klaytnTestnet = {
 
 
 export const victionTestnet = {
-  id: 1001,
+  id: 89,
   name: "Viction Testnet",
   network: "viction",
   nativeCurrency: {

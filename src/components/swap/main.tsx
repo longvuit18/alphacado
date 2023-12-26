@@ -1,8 +1,5 @@
 "use client"
 import Image from "next/image";
-import MaticIcon from "@/assets/matic.png"
-import BSCIcon from "@/assets/bsc-icon.png"
-import USDCIcon from "@/assets/usdc-icon.png"
 import { truncate } from "@/utils/string";
 import { Alert, ToggleSwitch } from 'flowbite-react';
 import { ButtonConnectProvider } from "../button_connect_provider";
@@ -20,8 +17,7 @@ import { useNetwork } from "wagmi";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { ProgressPopup } from "./progress_popup";
 import Tooltip from "../common/tooltip";
-import { useMultipleSwap } from "@/hooks/use_multiple_swap";
-import { PlusCircleIcon } from "@heroicons/react/24/solid";
+import { PlusCircleIcon } from "@heroicons/react/16/solid";
 
 type Props = {
   slippageTolerance: string | undefined;
@@ -53,7 +49,9 @@ export const MainSwap = (props: Props) => {
     buttonLoading,
     tokenFromBalance,
     setTokenFrom,
+    setTokenFrom2,
     tokenFrom,
+    tokenFrom2,
     tokenTo,
     setTokenTo,
     chainToId,
@@ -63,17 +61,26 @@ export const MainSwap = (props: Props) => {
     setProgressState,
     hash,
     zapFrom,
+    zapFrom2,
     zapTo,
     setZapFrom,
+    setZapFrom2,
     setZapTo,
     rate,
     isUseAnotherWallet,
     setIsUseAnotherWallet,
     receiver,
-    setReceiver
+    setReceiver,
+    isMultiple,
+    setIsMultiple,
+    onChangeValue2,
+    tokenFrom2Balance,
+    isApproveToken1,
+    isApproveToken2,
+    errorMessageMultipleSwap
   } = useSwap({ chainFromId: chainId })
 
-  const { } = useMultipleSwap()
+
 
   const chainFromIcon = useMemo(() => {
     return Object.values(CHAINS_TESTNET).find(item => item.id === chainId)?.icon
@@ -131,23 +138,29 @@ export const MainSwap = (props: Props) => {
           </div>
           <p className="text-[14px]">Balance: {tokenFromBalance !== undefined && tokenFromBalance !== null ? `${formatEther(tokenFromBalance)} ${tokenFrom?.name}` : ""}</p>
         </div>
-        <div>
-          <PlusCircleIcon />
+        <div className="flex justify-center">
+          <PlusCircleIcon onClick={() => setIsMultiple(true)} className="w-7 h-7 cursor-pointer" color="rgba(255, 200, 90)" />
         </div>
-        <div className="bg-white rounded-[8px] w-full px-3 py-4 flex gap-4 items-center">
-          <div>
-            <SupplyingPopup title={'Supply From'} supply={SUPPLY_LIST} zap={zapFrom} token={tokenFrom} onChangeToken={(chainId, zap, token) => { setTokenFrom(token); setZapFrom(zap) }} />
-          </div>
-          <CurrencyInput
-            placeholder="0.0"
-            style={{ boxShadow: "none" }}
-            className="w-full !border-transparent focus:!border-transparent focus:!outline-none !outline-none p-0"
-            defaultValue={0}
-            decimalsLimit={2}
-            onValueChange={(value, name) => onChangeValue(value)}
-          />
-        </div>
-        <p className="text-[14px]">Balance: {tokenFromBalance !== undefined && tokenFromBalance !== null ? `${formatEther(tokenFromBalance)} ${tokenFrom?.name}` : ""}</p>
+        {isMultiple &&
+          <>
+            <div className="bg-white rounded-[8px] w-full px-3 py-4 flex gap-4 items-center mt-4">
+              <div>
+                <SupplyingPopup disabledSwitchChain title={'Supply From'} supply={SUPPLY_LIST} zap={zapFrom2} token={tokenFrom2} onChangeToken={(chainId, zap, token) => { setTokenFrom2(token); setZapFrom2(zap) }} />
+              </div>
+              <CurrencyInput
+                placeholder="0.0"
+                style={{ boxShadow: "none" }}
+                className="w-full !border-transparent focus:!border-transparent focus:!outline-none !outline-none p-0"
+                defaultValue={0}
+                decimalsLimit={2}
+                onValueChange={(value, name) => onChangeValue2(value)}
+              />
+            </div>
+            <div className="flex justify-between">
+              <p className="text-[14px]">Balance: {tokenFrom2Balance !== undefined && tokenFrom2Balance !== null ? `${formatEther(tokenFrom2Balance)} ${tokenFrom2?.name}` : ""}</p>
+              <p className="text-[14px] text-red-500 cursor-pointer underline" onClick={() => setIsMultiple(false)}>Remove</p>
+            </div>
+          </>}
       </div>
       <div className="secondary-gradient-background px-6 py-3 pb-9 shadow-sm">
         <div className="flex justify-between">
@@ -211,6 +224,9 @@ export const MainSwap = (props: Props) => {
         {errorMessage && <Alert color="failure">
           {errorMessage}
         </Alert>}
+        {errorMessageMultipleSwap && isMultiple && <Alert color="failure">
+          {errorMessageMultipleSwap}
+        </Alert>}
       </div>
 
       <div className="w-full">
@@ -225,9 +241,9 @@ export const MainSwap = (props: Props) => {
               buttonLoading ?
                 "Loading ..."
                 :
-                isApprove
+                ((!isMultiple && isApprove) || (isApproveToken1 || isApproveToken2)
                   ? "Approve"
-                  : "Swap"}
+                  : "Swap")}
 
           </Button>
         </ButtonConnectProvider>

@@ -41,12 +41,12 @@ export default function Strategy(props: Props) {
   }
 
   const handleClickStakeToKlayswap = () => {
-    setComponents([...components, singleComponent({ content: 'Stake to Klayswap' })])
+    setComponents([...components, singleComponent({ content: 'Baryon:StakeC98' })])
     handleCloseModal();
   }
 
   const handleClickLiquidStakeToStakely = () => {
-    setComponents([...components, singleComponent({ content: 'Stakely:WrapStakedKLAY' })])
+    setComponents([...components, singleComponent({ content: 'Baryon:StakeVIC' })])
     handleCloseModal();
   }
 
@@ -61,7 +61,7 @@ export default function Strategy(props: Props) {
               style={{ background: '-webkit-linear-gradient(122deg, #FFE47A 35.05%, rgba(142, 255, 88, 0.90) 96.88%)' }}
               onClick={handleClickLiquidStakeToStakely}
             >
-              {content === "KlayStation:StakeKLAY" ? "" : "Stakely:WrapStakedKLAY"}
+              {content}
             </div>
           </div>
         </div>

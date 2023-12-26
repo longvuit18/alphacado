@@ -37,9 +37,14 @@ export const BSCTESTNET_VAULT_FACTORY =
 export const KLAYTNTESTNET_VAULT_FACTORY =
   "0xF149Ee748C2553f2E8D450A27D7c647E28428781";
 
+
+export const VICTIONTESTNET_VAULT_FACTORY =
+  "0xBB48201ce454826cecf11424566dbb52307BE0D4";
 export const ROUTER = "0x87A35f50E570F909F275F5C8AEC40FbeB9e76D17";
 
 export const EXCHANGE_TOKEN = "0x55b84AA20159Ebe618259166dEd708ae31d7A6c3";
+
+export const MULTIPLE_SWAP_VICTION = "0x23F10582A60B3d378fE8f366e6674D20e2D3887d";
 
 export const ADAPTER_ADDRESS = {
   "11155111": {
@@ -55,6 +60,10 @@ export const ADAPTER_ADDRESS = {
   "80001": {
     uniswapV2Token: "0x75055303e8ACa5F966AA15BacAE9172A5887C534",
   },
+  "89": {
+    uniswapV2LP: "0xeFA7D4F3378a79A0985407b4e36955D54808df87",
+    uniswapV2Token: "0xeFA7D4F3378a79A0985407b4e36955D54808df87",
+  }
 };
 
 export const ALPHACADO_CONTRACT = {
@@ -642,7 +651,7 @@ export const SUPPLY_LIST: Supply = {
         icon: [USDTIcon, victionIcon],
         apy: 4.2,
         balance: "78 M",
-        protocol: "Uniswap V3",
+        protocol: "Baryon",
       },
       "USDC-VIC": {
         name: "USDC-VIC",
@@ -650,7 +659,7 @@ export const SUPPLY_LIST: Supply = {
         icon: [USDCIcon, victionIcon],
         apy: 2.8,
         balance: "98 M",
-        protocol: "Uniswap V3",
+        protocol: "Baryon",
       },
       "C98-USDT": {
         name: "C98-USDT",
@@ -658,7 +667,7 @@ export const SUPPLY_LIST: Supply = {
         icon: [coin98Icon, USDTIcon],
         apy: 1.8,
         balance: "108 M",
-        protocol: "Uniswap V3",
+        protocol: "Baryon",
       },
       "C98-USDC": {
         name: "C98-USDC",
@@ -666,7 +675,7 @@ export const SUPPLY_LIST: Supply = {
         icon: [coin98Icon, USDCIcon],
         apy: 2.8,
         balance: "178 M",
-        protocol: "Uniswap V3",
+        protocol: "Baryon",
       },
       "C98-VIC": {
         name: "C98-VIC",
@@ -674,7 +683,7 @@ export const SUPPLY_LIST: Supply = {
         icon: [coin98Icon, victionIcon],
         apy: 5.4,
         balance: "278 M",
-        protocol: "Uniswap V3",
+        protocol: "Baryon",
       },
       "VIC-wETH": {
         name: "VIC-wETH",
@@ -682,7 +691,7 @@ export const SUPPLY_LIST: Supply = {
         icon: [victionIcon, wETHICON],
         apy: 1.5,
         balance: "88 M",
-        protocol: "Uniswap V3",
+        protocol: "Baryon",
       },
       "USDC-wETH": {
         name: "USDC-wETH",
@@ -690,7 +699,7 @@ export const SUPPLY_LIST: Supply = {
         icon: [USDCIcon, wETHICON],
         apy: 2.5,
         balance: "78 M",
-        protocol: "Uniswap V3",
+        protocol: "Baryon",
       },
       "USDT-wETH": {
         name: "USDT-wETH",
@@ -698,7 +707,7 @@ export const SUPPLY_LIST: Supply = {
         icon: [USDTIcon, wETHICON],
         apy: 1.5,
         balance: "71 M",
-        protocol: "Uniswap V3",
+        protocol: "Baryon",
       },
       "C98-wETH": {
         name: "C98-wETH",
@@ -706,7 +715,7 @@ export const SUPPLY_LIST: Supply = {
         icon: [coin98Icon, wETHICON],
         apy: 0.9,
         balance: "781 M",
-        protocol: "Uniswap V3",
+        protocol: "Baryon",
       },
       "USDC-wBTC": {
         name: "USDC-wBTC",
@@ -714,7 +723,7 @@ export const SUPPLY_LIST: Supply = {
         icon: [USDCIcon, wbtcIcon],
         apy: 3.9,
         balance: "281 M",
-        protocol: "Uniswap V3",
+        protocol: "Baryon",
       },
       "USDT-wBTC": {
         name: "USDT-wBTC",
@@ -722,7 +731,7 @@ export const SUPPLY_LIST: Supply = {
         icon: [USDTIcon, wbtcIcon],
         apy: 1.3,
         balance: "381 M",
-        protocol: "Uniswap V3",
+        protocol: "Baryon",
       },
       "C98-wBTC": {
         name: "C98-wBTC",
@@ -730,7 +739,7 @@ export const SUPPLY_LIST: Supply = {
         icon: [USDTIcon, wbtcIcon],
         apy: 2.7,
         balance: "281 M",
-        protocol: "Uniswap V3",
+        protocol: "Baryon",
       },
       "VIC-wBTC": {
         name: "VIC-wBTC",
@@ -738,7 +747,7 @@ export const SUPPLY_LIST: Supply = {
         icon: [victionIcon, wbtcIcon],
         apy: 2.6,
         balance: "285 M",
-        protocol: "Uniswap V3",
+        protocol: "Baryon",
       },
 
     },
@@ -811,7 +820,7 @@ export const rateList = {
   "C98/VIC": 1 / 5,
   "C98/WETH": 1 / 2000,
   "C98/WBTC": 1 / 40000,
-  "C98/C98": 1 / 5,
+  "C98/C98": 1 / 1,
   "C98/USDT-VIC": 1 / 5,
   "C98/USDC-VIC": 1 / 5,
   "C98/C98-USDT": 1 / 5,

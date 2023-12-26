@@ -14,6 +14,7 @@ import linearLogo from '../../public/linear.png';
 import aleoLogo from '../../public/aleo.png';
 import suiLogo from '../../public/sui.png';
 import victionLogo from '@/assets/viction-icon.jpg'
+import landingViction from '@/assets/landing-viction.png'
 import logo from '@/assets/logo.png'
 import Button from '@/components/common/button'
 import Card from '@/components/common/card'
@@ -135,13 +136,13 @@ export default function Home() {
                 <ChainLogo logo={klaytnLogo} className='bg-[#D4FEDD]' />
                 <ChainLogo logo={bnbChainLogo} className='bg-[#F1FFF4]' />
                 <ChainLogo logo={polygonLogo} className='bg-[#D4FEDD]' />
+                <ChainLogo logo={landingViction} className='bg-[#F1FFF4]' imageClassName='w-[50%]' />
                 <ChainLogo logo={arbitrumLogo} className='bg-[#D4FEDD]' commingSoon />
                 <ChainLogo logo={optimismLogo} className='bg-[#F1FFF4]' commingSoon />
                 <ChainLogo logo={avalanche} className='bg-[#D4FEDD]' commingSoon />
                 <ChainLogo logo={zksyncLogo} className='bg-[#F1FFF4]' commingSoon />
                 <ChainLogo logo={baseLogo} className='bg-[#F1FFF4]' imageClassName='w-[75%]' commingSoon />
                 <ChainLogo logo={linearLogo} className='bg-[#D4FEDD]' imageClassName='w-[75%]' commingSoon />
-                <ChainLogo logo={aleoLogo} className='bg-[#F1FFF4]' imageClassName='w-[60%]' commingSoon />
                 <ChainLogo logo={suiLogo} className='bg-[#D4FEDD]' imageClassName='w-[50%]' commingSoon />
               </div>
             </div>
