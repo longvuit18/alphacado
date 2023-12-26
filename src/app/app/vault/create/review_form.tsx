@@ -96,7 +96,7 @@ export default function ReviewForm(props: any) {
             btnType="success"
             onClick={handleDeployVault}
           >
-            {chainId !== 1001 ? "Switch chain to Klaytn" : "Deploy Vault"}
+            {chainId !== 89 ? "Switch chain to Viction" : "Deploy Vault"}
           </Button>
         </ButtonConnectProvider>
 

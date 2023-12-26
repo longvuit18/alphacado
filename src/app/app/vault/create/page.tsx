@@ -77,9 +77,9 @@ export default function CreateVaultPage() {
 
   const handleDeployVault = async () => {
     if (isConfirmed) {
-      if (chainId !== 1001) {
+      if (chainId !== 89) {
         if (switchNetworkAsync) {
-          await switchNetworkAsync(1001)
+          await switchNetworkAsync(89)
           return
         }
       }
