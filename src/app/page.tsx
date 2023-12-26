@@ -135,14 +135,14 @@ export default function Home() {
                 <ChainLogo logo={klaytnLogo} className='bg-[#D4FEDD]' />
                 <ChainLogo logo={bnbChainLogo} className='bg-[#F1FFF4]' />
                 <ChainLogo logo={polygonLogo} className='bg-[#D4FEDD]' />
-                <ChainLogo logo={arbitrumLogo} className='bg-[#D4FEDD]' commingSoon />
-                <ChainLogo logo={optimismLogo} className='bg-[#F1FFF4]' commingSoon />
-                <ChainLogo logo={avalanche} className='bg-[#D4FEDD]' commingSoon />
-                <ChainLogo logo={zksyncLogo} className='bg-[#F1FFF4]' commingSoon />
-                <ChainLogo logo={baseLogo} className='bg-[#F1FFF4]' imageClassName='w-[75%]' commingSoon />
-                <ChainLogo logo={linearLogo} className='bg-[#D4FEDD]' imageClassName='w-[75%]' commingSoon />
-                <ChainLogo logo={aleoLogo} className='bg-[#F1FFF4]' imageClassName='w-[60%]' commingSoon />
-                <ChainLogo logo={suiLogo} className='bg-[#D4FEDD]' imageClassName='w-[50%]' commingSoon />
+                <ChainLogo logo={arbitrumLogo} className='bg-[#D4FEDD]' />
+                <ChainLogo logo={optimismLogo} className='bg-[#F1FFF4]' />
+                <ChainLogo logo={avalanche} className='bg-[#D4FEDD]' />
+                <ChainLogo logo={zksyncLogo} className='bg-[#F1FFF4]' />
+                <ChainLogo logo={baseLogo} className='bg-[#F1FFF4] opacity-60' imageClassName='w-[75%]' commingSoon />
+                <ChainLogo logo={linearLogo} className='bg-[#D4FEDD] opacity-60' imageClassName='w-[75%]' commingSoon />
+                <ChainLogo logo={aleoLogo} className='bg-[#F1FFF4] opacity-60' imageClassName='w-[60%]' commingSoon />
+                <ChainLogo logo={suiLogo} className='bg-[#D4FEDD] opacity-60' imageClassName='w-[50%]' commingSoon />
               </div>
             </div>
           </div>
