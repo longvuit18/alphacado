@@ -3,9 +3,11 @@ import Modal from "@/components/common/modal";
 import Tooltip from "@/components/common/tooltip";
 import { SettingIcon } from "@/components/icons/setting_icon";
 import { MainSwap } from "@/components/swap/main";
+import { MainNftSwap } from "@/components/swap/main_nft";
 import { SettingPopup } from "@/components/swap/setting_popup";
 import { Web3Provider } from "@/context/web3_provider";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 export default function SwapPage() {
@@ -15,6 +17,10 @@ export default function SwapPage() {
   const handleCloseModal = () => {
     setIsActiveModal(false);
   }
+
+  const searchParams = useSearchParams()
+
+  const type = searchParams.get('type')
 
   return (
     <div className="container mx-auto mb-10">
@@ -35,9 +41,16 @@ export default function SwapPage() {
         </div>
       </Modal>
       <div className="flex gap-2 justify-center">
-        <div className="text-[16px] px-9 py-3 border rounded-[16px] border-[#E0E2E2] bg-[#130D0D] text-[#fafbfb]">
-          <Link href={"/app/swap?type=swap"}>Zap</Link>
-        </div>
+        <Link href={"/app/swap?type=swap"}>
+          <div className={`text-[16px] px-9 py-3 border rounded-[16px] border-[#E0E2E2] ${type !== "nfts" ? "bg-[#130D0D] text-[#fafbfb]" : ""} `}>
+            Zap
+          </div>
+        </Link>
+        <Link href={"/app/swap?type=nfts"}>
+          <div className={`text-[16px] px-9 py-3 border rounded-[16px] border-[#E0E2E2] ${type === "nfts" ? "bg-[#130D0D] text-[#fafbfb]" : ""}`}>
+            Nfts
+          </div>
+        </Link>
         <Tooltip className="w-[120px] text-center" text="Upcoming">
           <div className="text-[16px] px-9 py-3 border rounded-[16px] border-[#E0E2E2]">
             <Link href={"/app/swap?type=pools"}>Pools</Link>
@@ -49,9 +62,15 @@ export default function SwapPage() {
           <p className="text-[23px] font-[600] text-[#2E3B39]">Exchange</p>
           <SettingPopup slippageTolerance={slippageTolerance} setSlippageTolerance={setSlippageTolerance} />
         </div>
-        <Web3Provider>
-          <MainSwap slippageTolerance={slippageTolerance} setSlippageTolerance={setSlippageTolerance} />
-        </Web3Provider>
+        {type !== "nfts"
+          ? <Web3Provider>
+            <MainSwap slippageTolerance={slippageTolerance} setSlippageTolerance={setSlippageTolerance} />
+          </Web3Provider>
+          :
+          <Web3Provider>
+            <MainNftSwap slippageTolerance={slippageTolerance} setSlippageTolerance={setSlippageTolerance} />
+          </Web3Provider>
+        }
       </div>
     </div>
   )

@@ -50,11 +50,11 @@ export const CHAINS_TESTNET = {
     icon: avalancheIcon,
     id: 58966,
   },
-  ZKSYNC: {
-    name: "zkSync",
-    icon: zkSyncIcon,
-    id: 98522,
-  }
+  // ZKSYNC: {
+  //   name: "zkSync",
+  //   icon: zkSyncIcon,
+  //   id: 98522,
+  // }
 };
 export const klaytnTestnet = {
   id: 1001,

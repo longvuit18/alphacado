@@ -171,7 +171,6 @@ export const useMultipleSwap = ({ isUseAnotherWallet, receiver, tokenTo, account
     errorApproveMultipleToken2
 
   ])
-  console.log(error)
   return {
     isMultiple,
     setIsMultiple,
