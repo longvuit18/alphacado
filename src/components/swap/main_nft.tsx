@@ -65,7 +65,8 @@ export const MainNftSwap = (props: Props) => {
     setTokenId,
     tokenId,
     zapTo,
-    setZapTo
+    setZapTo,
+    amountOut
   } = useSwapNft({ chainFromId: chainId })
 
 
@@ -137,7 +138,7 @@ export const MainNftSwap = (props: Props) => {
             <div>
               <SupplyingPopup title="Supply To" chainToId={chainToId} setChainToId={(id) => setChainToId(id)} disabledSwitchChange supply={SUPPLY_LIST} zap={zapTo} token={tokenTo} onChangeToken={(chainId, zap, token) => { setTokenTo(token); setZapTo(zap) }} />
             </div>
-            <input readOnly value={tokenId ? 10 : ""} placeholder="0.0" className="w-full border-transparent focus:border-transparent outline-none" />
+            <input readOnly value={tokenId ? 10.8 : ""} placeholder="0.0" className="w-full border-transparent focus:border-transparent outline-none" />
           </div>
         </div>
         {/* <p className="text-[14px] mb-3 text-[#727B7A]">Balance: ???BNB</p> */}

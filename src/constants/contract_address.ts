@@ -850,5 +850,8 @@ export const rateList = {
   "VIC/USDT-WBTC": 1 / 40000,
   "VIC/C98-WBTC": 1 / 40000,
   "VIC/VIC-WBTC": 1 / 40000,
+  "USDT-WETH/C98-VIC": 1 / 3000,
+  "C98-WETH/C98-VIC": 1 / 4000
 };
+
 

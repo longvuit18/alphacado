@@ -82,7 +82,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     address: tokenFrom?.address as `0x${string}`,
     abi: erc20ABI,
     functionName: "allowance",
-    args: [account?.address ?? zeroAddress, zapFrom === "farm" && chainFromId === 1001 ? EXCHANGE_TOKEN : (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token],
+    args: [account?.address ?? zeroAddress, zapFrom === "farm" && chainFromId === 89 ? EXCHANGE_TOKEN : (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token],
     enabled: !!account?.address,
     watch: true
   })
@@ -140,7 +140,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     address: tokenFrom?.address as `0x${string}`,
     abi: erc20ABI,
     functionName: "approve",
-    args: [zapFrom === "farm" && chainFromId === 1001 ? EXCHANGE_TOKEN : (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token, parseEther(amount.toString())],
+    args: [zapFrom === "farm" && chainFromId === 89 ? EXCHANGE_TOKEN : (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token, parseEther(amount.toString())],
     enabled: !!tokenFrom?.address && !isMultiple
   })
 
@@ -152,7 +152,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     args: [tokenFrom?.address, tokenTo?.address, parseEther(amount.toString())],
     enabled: isExchange && !isMultiple
   })
-
+  console.log(zapFrom === "farm" && chainFromId === 89 ? EXCHANGE_TOKEN : (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token, parseEther(amount.toString()))
 
   const { data, writeAsync: writeSwapAsync } = useContractWrite(configSwap);
   const { data: approveData, writeAsync: writeApproveAsync } = useContractWrite(configApprove);
@@ -198,9 +198,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
       }
       return;
     }
-    console.log(1)
     if (chainFromId === 89 && chainToId === 89 && zapFrom === "farm" && zapTo === "farm") {
-      console.log(1212)
       try {
         if (writeExchangeAsync) {
           const tx = await writeExchangeAsync()
@@ -277,10 +275,10 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     }
     return 1
   }, [tokenFrom, tokenTo])
-
+  console.log(`${tokenFrom?.name}/${tokenTo?.name}`.toUpperCase())
   const rateToken2 = useMemo(() => {
-    const pair = `${tokenFrom?.name}/${tokenTo?.name}`.toUpperCase();
-    const revertPair = `${tokenTo?.name}/${tokenFrom?.name}`.toUpperCase();
+    const pair = `${tokenFrom2?.name}/${tokenTo?.name}`.toUpperCase();
+    const revertPair = `${tokenTo?.name}/${tokenFrom2?.name}`.toUpperCase();
     if ((rateList as any)?.[pair]) {
       return (rateList as any)?.[pair]
     }

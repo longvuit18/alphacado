@@ -8,7 +8,7 @@ import { Token } from "@/models/supply";
 
 import { nftAdapterAbi } from "@/abi/nft_adapter";
 
-type Address = `0x${string}`;
+const nftRateUSDC = 5.4;
 export const useSwapNft = ({ chainFromId }: { chainFromId?: number }) => {
   const account = useClientAccount();
   const [buttonLoading, setButtonLoading] = useState<boolean>(false);
@@ -71,7 +71,7 @@ export const useSwapNft = ({ chainFromId }: { chainFromId?: number }) => {
     args: [
       tokenFrom?.address,
       BigInt(tokenId as string ?? "0"),
-      1,
+      BigInt(parseEther(nftRateUSDC.toString())),
       13,
       1,
       isUseAnotherWallet ? receiver : account?.address ?? zeroAddress,
@@ -83,7 +83,7 @@ export const useSwapNft = ({ chainFromId }: { chainFromId?: number }) => {
       ], [
         (ADAPTER_ADDRESS as any)[chainToId?.toString()]?.uniswapV2Token ?? "0xeFA7D4F3378a79A0985407b4e36955D54808df87",
         tokenTo?.address as `0x${string}` ?? zeroAddress,
-        parseEther("10"),
+        parseEther("0"),
         "" as any
       ])
     ],
@@ -160,7 +160,18 @@ export const useSwapNft = ({ chainFromId }: { chainFromId?: number }) => {
     receiver
   ])
 
+  const amountOut = useMemo(() => {
+    const pair = `USDC/${tokenTo?.name}`.toUpperCase();
+    const revertPair = `${tokenTo?.name}/USDC`.toUpperCase();
+    if ((rateList as any)?.[pair]) {
+      return (1 / (rateList as any)?.[pair]) * nftRateUSDC
+    }
 
+    if ((rateList as any)?.[revertPair]) {
+      return (rateList as any)?.[revertPair] * nftRateUSDC
+    }
+    return 1
+  }, [tokenFrom, tokenTo])
 
   return {
 
@@ -185,7 +196,8 @@ export const useSwapNft = ({ chainFromId }: { chainFromId?: number }) => {
     setTokenId,
     tokenId,
     zapTo,
-    setZapTo
+    setZapTo,
+    amountOut
   }
 
 }
