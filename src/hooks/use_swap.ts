@@ -152,7 +152,6 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     args: [tokenFrom?.address, tokenTo?.address, parseEther(amount.toString())],
     enabled: isExchange && !isMultiple
   })
-  console.log(zapFrom === "farm" && chainFromId === 89 ? EXCHANGE_TOKEN : (ADAPTER_ADDRESS as any)[(chainFromId as number)?.toString()]?.uniswapV2Token, parseEther(amount.toString()))
 
   const { data, writeAsync: writeSwapAsync } = useContractWrite(configSwap);
   const { data: approveData, writeAsync: writeApproveAsync } = useContractWrite(configApprove);
@@ -275,7 +274,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     }
     return 1
   }, [tokenFrom, tokenTo])
-  console.log(`${tokenFrom?.name}/${tokenTo?.name}`.toUpperCase())
+
   const rateToken2 = useMemo(() => {
     const pair = `${tokenFrom2?.name}/${tokenTo?.name}`.toUpperCase();
     const revertPair = `${tokenTo?.name}/${tokenFrom2?.name}`.toUpperCase();

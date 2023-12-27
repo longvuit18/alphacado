@@ -134,7 +134,7 @@ export const MainSwap = (props: Props) => {
         <div className="my-3">
           <div className="bg-white rounded-[8px] w-full px-3 py-4 flex gap-4 items-center">
             <div>
-              <SupplyingPopup title={'Supply From'} supply={SUPPLY_LIST} zap={zapFrom} token={tokenFrom} onChangeToken={(chainId, zap, token) => { setTokenFrom(token); setZapFrom(zap) }} />
+              <SupplyingPopup title={'Supply From'} setMultipleSwap={setIsMultiple} supply={SUPPLY_LIST} zap={zapFrom} token={tokenFrom} onChangeToken={(chainId, zap, token) => { setTokenFrom(token); setZapFrom(zap) }} />
             </div>
             <CurrencyInput
               placeholder="0.0"

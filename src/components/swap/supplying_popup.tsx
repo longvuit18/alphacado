@@ -21,6 +21,7 @@ type Props = {
   chainToId?: number
   setChainToId?: (chainId: number) => void;
   disabledSwitchChain?: boolean;
+  setMultipleSwap?: any;
 }
 
 const ZAPS = ["token", "farm", "lending pools", "liquid staking", "vault"];
@@ -38,6 +39,9 @@ export const SupplyingPopup = (props: Props) => {
 
     if (props.setChainToId) {
       props.setChainToId(id)
+    }
+    if (props.setMultipleSwap) {
+      props.setMultipleSwap(false)
     }
   }
 
