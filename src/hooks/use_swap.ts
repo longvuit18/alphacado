@@ -131,7 +131,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
         "" as any
       ])
     ],
-    value: parseEther("0.01"),
+    value: parseEther("0.001"),
     enabled: !!tokenTo?.address && !!tokenFrom?.address && amount > 0 && !!chainFromId && !!chainToId && !isApprove && !isMultiple
   })
 
@@ -144,7 +144,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     enabled: !!tokenFrom?.address && !isMultiple
   })
 
-  const isExchange = !!tokenFrom?.address && !!tokenTo && chainFromId === 1001 && chainToId === 1001 && zapFrom === "farm" && zapTo === "farm" && amount > 0 && !isApprove
+  const isExchange = !!tokenFrom?.address && !!tokenTo && chainFromId === 89 && chainToId === 89 && zapFrom === "farm" && zapTo === "farm" && amount > 0 && !isApprove
   const { config: configExchangeToken, error: errorExchangeToken } = usePrepareContractWrite({
     address: EXCHANGE_TOKEN,
     abi: exchangeAbi,
@@ -184,7 +184,7 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
       onSwapMultiple()
       return;
     }
-    setButtonLoading(true);
+    // setButtonLoading(true);
     if (isApprove) {
       try {
         if (writeApproveAsync) {
@@ -198,8 +198,9 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
       }
       return;
     }
-
-    if (chainFromId === 1001 && chainToId === 1001 && zapFrom === "farm" && zapTo === "farm") {
+    console.log(1)
+    if (chainFromId === 89 && chainToId === 89 && zapFrom === "farm" && zapTo === "farm") {
+      console.log(1212)
       try {
         if (writeExchangeAsync) {
           const tx = await writeExchangeAsync()
@@ -265,8 +266,8 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   ])
 
   const rate = useMemo(() => {
-    const pair = `${tokenFrom?.name}/${tokenTo?.name}`;
-    const revertPair = `${tokenTo?.name}/${tokenFrom?.name}`;
+    const pair = `${tokenFrom?.name}/${tokenTo?.name}`.toUpperCase();
+    const revertPair = `${tokenTo?.name}/${tokenFrom?.name}`.toUpperCase();
     if ((rateList as any)?.[pair]) {
       return (rateList as any)?.[pair]
     }
@@ -278,8 +279,8 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   }, [tokenFrom, tokenTo])
 
   const rateToken2 = useMemo(() => {
-    const pair = `${tokenFrom?.name}/${tokenTo?.name}`;
-    const revertPair = `${tokenTo?.name}/${tokenFrom?.name}`;
+    const pair = `${tokenFrom?.name}/${tokenTo?.name}`.toUpperCase();
+    const revertPair = `${tokenTo?.name}/${tokenFrom?.name}`.toUpperCase();
     if ((rateList as any)?.[pair]) {
       return (rateList as any)?.[pair]
     }

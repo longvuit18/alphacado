@@ -250,7 +250,7 @@ export const MainSwap = (props: Props) => {
               buttonLoading ?
                 "Loading ..."
                 :
-                ((!isMultiple && isApprove) || (isApproveToken1 || isApproveToken2)
+                ((!isMultiple && isApprove) || (isMultiple && (isApproveToken1 || isApproveToken2))
                   ? "Approve"
                   : "Swap")}
 
