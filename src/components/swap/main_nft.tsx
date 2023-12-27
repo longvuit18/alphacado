@@ -118,6 +118,7 @@ export const MainNftSwap = (props: Props) => {
               supply={SUPPLY_LIST}
               token={tokenFrom}
               tokenId={tokenId}
+              setTokenId={setTokenId}
               onChangeNft={(chainId, contractAddress, tokenId) => { setTokenFrom({ address: contractAddress } as Token); setTokenId(tokenId) }}
 
             />

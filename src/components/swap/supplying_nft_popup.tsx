@@ -19,6 +19,7 @@ type Props = {
   disabledSwitchChain?: boolean;
   onChangeNft: (chainId: number, contractAddress: string, tokenId: string) => void
   tokenId?: string | undefined
+  setTokenId?: any
 
 }
 
@@ -38,24 +39,31 @@ export const SupplyingNftPopup = (props: Props) => {
     if (props.setChainToId) {
       props.setChainToId(id)
     }
+
+    if (props.setTokenId) {
+      props.setTokenId(undefined)
+    }
+
   }
+
+  const chainId = useMemo(() => {
+    if (props.chainToId) return props.chainToId
+    if (chain?.id) return chain.id
+  }, [chain?.id, props.chainToId])
 
 
   useEffect(() => {
     if (!!account?.address && openModal) {
       setLoading(true)
       axios.get("/api/nfts/" + account?.address ?? '').then((res) => {
-        setNfts(res.data.result)
+        setNfts(chainId === 11155111 ? res.data.result : [])
         setLoading(false)
       })
     }
 
-  }, [account?.address, openModal])
+  }, [account?.address, openModal, chainId])
 
-  const chainId = useMemo(() => {
-    if (props.chainToId) return props.chainToId
-    if (chain?.id) return chain.id
-  }, [chain?.id, props.chainToId])
+
 
   const currentNft = useMemo(() => {
     return nfts?.find(item => item.token_id === props.tokenId)

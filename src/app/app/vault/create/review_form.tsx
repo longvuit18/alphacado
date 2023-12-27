@@ -77,7 +77,7 @@ export default function ReviewForm(props: any) {
         <p className="text-[#130D0D] text-[18px] font-normal leading-6 mb-4">Deposits Limit</p>
         <div className="flex justify-between">
           <p className="text-[#130D0D] font-medium text-[16px] leading-6">Maximum deposit amount</p>
-          <p className="text-[#130D0D] font-medium text-[16px] leading-6">10 USDT</p>
+          <p className="text-[#130D0D] font-medium text-[16px] leading-6">10 VIC</p>
         </div>
       </div>
 
