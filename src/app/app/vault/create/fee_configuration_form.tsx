@@ -57,6 +57,13 @@ export default function FeeConfigurationForm(props: any) {
     })
   }
 
+  const onToggleAutoHarvest = () => {
+    setFeeConfigurationForm({
+      ...feeConfigurationForm,
+      autoHarvest: !feeConfigurationForm.autoHarvest,
+    })
+  }
+
   const onClickNext = (e: any) => {
     if (isFilledFeeConfigurationForm) {
       setStep(CREATE_VAULT_STEP.REVIEW)
@@ -106,6 +113,13 @@ export default function FeeConfigurationForm(props: any) {
             content="Which address should receive the fees?"
             isChecked={feeConfigurationForm.feeRecipient}
             handleToggle={onToggleFeeRecipient}
+          />
+          <FeeConfigurationOption
+            id="6"
+            title="Auto harvest (relayer)"
+            content="Auto harvest (relayer)"
+            isChecked={feeConfigurationForm.autoHarvest}
+            handleToggle={onToggleAutoHarvest}
           />
           <div>
             <div className="mb-3 p-4 rounded-lg shadow-md">

@@ -46,6 +46,7 @@ export default function CreateVaultPage() {
     performanceFee: false,
     managementFee: false,
     feeRecipient: false,
+    autoHarvest: false,
     address: '',
   })
   const [isFilledFeeConfigurationForm, setIsFilledFeeConfigurationForm] = useState(false)

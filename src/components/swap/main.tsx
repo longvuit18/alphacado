@@ -77,7 +77,9 @@ export const MainSwap = (props: Props) => {
     tokenFrom2Balance,
     isApproveToken1,
     isApproveToken2,
-    errorMessageMultipleSwap
+    errorMessageMultipleSwap,
+    amount2,
+    rateToken2
   } = useSwap({ chainFromId: chainId })
 
 
@@ -111,6 +113,13 @@ export const MainSwap = (props: Props) => {
     return false;
   }, [chainToId, chainId])
 
+  const outputValue = useMemo(() => {
+    if (isMultiple) {
+      return (amount / rate) + (amount2 / rateToken2)
+    }
+    return (amount / rate)
+  }, [amount, amount2, rate, rateToken2, isMultiple])
+
   return (
     <>
       <div className="secondary-gradient-background px-6 py-3 pb-9 shadow-sm	">
@@ -138,9 +147,9 @@ export const MainSwap = (props: Props) => {
           </div>
           <p className="text-[14px]">Balance: {tokenFromBalance !== undefined && tokenFromBalance !== null ? `${formatEther(tokenFromBalance)} ${tokenFrom?.name}` : ""}</p>
         </div>
-        <div className="flex justify-center">
+        {chainId === 89 && <div className="flex justify-center">
           <PlusCircleIcon onClick={() => setIsMultiple(true)} className="w-7 h-7 cursor-pointer" color="rgba(255, 200, 90)" />
-        </div>
+        </div>}
         {isMultiple &&
           <>
             <div className="bg-white rounded-[8px] w-full px-3 py-4 flex gap-4 items-center mt-4">
@@ -176,7 +185,7 @@ export const MainSwap = (props: Props) => {
             <div>
               <SupplyingPopup title="Supply To" chainToId={chainToId} setChainToId={(id) => setChainToId(id)} disabledSwitchChange supply={SUPPLY_LIST} zap={zapTo} token={tokenTo} onChangeToken={(chainId, zap, token) => { setTokenTo(token); setZapTo(zap) }} />
             </div>
-            <input readOnly value={amount / rate} placeholder="0.0" className="w-full border-transparent focus:border-transparent outline-none" />
+            <input readOnly value={outputValue} placeholder="0.0" className="w-full border-transparent focus:border-transparent outline-none" />
           </div>
         </div>
         {/* <p className="text-[14px] mb-3 text-[#727B7A]">Balance: ???BNB</p> */}

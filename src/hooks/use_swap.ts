@@ -265,8 +265,30 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
   ])
 
   const rate = useMemo(() => {
-    return (rateList as any)?.[`${tokenFrom?.name}/${tokenTo?.name}`] ?? 0.324
+    const pair = `${tokenFrom?.name}/${tokenTo?.name}`;
+    const revertPair = `${tokenTo?.name}/${tokenFrom?.name}`;
+    if ((rateList as any)?.[pair]) {
+      return (rateList as any)?.[pair]
+    }
+
+    if ((rateList as any)?.[revertPair]) {
+      return 1 / (rateList as any)?.[revertPair]
+    }
+    return 1
   }, [tokenFrom, tokenTo])
+
+  const rateToken2 = useMemo(() => {
+    const pair = `${tokenFrom?.name}/${tokenTo?.name}`;
+    const revertPair = `${tokenTo?.name}/${tokenFrom?.name}`;
+    if ((rateList as any)?.[pair]) {
+      return (rateList as any)?.[pair]
+    }
+
+    if ((rateList as any)?.[revertPair]) {
+      return 1 / (rateList as any)?.[revertPair]
+    }
+    return 1
+  }, [tokenFrom2, tokenTo])
 
   return {
     amount,
@@ -306,7 +328,9 @@ export const useSwap = ({ chainFromId }: { chainFromId?: number }) => {
     tokenFrom2Balance,
     isApproveToken1,
     isApproveToken2,
-    errorMessageMultipleSwap
+    errorMessageMultipleSwap,
+    rateToken2,
+    amount2
   }
 
 }
